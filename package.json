@@ -1,6 +1,6 @@
 {
     "name": "helldivers1api",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "This stores historical data from the Helldivers 1 API and functions as a rebroadcaster and cache to prevent the stats page and bot from over-querying the API.",
     "homepage": "https://github.com/elfensky/helldivers1api#readme",
     "bugs": {
@@ -23,8 +23,10 @@
         "api"
     ],
     "scripts": {
-        "build": "tsc -p tsconfig.json",
-        "start": "node index.js"
+        "dev": "npx nodemon",
+        "start": "node ./src/index.js",
+        "test": "vitest",
+        "test:watch": "vitest --watch"
     },
     "volta": {
         "node": "22.14.0",
@@ -34,8 +36,7 @@
         "fastify": "^5.3.0"
     },
     "devDependencies": {
-        "@tsconfig/node22": "^22.0.1",
-        "@types/node": "^22.14.1",
-        "typescript": "^5.8.3"
+        "nodemon": "^3.1.9",
+        "vitest": "^3.1.1"
     }
 }
