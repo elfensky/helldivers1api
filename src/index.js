@@ -1,3 +1,4 @@
+import './instrument.mjs';
 import app from './app.mjs';
 
 const start = async () => {
