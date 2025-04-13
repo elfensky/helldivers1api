@@ -1,0 +1,32 @@
+{
+    "name": "helldivers1api",
+    "version": "0.1.0",
+    "description": "This stores historical data from the Helldivers 1 API and functions as a rebroadcaster and cache to prevent the stats page and bot from over-querying the API.",
+    "homepage": "https://github.com/elfensky/helldivers1api#readme",
+    "bugs": {
+        "url": "https://github.com/elfensky/helldivers1api/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/elfensky/helldivers1api.git"
+    },
+    "author": "Andrei Lavrenov",
+    "license": "UNLICENSED",
+    "main": "index.js",
+    "type": "module",
+    "keywords": [
+        "rebroadcast",
+        "historic",
+        "express",
+        "cache",
+        "data",
+        "api"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "volta": {
+        "node": "22.14.0",
+        "npm": "11.3.0"
+    }
+}
