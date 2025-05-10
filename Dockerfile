@@ -37,10 +37,14 @@ RUN \
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
-LABEL org.opencontainers.image.source="https://github.com/elfensky/helldivers1api" \
-    org.opencontainers.image.licenses="MIT" \
-    org.opencontainers.image.title="Helldivers 1 Api"
+# Pass the version from the build step
+ARG VERSION 
 
+LABEL org.opencontainers.image.source="https://github.com/elfensky/helldivers1api"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.title="Helldivers 1 Api"
+LABEL version="${VERSION}"
+LABEL description="nextjs application written in typescript that serves as an api rebroadcaster and formatter for Helldivers 1"
 
 ENV NODE_ENV=production
 # Uncomment the following line in case you want to disable telemetry during runtime.

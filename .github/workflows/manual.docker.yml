@@ -19,6 +19,10 @@ jobs:
                   username: ${{ github.actor }}
                   password: ${{ secrets.ACCESS_TOKEN }} # use personal access token
 
+            - name: Extract version from package.json
+              id: extract_version
+              run: echo "VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+
             - name: Build and push Docker image
               uses: docker/build-push-action@v4
               with:
