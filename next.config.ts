@@ -1,7 +1,7 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-    output: "standalone", // #1
+    output: 'standalone', // #1
 };
 
 export default nextConfig;

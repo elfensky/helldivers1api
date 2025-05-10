@@ -2,4 +2,4 @@ services:
     helldiversbot:
         image: elfensky/helldiversbot:latest
         ports:
-            - "3000:3000"
+            - '3000:3000'
