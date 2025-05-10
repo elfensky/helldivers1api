@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# helldivers.bot
 
-## Getting Started
+This is an application that consumes the official Helldivers 1 API, caches and rebroadcasts it as to avoid high load on official servers.
+It also stores historic data that the official API discards, and offers account management and api keys for 3rd parties to access the API to build their own apps.
+The frontend also shows various data visualizations and notifies visitors of in-game events.
 
-First, run the development server:
+It uses:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- [Next.js](https://nextjs.org), bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+    - App Router for the frontend
+    - API Routes for the backend
+- [ESLint](https://eslint.org) for linting.
+  <!-- - [Vitest](https://vitest.dev) for testing -->
+- [Prisma](https://prisma.io) for database access.
+- [Sentry](https://sentry.io) for analytics
+  <!-- -   [Docker](https://www.docker.com) for deployment -->
+
+## Running locally
+
+1. provide a `.env` file with the following content:
+
+```
+DATABASE_URL="postgresql://user:password@host:port/helldiversbot?schema=public"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Docker
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Build local
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+docker build -t elfensky/h1api:latest .
+docker build -t elfensky/helldiversbot:latest .
 
-## Learn More
+#### Build production
 
-To learn more about Next.js, take a look at the following resources:
+docker buildx build --platform linux/amd64 -t elfensky/h1api:latest . --push
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy to production
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. docker pull elfensky/h1api:latest
+2. create an .env file with the same variables as above and note its path
+3. create a docker-compose.yml file with the following content:
