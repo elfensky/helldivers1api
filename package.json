@@ -7,7 +7,10 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "lint:watch": "chokidar 'src/**/*.{js,jsx,ts,tsx}' -c 'npm run lint'",
+        "format:watch": "chokidar 'src/**/*.{js,jsx,ts,tsx}' -c 'npm run format'",
+        "watch:all": "npm run lint:watch & npm run format:watch"
     },
     "dependencies": {
         "next": "15.3.2",
@@ -20,6 +23,7 @@
         "@types/node": "^20",
         "@types/react": "^19",
         "@types/react-dom": "^19",
+        "chokidar-cli": "^3.0.0",
         "eslint": "^9",
         "eslint-config-next": "15.3.2",
         "prettier": "^3.5.3",
