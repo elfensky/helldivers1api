@@ -37,6 +37,10 @@ RUN \
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
+LABEL org.opencontainers.image.source="https://github.com/elfensky/helldivers1api" \
+    org.opencontainers.image.licenses="MIT" \
+    org.opencontainers.image.title="Helldivers 1 Api"
+
 
 ENV NODE_ENV=production
 # Uncomment the following line in case you want to disable telemetry during runtime.

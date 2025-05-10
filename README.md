@@ -27,12 +27,11 @@ DATABASE_URL="postgresql://user:password@host:port/helldiversbot?schema=public"
 
 #### Build local
 
-docker build -t elfensky/h1api:latest .
-docker build -t elfensky/helldiversbot:latest .
+docker build -t elfensky/helldivers1api:latest .
 
 #### Build production
 
-docker buildx build --platform linux/amd64 -t elfensky/h1api:latest . --push
+docker buildx build --platform linux/amd64 -t elfensky/helldivers1api:latest . --push
 
 ## Deploy to production
 
