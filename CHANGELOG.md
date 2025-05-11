@@ -19,3 +19,4 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 - Add some folder structure to the project
   - src/app -> routable content
   - src/components -> reusable components
+- Add Github Action to automatically build and push the container to Github Container Registry on every tagged commit, and create a new release on Github.
