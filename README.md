@@ -10,10 +10,10 @@ It uses:
     - App Router for the frontend
     - API Routes for the backend
 - [ESLint](https://eslint.org) for linting.
-    <!-- - [Vitest](https://vitest.dev) for testing -->
+      <!-- - [Vitest](https://vitest.dev) for testing -->
 - [Prisma](https://prisma.io) for database access.
 - [Sentry](https://sentry.io) for analytics
-    <!-- -   [Docker](https://www.docker.com) for deployment -->
+      <!-- -   [Docker](https://www.docker.com) for deployment -->
 
 ## Running locally
 
@@ -25,19 +25,12 @@ DATABASE_URL="postgresql://user:password@host:port/helldiversbot?schema=public"
 
 ## Docker
 
-#### Build local
+#### Build locally
 
-docker build -t elfensky/helldivers1api:latest .
+docker build -t ghcr.io/elfensky/helldivers1api:dev .
+docker buildx build --platform linux/amd64 -t ghcr.io/elfensky/helldivers1api:dev .
 
-#### Build production
-
-docker buildx build --platform linux/amd64 -t elfensky/helldivers1api:latest . --push
-
-## Deploy to production
-
-1. docker pull elfensky/h1api:latest
-2. create an .env file with the same variables as above and note its path
-3. create a docker-compose.yml file with the following content:
+#### Deploy to ghcr.io
 
 ## Prisma
 
