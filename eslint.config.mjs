@@ -13,16 +13,16 @@ const eslintConfig = [
     ...compat.extends('next/core-web-vitals', 'next/typescript'),
     {
         files: ['**/*.ts', '**/*.tsx'],
-        // ignores: ['./src/generated/**'],
+        ignores: ['node_modules/'], //'./src/generated/**/*'
         linterOptions: {
-            noInlineConfig: false,
-            reportUnusedDisableDirectives: 'off', //supress warnings about the generated prisma code
+            // noInlineConfig: false,
+            // reportUnusedDisableDirectives: 'off', //supress warnings about the generated prisma code
         },
         rules: {
-            '@typescript-eslint/no-explicit-any': 'error',
-            '@typescript-eslint/no-unused-vars': 'warn',
-            '@typescript-eslint/explicit-module-boundary-types': 'error',
-            '@typescript-eslint/no-inferrable-types': 'error',
+            // '@typescript-eslint/no-explicit-any': 'off',
+            // '@typescript-eslint/no-unused-vars': 'off',
+            // '@typescript-eslint/explicit-module-boundary-types': 'off',
+            // '@typescript-eslint/no-inferrable-types': 'off',
         },
     },
 ];

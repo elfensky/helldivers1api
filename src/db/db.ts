@@ -16,6 +16,7 @@
 
 // V2
 import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '../generated/prisma/client';
 
 const prismaClientSingleton = () => {
     return new PrismaClient();
