@@ -10,10 +10,10 @@ It uses:
     - App Router for the frontend
     - API Routes for the backend
 - [ESLint](https://eslint.org) for linting.
-      <!-- - [Vitest](https://vitest.dev) for testing -->
+  <!-- - [Vitest](https://vitest.dev) for testing -->
 - [Prisma](https://prisma.io) for database access.
 - [Sentry](https://sentry.io) for analytics
-      <!-- -   [Docker](https://www.docker.com) for deployment -->
+  <!-- -   [Docker](https://www.docker.com) for deployment -->
 
 ## Running locally
 
@@ -38,3 +38,19 @@ docker buildx build --platform linux/amd64 -t elfensky/helldivers1api:latest . -
 1. docker pull elfensky/h1api:latest
 2. create an .env file with the same variables as above and note its path
 3. create a docker-compose.yml file with the following content:
+
+## Prisma
+
+`npx prisma generate`
+reads your Prisma schema and generates the Prisma Client.
+
+`npx prisma migrate dev`
+`npx prisma migrate dev --name init`
+Purpose: This command generates and applies a new migration based on your Prisma schema changes. It creates migration files that keep a history of changes.
+Use Case: Use this when you want to maintain a record of database changes, which is essential for production environments or when working in teams. It allows for version control of your database schema.
+Benefits: This command also includes checks for applying migrations in a controlled manner, ensuring data integrity.
+
+`npx prisma db push`
+Purpose: This command is used to push your current Prisma schema to the database directly. It applies any changes you've made to your schema without creating migration files.
+Use Case: It’s particularly useful during the development phase when you want to quickly sync your database schema with your Prisma schema without worrying about migration history.
+Caution: It can overwrite data if your schema changes affect existing tables or columns, so it’s best for early-stage development or prototyping.

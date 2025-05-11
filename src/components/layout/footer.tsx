@@ -1,4 +1,4 @@
-export default function Footer() {
+export default function Footer(): React.JSX.Element {
     // function test() {
     //     console.log('test');
     //     return '123';
