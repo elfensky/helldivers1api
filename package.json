@@ -10,7 +10,7 @@
         "format": "prettier --write .",
         "lint:watch": "chokidar 'src/**/*.{js,jsx,ts,tsx}' -c 'npm run lint'",
         "format:watch": "chokidar 'src/**/*.{js,jsx,ts,tsx}' -c 'npm run format'",
-        "watch:all": "npm run lint:watch & npm run format:watch"
+        "watch": "npm run lint:watch & npm run format:watch"
     },
     "dependencies": {
         "next": "15.3.2",
