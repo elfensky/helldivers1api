@@ -1,8 +1,8 @@
 services:
     helldiversbot:
-        # image: elfensky/helldiversbot:latest
-        image: ghcr.io/elfensky/helldivers1api:dev
+        image: elfensky/helldivers1api:latest
+        # image: ghcr.io/elfensky/helldivers1api:dev
         ports:
-            - '58192:3000'
+            - '3000:3000'
         env_file:
             - .env.docker

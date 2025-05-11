@@ -5,7 +5,7 @@ function getRandomBoolean() {
     return Math.random() < 0.5;
 }
 
-function getRandomString(length: number): string {
+function getRandomString(length) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
     for (let i = 0; i < length; i++) {
@@ -14,7 +14,7 @@ function getRandomString(length: number): string {
     return result;
 }
 
-export async function getPosts(): Promise<object> {
+export async function getPosts() {
     const start = performance.now();
 
     try {
@@ -32,7 +32,7 @@ export async function getPosts(): Promise<object> {
     }
 }
 
-export async function createRandomPost(): Promise<object> {
+export async function createRandomPost() {
     const start = performance.now();
 
     try {

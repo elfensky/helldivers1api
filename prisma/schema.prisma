@@ -16,7 +16,7 @@
 
 
 generator client {
-  provider = "prisma-client-js"  //read https://www.prisma.io/docs/orm/prisma-schema/overview/generators#prisma-client-early-access
+  provider = "prisma-client"  //read https://www.prisma.io/docs/orm/prisma-schema/overview/generators#prisma-client-early-access
   output   = "../src/generated/prisma"
   binaryTargets = ["native", "darwin-arm64", "linux-musl-arm64-openssl-3.0.x", "linux-musl-openssl-3.0.x"] //read https://www.prisma.io/docs/orm/reference/prisma-schema-reference#binarytargets-options
 }

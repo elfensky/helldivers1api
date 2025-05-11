@@ -68,16 +68,16 @@
 
     - export default function Home() {
       return (
-        <main className="flex">
-        <a
-                                                                                                                                                                                                                                                                                                                                                                                                href="https://www.flaticon.com/free-icons/satellite"
-                                                                                                                                                                                                                                                                                                                                                                                                title="satellite icons"
-                                                                                                                                                                                                                                                                                                                                                                                            >
-        Satellite icons created by Freepik - Flaticon
-        </a>
-        </main>
-        );
-        }
+          <main className="flex">
+          <a
+                                                                                                                                                                                                                                                                                                                                                                                                  href="https://www.flaticon.com/free-icons/satellite"
+                                                                                                                                                                                                                                                                                                                                                                                                  title="satellite icons"
+                                                                                                                                                                                                                                                                                                                                                                                              >
+          Satellite icons created by Freepik - Flaticon
+          </a>
+          </main>
+          );
+          }
 
 - admin dashboard to manage api key(s)
 

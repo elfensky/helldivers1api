@@ -15,7 +15,7 @@ import { getPosts, createRandomPost } from '@/db/queries/post';
 //     });
 // }
 
-export async function GET(request: NextRequest): Promise<NextResponse> {
+export async function GET(request) {
     console.log('api/example/helloworld/route.ts GET');
     const { searchParams } = request.nextUrl;
     console.log(searchParams);
@@ -28,7 +28,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     });
 }
 
-export async function POST(): Promise<NextResponse> {
+export async function POST() {
     console.log('api/example/helloworld/route.ts POST');
 
     const post = await createRandomPost();
