@@ -4,3 +4,4 @@
     - Show list of API keys
     - Create new API key
     - Delete existing API key
+- Validate works in docker

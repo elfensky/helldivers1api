@@ -148,36 +148,30 @@ export async function deleteApiKey(_, formData) {
     }
 
     try {
-        console.log('A');
         const session = await auth();
         if (!session || !session?.user) {
-            console.log('A-1');
             return {
                 errors: { auth: "You don't have permission to delete this API key" },
                 time: performanceTime(start),
             };
         }
         if (session.user.id !== formValues.userId) {
-            console.log('A-2', session.user.id, formValues.userId);
             return {
                 errors: { auth: "You don't have permission to delete this API key" },
                 time: performanceTime(start),
             };
         }
 
-        console.log('B');
         const deletedApiKey = await db.ApiKey.delete({
             where: {
                 id: formValues.apikeyId,
             },
         });
-        console.log('C');
 
         const query = {
             data: deletedApiKey,
             time: performanceTime(start),
         };
-        console.log('C');
 
         revalidatePath('/dashboard', 'page');
         return query;
