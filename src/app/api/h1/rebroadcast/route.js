@@ -12,7 +12,10 @@ import { isValidFormData } from '@/validators/isValidFormData';
 //update
 import { updateStatus } from '@/lib/updateStatus.mjs';
 import { updateSeason } from '@/lib/updateSeason.mjs';
-import { query_get_rebroadcast_season } from '@/db/queries/rebroadcast';
+import {
+    query_get_rebroadcast_status,
+    query_get_rebroadcast_season,
+} from '@/db/queries/rebroadcast';
 
 export async function POST(request) {
     //schedule work after response is finished
@@ -20,12 +23,13 @@ export async function POST(request) {
     after(async () => {
         //7. log usage
         // console.log('after() ', performanceTime(start));
+
         //8. schedule update
         if (update) {
             if (formValues.action === 'get_campaign_status') {
                 const { data, error } = await tryCatch(updateStatus());
-                // console.log('data', data);
-                // console.log('error', error.message);
+                //log update
+                //trigger websocket update
             }
             if (formValues.action === 'get_snapshots') {
                 const { data, error } = await tryCatch(updateSeason(formValues.season));
@@ -35,6 +39,8 @@ export async function POST(request) {
                 // if (error) {
                 //     console.log('error1', error.message);
                 // }
+                //log update
+                //trigger websocket update
             }
         }
     });
@@ -76,27 +82,27 @@ export async function POST(request) {
                 break;
         }
     }
-    formValues.season = Number(formValues.season); //cast to number, it is now safe to do so.
+    if (formValues?.season) {
+        formValues.season = Number(formValues.season); //cast to number, it is now safe to do so. Otherwise zod would've have thrown an error before this line.
+    }
 
     //4. attempt to get data from db.
     let data = undefined;
     switch (formValues.action) {
         case 'get_campaign_status':
-            // data = [];
-            // data = await query_get_campaign_status(formValues);
+            data = await query_get_rebroadcast_status();
+            data = data?.data?.json;
             break;
         case 'get_snapshots':
             data = await query_get_rebroadcast_season(formValues.season);
-            // data = await query_get_snapshots(formValues);
-            // data = [];
+            data = data?.data?.json;
             break;
         default:
             break;
     }
 
-    console.log('data', data);
     //5. validate data from DB
-    if (!data) {
+    if (data === undefined || data === null) {
         update = true;
         return errorResponse(4);
     }

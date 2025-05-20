@@ -5,7 +5,32 @@ import { performanceTime } from '@/utils/time';
 
 export async function query_get_rebroadcast_status(season) {
     'use server';
-    console.log('rebroadcast_status');
+    const start = performance.now();
+
+    try {
+        const query = await db.rebroadcast_status.findFirst({
+            orderBy: {
+                last_updated: 'desc', // or 'asc' for oldest
+            },
+            // Optionally, add a where clause if you want to filter
+            // where: { ... }
+        });
+
+        const response = {
+            ms: performanceTime(start),
+            data: query,
+        };
+
+        return response;
+
+        // if (query?.json) {
+        //     return query.json;
+        // } else {
+        //     return null;
+        // }
+    } catch (error) {
+        throw error;
+    }
 }
 
 export async function query_get_rebroadcast_season(season) {
@@ -19,22 +44,30 @@ export async function query_get_rebroadcast_season(season) {
             },
         });
 
-        // const response = {
-        //     ms: performanceTime(start),
-        //     data: query,
-        // };
+        const response = {
+            ms: performanceTime(start),
+            data: query,
+        };
 
-        return query.json;
+        return response;
+
+        // if (query?.json) {
+        //     return query.json;
+        // } else {
+        //     return null;
+        // }
     } catch (error) {
         throw error;
     }
 }
 
-export async function query_upsert_rebroadcast_status(season, data) {
+export async function query_upsert_rebroadcast_status(data) {
     const start = performance.now();
 
     try {
         const now = new Date();
+        const season = Number(data.campaign_status[0].season);
+        console.log('season', season);
 
         const existingRecord = await db.rebroadcast_status.findUnique({
             where: {
