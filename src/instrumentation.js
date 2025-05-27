@@ -5,16 +5,20 @@ import {
 } from '@/utils/initialize.mjs';
 import { tryCatch } from '@/lib/tryCatch.mjs';
 
-await generateOpenApiSpec();
+// const isOpenApiSetup = await generateOpenApiSpec();
+
+// if (!isOpenApiSetup) {
+//     console.error('OPENAPI - failed to generate spec');
+//     exit(1);
+// }
 
 //move initializeDB to initialize.mjs and export it instead of getPrismaProvider and runMigrations
 async function initializeDatabase() {
     // const { data, error } = await tryCatch(getPrismaProvider());
-
     // const provider = getPrismaProvider();
     // console.log('AAAAAAAAAAAAAA', data, error);
 
-    if (true) {
+    if (true == true) {
         // provider === 'postgresql'
         console.log("DATABASE - using 'postgresql' provider");
         // migrate the database if needed
@@ -29,9 +33,9 @@ async function initializeDatabase() {
     throw new Error('DATABASE - unknown database provider:', provider);
 }
 
-// const { initDB, errorDB } = tryCatch(initializeDatabase());
-// console.log('initDB', initDB, errorDB);
-// if (errorDB) {
-//     console.error(errorDB);
-//     exit(1);
-// }
+const { initDB, errorDB } = tryCatch(initializeDatabase());
+console.log('initDB', initDB, errorDB);
+if (errorDB) {
+    console.error(errorDB);
+    exit(1);
+}

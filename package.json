@@ -9,6 +9,7 @@
         "build:bun": "bun --bun run build",
         "start": "node .next/standalone/server.js",
         "start:bun": "bun --bun .next/standalone/server.js",
+        "docker": "prisma migrate deploy && node server.js",
         "lint": "next lint",
         "format": "prettier --write .",
         "lint:watch": "chokidar 'src/**/*.{js,jsx,ts,tsx}' -c 'npm run lint'",

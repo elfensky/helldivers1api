@@ -105,5 +105,10 @@ export async function generateOpenApiSpec() {
         console.log('file', file);
         //save
         //store spec as json file
+        if (file) {
+            return true;
+        }
     }
+
+    return false;
 }
