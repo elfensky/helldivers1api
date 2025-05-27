@@ -15,9 +15,19 @@ import './swaggerDark.css'; // see: https://github.com/Amoenus/SwaggerDark/
 //     );
 // }
 
-const spec = await fetch('/api/openapi').then((res) => res.json());
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+const res = await fetch(`${baseUrl}/openapi`);
+const spec = await res.json();
+
 export default function Docs() {
     const swaggerRef = useRef(null);
+
+    // let spec = null;
+    // useEffect(async () => {
+    //     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    //     const res = await fetch(`${baseUrl}/openapi`);
+    //     spec = await res.json();
+    // }, []);
 
     useEffect(() => {
         if (!swaggerRef.current || !spec) return;

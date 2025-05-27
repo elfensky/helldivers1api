@@ -1,6 +1,6 @@
 services:
     helldiversbot:
-        image: ghcr.io/elfensky/helldivers1api:dev
+        image: ghcr.io/elfensky/helldivers1api:latest
         ports:
             - '58102:3000'
         env_file:

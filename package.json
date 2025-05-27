@@ -1,6 +1,6 @@
 {
     "name": "helldivers.bot",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "private": true,
     "scripts": {
         "dev": "next dev --turbopack",
@@ -39,6 +39,6 @@
     },
     "volta": {
         "node": "22.15.0",
-        "npm": "11.3.0"
+        "npm": "11.4.0"
     }
 }

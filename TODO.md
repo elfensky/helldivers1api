@@ -1,18 +1,5 @@
 # TODO
 
-#### 0.4.1
-
-- add swagger docs
-- make sure /docs works
-- add JSDoc for swagger
-
-#### 0.4.2
-
-- add more api routes
-    - /api/h1/attack/[season]
-    - /api/h1/defend/[season]
-    - /api/h1/statistics/[season]
-
 #### 0.5.0
 
 - add instrumentation.js
@@ -119,9 +106,9 @@
       return (
         <main className="flex">
         <a
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    href="https://www.flaticon.com/free-icons/satellite"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    title="satellite icons"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        href="https://www.flaticon.com/free-icons/satellite"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        title="satellite icons"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    >
         Satellite icons created by Freepik - Flaticon
         </a>
         </main>
