@@ -8,10 +8,12 @@ import { SignIn, SignOut } from '@/components/layout2/Auth';
 import Navigation from '@/components/layout2/Navigation';
 //utils
 import { getGravatarUrl } from '@/utils/gravatar';
+//rename component to UpperCAse
 
 export default async function Header() {
     return (
-        <header className="sticky top-0 z-50 flex h-[80px] w-full bg-red-500 xl:relative">
+        <header className="fixed top-0 z-50 flex h-[80px] w-full bg-red-500">
+            {/* sticky xl:relative */}
             <div className="mx-2 flex w-full items-center justify-between sm:mx-24">
                 <Logo />
                 <div className="hidden gap-4 sm:flex">

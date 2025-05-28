@@ -31,7 +31,7 @@ export default async function Galaxy() {
     // }, []);
 
     return (
-        <section id="map" className="max-w-2/3 aspect-square max-h-[80vh] w-full">
+        <section id="map" className="max-w-2/3 z-50 aspect-square max-h-[80vh] w-full">
             <svg
                 id="Layer_2"
                 data-name="Layer 2"
