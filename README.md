@@ -1,5 +1,7 @@
 # helldivers.bot
 
+[![Status Badge](https://github.com/elfensky/helldivers1api/actions/workflows/status.docker.yml/badge.svg?branch=main)](https://github.com/elfensky/helldivers1api/actions/workflows/status.docker.yml)
+
 This is an application that consumes the official Helldivers 1 API, caches and rebroadcasts it as to avoid high load on official servers.
 It also stores historic data that the official API discards, and offers account management and api keys for 3rd parties to access the API to build their own apps.
 The frontend also shows various data visualizations and notifies visitors of in-game events.
@@ -10,10 +12,10 @@ It uses:
     - App Router for the frontend
     - API Routes for the backend
 - [ESLint](https://eslint.org) for linting.
-    <!-- - [Vitest](https://vitest.dev) for testing -->
+      <!-- - [Vitest](https://vitest.dev) for testing -->
 - [Prisma](https://prisma.io) for database access.
 - [Sentry](https://sentry.io) for analytics
-    <!-- -   [Docker](https://www.docker.com) for deployment -->
+      <!-- -   [Docker](https://www.docker.com) for deployment -->
 
 ## Running locally
 
