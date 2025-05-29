@@ -1,3 +1,13 @@
+## 0.5.1 (2025-05-28)
+
+- rework update functions
+    - separate `update` directory
+    - single update.mjs code split into:
+        - update.season.mjs
+        - update.status.mjs
+        - fetch.season.mjs
+        - fetch.status.mjs
+
 ## 0.5.0 (2025-05-28)
 
 - status badges in README.md
