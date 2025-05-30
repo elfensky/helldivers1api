@@ -9,6 +9,8 @@ import { isValidSeason } from '@/validators/isValidSeason'; //validators
 import { queryUpsertRebroadcastSeason } from '@/db/queries/rebroadcast';
 import { queryUpsertSeason } from '@/db/queries/upsertSeason';
 import { queryUpsertIntroductionOrder } from '@/db/queries/upsertIntroductionOrder';
+import { queryUpsertPointsMax } from '@/db/queries/upsertPointsMax';
+import { queryUpsertSnapshots } from '@/db/queries/upsertSnapshots';
 import { queryUpsertDefendEvents } from '@/db/queries/upsertDefendEvents';
 import { queryUpsertAttackEvents } from '@/db/queries/upsertAttackEvents';
 
@@ -57,7 +59,9 @@ export async function updateSeason(season) {
             fetchedData.introduction_order,
         );
         //4.3 upsertPointsMax()
+        const newPointsMax = await queryUpsertPointsMax(season, fetchedData.points_max);
         //4.4 upsertSnapshots()
+        const newSnapshots = await queryUpsertSnapshots(season, fetchedData.snapshots);
         //4.5 upsertDefendEvents()
         const newDefendEvents = await queryUpsertDefendEvents(fetchedData.defend_events);
         //4.6 upsertAttackEvents()
@@ -69,7 +73,8 @@ export async function updateSeason(season) {
         const response = {
             season: newSeason,
             introductionOrder: newIntroductionOrder,
-            // campaigns: campaigns,
+            pointsMax: newPointsMax,
+            snapshots: newSnapshots,
             defendEvents: newDefendEvents,
             attackEvents: newAttackEvents,
             zzz: fetchedData,

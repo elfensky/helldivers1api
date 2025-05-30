@@ -11,15 +11,14 @@ import { updateSeason } from '@/update/season';
 
 export async function GET(request) {
     //STATUS
-    // const { data: statusData, error: statusError } = await tryCatch(updateStatus());
-    // if (statusError) {
-    //     return NextResponse.json(statusError);
-    // }
+    const { data: statusData, error: statusError } = await tryCatch(updateStatus());
+    if (statusError) {
+        return NextResponse.json(statusError);
+    }
 
     //SEASON
     const { data: seasonData, error: seasonError } = await tryCatch(
-        updateSeason(533),
-        //statusData.season.query.season
+        updateSeason(statusData.season.query.season),
     );
     if (seasonError) {
         return NextResponse.json(seasonError);

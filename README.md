@@ -2,7 +2,7 @@
 
 ## Code
 
-[![Status Badge](https://github.com/elfensky/helldivers1api/actions/workflows/status.docker.yml/badge.svg?branch=main)](https://github.com/elfensky/helldivers1api/actions/workflows/status.docker.yml)
+[![Build](https://github.com/elfensky/helldivers1api/actions/workflows/staging.docker.yml/badge.svg)](https://github.com/elfensky/helldivers1api/actions/workflows/staging.docker.yml)
 
 ## Status
 
@@ -19,10 +19,10 @@ It uses:
     - App Router for the frontend
     - API Routes for the backend
 - [ESLint](https://eslint.org) for linting.
-  <!-- - [Vitest](https://vitest.dev) for testing -->
+    <!-- - [Vitest](https://vitest.dev) for testing -->
 - [Prisma](https://prisma.io) for database access.
 - [Sentry](https://sentry.io) for analytics
-  <!-- -   [Docker](https://www.docker.com) for deployment -->
+    <!-- -   [Docker](https://www.docker.com) for deployment -->
 
 ## Running locally
 
