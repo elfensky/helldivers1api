@@ -10,27 +10,37 @@ export async function queryUpsertCampaigns(campaigns) {
     try {
         const now = new Date();
 
-        const upserts = campaigns.map((data) =>
-            db.h1_campaign.upsert({
+        const upsertRecords = [];
+        for (const campaign of campaigns) {
+            console.log('campaign', campaign);
+            const upsertRecord = await db.h1_campaign.upsert({
                 where: {
-                    season: data.season,
-                    introduction_order: data.introduction_order,
+                    season_introduction_order: {
+                        season: campaign.season,
+                        introduction_order: campaign.introduction_order,
+                    },
                 },
                 update: {
-                    points: data.points,
-                    points_taken: data.points_taken,
-                    points_max: data.points_max,
-                    status: data.status,
+                    points: campaign.points,
+                    points_taken: campaign.points_taken,
+                    points_max: campaign.points_max,
+                    status: campaign.status,
                 },
-                create: data,
-            }),
-        );
-
-        const transaction = await prisma.$transaction(upserts);
+                create: {
+                    season: campaign.season,
+                    points: campaign.points,
+                    points_taken: campaign.points_taken,
+                    points_max: campaign.points_max,
+                    status: campaign.status,
+                    introduction_order: campaign.introduction_order,
+                },
+            });
+            upsertRecords.push(upsertRecord);
+        }
 
         const response = {
             ms: performanceTime(start),
-            query: transaction,
+            query: upsertRecords,
         };
 
         return response;

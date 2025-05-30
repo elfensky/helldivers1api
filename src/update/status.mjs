@@ -56,14 +56,13 @@ export async function updateStatus() {
         //4.1 upsertSeason()
         const season = await queryUpsertSeason(currentSeason);
         //4.2 upsertCampaign()
-        // const campaigns = await queryUpsertCampaigns(fetchedData.campaign_status);
-        // console.log('campaigns', campaigns);
+        const campaigns = await queryUpsertCampaigns(fetchedData.campaign_status);
         //4.3 upsertDefendEvent()
         //4.4 upsertAttackEvent()
         //4.5 upsertStatistics()
         const response = {
             season: season,
-            // campaigns: campaigns,
+            campaigns: campaigns,
         };
         return response;
     } catch (error) {

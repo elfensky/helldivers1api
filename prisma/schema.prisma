@@ -191,7 +191,7 @@ model h1_season {
 model h1_campaign {
   //get_campaign_status -> "campaign_status"
   id   String @id @default(uuid(7))
-  season Int @unique
+  season Int //foreign key
   points Int
   points_taken Int
   points_max Int
@@ -199,8 +199,9 @@ model h1_campaign {
   introduction_order Int
   //relationship
   linked_season h1_season @relation("OneSeasonToManyCampaigns", fields: [season], references: [season])
-  //indexes
-  @@index([season])
+  //other
+  @@index([season]) //index
+  @@unique([season, introduction_order]) //unique
 }
 
 model h1_introduction_order {
