@@ -7,6 +7,8 @@ import { fetchSeason } from '@/update/fetch'; //fetch
 import { isValidSeason } from '@/validators/isValidSeason'; //validators
 //db
 import { queryUpsertRebroadcastSeason } from '@/db/queries/rebroadcast';
+import { queryUpsertSeason } from '@/db/queries/upsertSeason';
+import { queryUpsertIntroductionOrder } from '@/db/queries/upsertIntroductionOrder';
 import { queryUpsertDefendEvents } from '@/db/queries/upsertDefendEvents';
 import { queryUpsertAttackEvents } from '@/db/queries/upsertAttackEvents';
 
@@ -30,6 +32,7 @@ export async function updateSeason(season) {
     if (!check.success) {
         throw check.error;
     }
+
     //3. store in db -> /api/rebroadcast
     const { data: storedRebroadcastData, error: storedRebroadcastError } = await tryCatch(
         queryUpsertRebroadcastSeason(season, fetchedData),
@@ -43,25 +46,32 @@ export async function updateSeason(season) {
             },
         );
     }
-    // //4. store in db -> normalized & historic data
+
+    //4. store in db -> normalized & historic data
     try {
-        //4.1 upsertIntroductionOrder()
-        // const introductionOrder = await queryUpsertSeason(currentSeason, false);
-        //4.2 upsertPointsMax()
-        //4.3 upsertSnapshots()
-        //4.4 upsertDefendEvents()
-        const defendEvents = await queryUpsertDefendEvents(fetchedData.defend_events);
-        //4.5 upsertAttackEvents()
-        const attackEvents = await queryUpsertAttackEvents(fetchedData.attack_events);
+        //4.1 upserSeason()
+        const newSeason = await queryUpsertSeason(season, false);
+        //4.2 upsertIntroductionOrder()
+        const newIntroductionOrder = await queryUpsertIntroductionOrder(
+            season,
+            fetchedData.introduction_order,
+        );
+        //4.3 upsertPointsMax()
+        //4.4 upsertSnapshots()
+        //4.5 upsertDefendEvents()
+        const newDefendEvents = await queryUpsertDefendEvents(fetchedData.defend_events);
+        //4.6 upsertAttackEvents()
+        const newAttackEvents = await queryUpsertAttackEvents(fetchedData.attack_events);
 
         //update last_updated time
-        // const season2 = await queryUpsertSeason(currentSeason, true);
+        const last_updated = await queryUpsertSeason(season, true);
 
         const response = {
-            // introductionOrder: introductionOrder,
+            season: newSeason,
+            introductionOrder: newIntroductionOrder,
             // campaigns: campaigns,
-            defendEvents: defendEvents,
-            attackEvents: attackEvents,
+            defendEvents: newDefendEvents,
+            attackEvents: newAttackEvents,
             zzz: fetchedData,
         };
 

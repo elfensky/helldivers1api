@@ -43,6 +43,9 @@ export async function queryUpsertCampaigns(campaigns) {
 
         return response;
     } catch (error) {
+        console.error(error.message, {
+            cause: '/src/db/queries/queryUpsertCampaigns.mjs',
+        });
         throw error;
     }
 }

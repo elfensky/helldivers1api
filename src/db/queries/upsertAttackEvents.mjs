@@ -49,6 +49,9 @@ export async function queryUpsertAttackEvents(events) {
 
         return response;
     } catch (error) {
+        console.error(error.message, {
+            cause: '/src/db/queries/queryUpsertAttackEvents.mjs',
+        });
         throw error;
     }
 }

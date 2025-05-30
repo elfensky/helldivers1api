@@ -101,6 +101,9 @@ export async function queryUpsertSeason(season, complete) {
             return response;
         }
     } catch (error) {
+        console.error(error.message, {
+            cause: '/src/db/queries/queryUpsertSeason.mjs',
+        });
         throw error;
     }
 }

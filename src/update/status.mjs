@@ -33,7 +33,7 @@ export async function updateStatus() {
         });
     }
 
-    const currentSeason = getCurrentSeason(fetchedData);
+    const season = getCurrentSeason(fetchedData);
 
     //3. store in db -> /api/rebroadcast
     const { data: storedRebroadcastData, error: storedRebroadcastError } = await tryCatch(
@@ -52,25 +52,25 @@ export async function updateStatus() {
     //4. store in db -> normalized & historic data
     try {
         //4.1 upsertSeason()
-        const season = await queryUpsertSeason(currentSeason, false);
+        const newSeason = await queryUpsertSeason(season, false);
         //4.2 upsertCampaign()
-        const campaigns = await queryUpsertCampaigns(fetchedData.campaign_status);
+        const newCampaigns = await queryUpsertCampaigns(fetchedData.campaign_status);
         //4.3 upsertDefendEvent()
-        const defendEvent = await queryUpsertDefendEvent(fetchedData.defend_event);
+        const newDefendEvent = await queryUpsertDefendEvent(fetchedData.defend_event);
         //4.4 upsertAttackEvent()
-        const attackEvents = await queryUpsertAttackEvents(fetchedData.attack_events);
+        const newAttackEvents = await queryUpsertAttackEvents(fetchedData.attack_events);
         //4.5 upsertStatistics()
-        const statistics = await queryUpsertStatistics(fetchedData.statistics);
+        const newStatistics = await queryUpsertStatistics(fetchedData.statistics);
 
         //update last_updated time
-        const season2 = await queryUpsertSeason(currentSeason, true);
+        const last_updated = await queryUpsertSeason(season, true);
 
         const response = {
-            season: season,
-            campaigns: campaigns,
-            defendEvent: defendEvent,
-            attackEvents: attackEvents,
-            statistics: statistics,
+            season: newSeason,
+            campaigns: newCampaigns,
+            defendEvent: newDefendEvent,
+            attackEvents: newAttackEvents,
+            statistics: newStatistics,
         };
 
         return response;

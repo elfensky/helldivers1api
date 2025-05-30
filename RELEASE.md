@@ -2,11 +2,10 @@
 
 - rework update functions
     - separate `update` directory
-    - single update.mjs code split into:
-        - update.season.mjs
-        - update.status.mjs
-        - fetch.season.mjs
-        - fetch.status.mjs
+    - code split into:
+        - fetch.mjs -> functions to fetch data from the API
+        - status.mjs -> standalone function to update current status
+        - season.mjs -> standalone function to update specified season
 
 ## 0.5.0 (2025-05-28)
 

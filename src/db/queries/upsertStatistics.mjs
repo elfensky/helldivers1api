@@ -69,6 +69,9 @@ export async function queryUpsertStatistics(statistics) {
 
         return response;
     } catch (error) {
+        console.error(error.message, {
+            cause: '/src/db/queries/queryUpsertStatistics.mjs',
+        });
         throw error;
     }
 }
