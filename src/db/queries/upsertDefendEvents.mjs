@@ -21,6 +21,7 @@ export async function queryUpsertDefendEvents(events) {
                     // event_id: event.event_id,
                     start_time: event.start_time,
                     end_time: event.end_time,
+                    region: event.region,
                     enemy: event.enemy,
                     points_max: event.points_max,
                     points: event.points,
@@ -32,6 +33,7 @@ export async function queryUpsertDefendEvents(events) {
                     event_id: event.event_id,
                     start_time: event.start_time,
                     end_time: event.end_time,
+                    region: event.region,
                     enemy: event.enemy,
                     points_max: event.points_max,
                     points: event.points,
@@ -49,6 +51,9 @@ export async function queryUpsertDefendEvents(events) {
 
         return response;
     } catch (error) {
+        console.error(error.message, {
+            cause: '/src/db/queries/queryUpsertDefendEvents.mjs',
+        });
         throw error;
     }
 }

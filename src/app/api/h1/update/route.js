@@ -16,7 +16,7 @@ export async function GET(request) {
     // }
 
     const { data: seasonData, error: seasonError } = await tryCatch(
-        updateSeason(533),
+        updateSeason(600),
         //statusData.season.query.season
     );
     if (seasonError) {

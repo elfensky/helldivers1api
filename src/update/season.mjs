@@ -50,7 +50,7 @@ export async function updateSeason(season) {
         //4.2 upsertPointsMax()
         //4.3 upsertSnapshots()
         //4.4 upsertDefendEvents()
-        // const defendEvents = await queryUpsertDefendEvents(fetchedData.defend_events);
+        const defendEvents = await queryUpsertDefendEvents(fetchedData.defend_events);
         //4.5 upsertAttackEvents()
         const attackEvents = await queryUpsertAttackEvents(fetchedData.attack_events);
 
@@ -60,13 +60,16 @@ export async function updateSeason(season) {
         const response = {
             // introductionOrder: introductionOrder,
             // campaigns: campaigns,
-            // defendEvents: defendEvents,
+            defendEvents: defendEvents,
             attackEvents: attackEvents,
             zzz: fetchedData,
         };
 
         return response;
     } catch (error) {
+        console.error(error.message, {
+            cause: '/src/update/season.mjs',
+        });
         throw error;
     }
 }
