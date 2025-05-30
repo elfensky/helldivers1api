@@ -111,7 +111,7 @@ export async function queryUpsertRebroadcastStatus(data) {
     }
 }
 
-export async function query_upsert_rebroadcast_season(season, data) {
+export async function queryUpsertRebroadcastSeason(season, data) {
     const start = performance.now();
 
     try {

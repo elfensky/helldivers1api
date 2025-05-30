@@ -5,26 +5,24 @@ import { tryCatch } from '@/lib/tryCatch';
 // import { performance } from 'perf_hooks';
 import { performanceTime, elapsedSeconds } from '@/utils/time';
 import { NextResponse, after } from 'next/server';
-//parsers
-import { formDataToObject } from '@/utils/formdata';
-//validators
-import { isValidContentType } from '@/validators/isValidContentType';
-import { isValidFormData } from '@/validators/isValidFormData';
 //update
 import { updateStatus } from '@/update/status';
+import { updateSeason } from '@/update/season';
 
 export async function GET(request) {
-    const data = {
-        time: Math.floor(Date.now() / 1000),
-    };
+    // const { data: statusData, error: statusError } = await tryCatch(updateStatus());
+    // if (statusError) {
+    //     return NextResponse.json(statusError);
+    // }
 
-    const { data: statusData, error: statusError } = await tryCatch(updateStatus());
-
-    if (statusError) {
-        return NextResponse.json(statusError);
-    } else {
-        return NextResponse.json(statusData);
+    const { data: seasonData, error: seasonError } = await tryCatch(
+        updateSeason(533),
+        //statusData.season.query.season
+    );
+    if (seasonError) {
+        return NextResponse.json(seasonError);
     }
+    return NextResponse.json(seasonData);
 }
 
 // Custom handler for all other methods

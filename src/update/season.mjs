@@ -1,56 +1,72 @@
 'use server';
-//performance
-import { performance } from 'perf_hooks';
-import { performanceTime } from '@/utils/time';
-//util
-import { tryCatch } from '@/lib/tryCatch.mjs';
-//fetch
-// import { fetchData } from '@/utils/fetchData.mjs';
-//validators
-import { schemaNumber } from '@/validators/isValidFormData';
+import { tryCatch } from '@/lib/tryCatch'; //util
+import { performance } from 'perf_hooks'; //util
+import { performanceTime } from '@/utils/time'; //util
+import { getCurrentSeason } from '@/utils/getCurrentSeason'; //util
+import { fetchSeason } from '@/update/fetch'; //fetch
+import { isValidSeason } from '@/validators/isValidSeason'; //validators
 //db
-import { query_upsert_rebroadcast_season } from '@/db/queries/rebroadcast';
-// import { upsertSeason } from '@/db/queries/upsertSeason';
+import { queryUpsertRebroadcastSeason } from '@/db/queries/rebroadcast';
+import { queryUpsertDefendEvents } from '@/db/queries/upsertDefendEvents';
+import { queryUpsertAttackEvents } from '@/db/queries/upsertAttackEvents';
 
 export async function updateSeason(season) {
-    // //0. initialize
-    // const start = performance.now();
-    // let check = null;
-    // //1. test if season exists and is valid
-    // check = schemaNumber.safeParse(season);
-    // if (!check.success) {
-    //     throw new Error(check?.error?.issues[0]?.message || 'Invalid season', {
-    //         cause: `updateSeason(${season})`,
-    //     });
-    // }
-    // //2. initialize fetch
-    // const url = 'https://api.helldiversgame.com/1.0/';
-    // const form = new FormData();
-    // form.append('action', 'get_snapshots');
-    // form.append('season', season.toString());
-    // //3. execute fetch
-    // const { data: fetchedData, error: fetchedError } = await tryCatch(
-    //     fetchData(url, form),
-    // );
-    // if (fetchedError) {
-    //     throw new Error(fetchedError?.message || 'Failed to fetch data from the API', {
-    //         cause: `fetchData(${season})`,
-    //     });
-    // }
-    // //4. store in db -> for rebroadcast
-    // const { data: storedData, error: storedError } = await tryCatch(
-    //     query_upsert_rebroadcast_season(season, fetchedData),
-    // );
-    // if (storedError) {
-    //     throw new Error(storedError?.message || 'Failed to store data in the database', {
-    //         cause: `upsertSeason(${season})`,
-    //     });
-    // }
-    // //5. return response
-    // const status = {
-    //     success: true,
-    //     ms: performanceTime(start),
-    //     data: storedData,
-    // };
-    // return status;
+    //0. initialize
+    const start = performance.now();
+    let check = null;
+
+    //1. fetch
+    const { data: fetchedData, error: fetchedError } = await tryCatch(
+        fetchSeason(season),
+    );
+    if (fetchedError) {
+        throw new Error(fetchedError?.message || 'Failed to fetch status from the API', {
+            cause: `/src/update/season.mjs | tryCatch(fetchSeason())`,
+        });
+    }
+
+    //2. use zod to validate the response.
+    check = isValidSeason(fetchedData);
+    if (!check.success) {
+        throw check.error;
+    }
+    //3. store in db -> /api/rebroadcast
+    const { data: storedRebroadcastData, error: storedRebroadcastError } = await tryCatch(
+        queryUpsertRebroadcastSeason(season, fetchedData),
+    );
+    if (storedRebroadcastError) {
+        throw new Error(
+            storedRebroadcastError?.message ||
+                'Failed to store rebroadcast season in the database',
+            {
+                cause: `/src/update/season.mjs | queryUpsertRebroadcastSeason(fetchedData)`,
+            },
+        );
+    }
+    // //4. store in db -> normalized & historic data
+    try {
+        //4.1 upsertIntroductionOrder()
+        // const introductionOrder = await queryUpsertSeason(currentSeason, false);
+        //4.2 upsertPointsMax()
+        //4.3 upsertSnapshots()
+        //4.4 upsertDefendEvents()
+        // const defendEvents = await queryUpsertDefendEvents(fetchedData.defend_events);
+        //4.5 upsertAttackEvents()
+        const attackEvents = await queryUpsertAttackEvents(fetchedData.attack_events);
+
+        //update last_updated time
+        // const season2 = await queryUpsertSeason(currentSeason, true);
+
+        const response = {
+            // introductionOrder: introductionOrder,
+            // campaigns: campaigns,
+            // defendEvents: defendEvents,
+            attackEvents: attackEvents,
+            zzz: fetchedData,
+        };
+
+        return response;
+    } catch (error) {
+        throw error;
+    }
 }

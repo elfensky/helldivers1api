@@ -2,6 +2,7 @@
 import { tryCatch } from '@/lib/tryCatch.mjs'; //util
 import { performance } from 'perf_hooks'; //util
 import { performanceTime } from '@/utils/time'; //util
+import { getCurrentSeason } from '@/utils/getCurrentSeason'; //util
 import { fetchStatus } from '@/update/fetch.mjs'; //fetch
 import { isValidStatus } from '@/validators/isValidStatus'; //validators
 //db
@@ -49,7 +50,6 @@ export async function updateStatus() {
     }
 
     //4. store in db -> normalized & historic data
-    console.log(`4. store in db -> normalized & historic data for ${currentSeason}`);
     try {
         //4.1 upsertSeason()
         const season = await queryUpsertSeason(currentSeason, false);
@@ -75,37 +75,6 @@ export async function updateStatus() {
 
         return response;
     } catch (error) {
-        console.error(error);
-    }
-
-    // return false;
-
-    // //5. return response
-    // const status = {
-    //     success: true,
-    //     ms: performanceTime(start),
-    //     data: storedData,
-    // };
-    // return status;
-    return false;
-}
-
-function getCurrentSeason(data) {
-    // Gather all relevant season numbers
-    const campaignSeasons = (data.campaign_status || []).map((cs) => cs.season);
-    const defendSeason = data.defend_event ? [data.defend_event.season] : [];
-    const statisticsSeasons = (data.statistics || []).map((stat) => stat.season);
-
-    // Combine all seasons
-    const allSeasons = [...campaignSeasons, ...defendSeason, ...statisticsSeasons];
-
-    // Check if all seasons are equal
-    const uniqueSeasons = [...new Set(allSeasons)];
-    const isValid = uniqueSeasons.length === 1;
-
-    if (isValid) {
-        return uniqueSeasons[0];
-    } else {
-        throw new Error('Invalid Current Season');
+        throw error;
     }
 }
