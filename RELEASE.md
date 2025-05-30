@@ -1,4 +1,10 @@
-## 0.5.1 (2025-05-28)
+## 0.5.2 (2025-05-31)
+
+- adjust instrumentation.js
+    - to make use of the new update functions to initialize the database with the current campaign
+    - to add a node.js worker that will continiously update the database every 20 seconds
+
+## 0.5.1 (2025-05-30)
 
 - rework update functions
     - add `/api/h1/update` route to test update functionality
