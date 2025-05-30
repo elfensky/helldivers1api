@@ -11,7 +11,6 @@ export async function queryUpsertCampaigns(campaigns) {
 
         const upsertRecords = [];
         for (const campaign of campaigns) {
-            console.log('campaign', campaign);
             const upsertRecord = await db.h1_campaign.upsert({
                 where: {
                     season_introduction_order: {

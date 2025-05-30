@@ -15,6 +15,24 @@ export async function queryUpsertSeason(season) {
     try {
         const now = new Date();
 
+        const count = await db.h1_season.count();
+        if (count !== season) {
+            const origin = new Date(0);
+            for (let index = 1; index < season; index++) {
+                const createEmptySeason = await db.h1_season.upsert({
+                    where: {
+                        season: index,
+                    },
+                    update: {},
+                    create: {
+                        is_active: false,
+                        last_updated: origin,
+                        season: index,
+                    },
+                });
+            }
+        }
+
         //update active/inactive records
         const activeRecords = await db.h1_season.findMany({
             where: {
