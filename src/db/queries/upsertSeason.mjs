@@ -3,7 +3,7 @@ import { performance } from 'perf_hooks';
 import { performanceTime } from '@/utils/time';
 import { zodIsNumber } from '@/validators/isNumber';
 
-export async function queryUpsertSeason(season) {
+export async function queryUpsertSeason(season, complete) {
     'use server';
     const start = performance.now();
 
@@ -54,28 +54,52 @@ export async function queryUpsertSeason(season) {
             });
         }
 
-        //update actual data
-        const upsertRecord = await db.h1_season.upsert({
-            where: {
-                season: season,
-            },
-            update: {
-                is_active: true,
-                last_updated: now,
-            },
-            create: {
-                is_active: true,
-                last_updated: now,
-                season: season,
-            },
-        });
+        if (complete) {
+            //update actual data
+            const upsertRecord = await db.h1_season.upsert({
+                where: {
+                    season: season,
+                },
+                update: {
+                    is_active: true,
+                    last_updated: now,
+                },
+                create: {
+                    is_active: true,
+                    last_updated: now,
+                    season: season,
+                },
+            });
 
-        const response = {
-            ms: performanceTime(start),
-            query: upsertRecord,
-        };
+            const response = {
+                ms: performanceTime(start),
+                query: upsertRecord,
+            };
 
-        return response;
+            return response;
+        } else {
+            //update actual data
+            const upsertRecord = await db.h1_season.upsert({
+                where: {
+                    season: season,
+                },
+                update: {
+                    is_active: true,
+                },
+                create: {
+                    is_active: true,
+                    last_updated: now,
+                    season: season,
+                },
+            });
+
+            const response = {
+                ms: performanceTime(start),
+                query: upsertRecord,
+            };
+
+            return response;
+        }
     } catch (error) {
         throw error;
     }

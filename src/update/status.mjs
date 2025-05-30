@@ -1,20 +1,16 @@
 'use server';
-//performance
-// import { performance } from 'perf_hooks';
-import { performanceTime } from '@/utils/time';
-//util
-import { tryCatch } from '@/lib/tryCatch.mjs';
-//fetch
-import { fetchStatus } from '@/update/fetch.mjs';
-// //validators
-import { isValidStatus } from '@/validators/isValidStatus';
-// import { schemaNumber } from '@/validators/isValidFormData';
+import { tryCatch } from '@/lib/tryCatch.mjs'; //util
+import { performance } from 'perf_hooks'; //util
+import { performanceTime } from '@/utils/time'; //util
+import { fetchStatus } from '@/update/fetch.mjs'; //fetch
+import { isValidStatus } from '@/validators/isValidStatus'; //validators
 //db
 import { queryUpsertRebroadcastStatus } from '@/db/queries/rebroadcast';
 import { queryUpsertSeason } from '@/db/queries/upsertSeason';
 import { queryUpsertCampaigns } from '@/db/queries/upsertCampaigns';
 import { queryUpsertDefendEvent } from '@/db/queries/upsertDefendEvent';
 import { queryUpsertAttackEvents } from '@/db/queries/upsertAttackEvents';
+import { queryUpsertStatistics } from '@/db/queries/upsertStatistics';
 
 export async function updateStatus() {
     //0. initialize
@@ -56,7 +52,7 @@ export async function updateStatus() {
     console.log(`4. store in db -> normalized & historic data for ${currentSeason}`);
     try {
         //4.1 upsertSeason()
-        const season = await queryUpsertSeason(currentSeason);
+        const season = await queryUpsertSeason(currentSeason, false);
         //4.2 upsertCampaign()
         const campaigns = await queryUpsertCampaigns(fetchedData.campaign_status);
         //4.3 upsertDefendEvent()
@@ -64,12 +60,19 @@ export async function updateStatus() {
         //4.4 upsertAttackEvent()
         const attackEvents = await queryUpsertAttackEvents(fetchedData.attack_events);
         //4.5 upsertStatistics()
+        const statistics = await queryUpsertStatistics(fetchedData.statistics);
+
+        //update last_updated time
+        const season2 = await queryUpsertSeason(currentSeason, true);
+
         const response = {
             season: season,
             campaigns: campaigns,
             defendEvent: defendEvent,
             attackEvents: attackEvents,
+            statistics: statistics,
         };
+
         return response;
     } catch (error) {
         console.error(error);
