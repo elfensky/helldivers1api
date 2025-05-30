@@ -30,8 +30,10 @@ generator client {
 model App {
     id String @id @default(uuid(7))
     version String
-    is_db_initialized Boolean @default(false)
+    // is_db_initialized Boolean @default(false)
     active_season Int @default(0)
+    // last_updated_status  DateTime
+    // last_updated_season  DateTime
     // settings Json
 }
 // #endregion
@@ -177,11 +179,26 @@ model h1_season {
   //relationships
   introduction_order h1_introduction_order? @relation("OneSeasonToOneIntroductionOrder") //a season must have 1 introduction_order, and an introduction_order must always be linked to a season
   points_max         h1_points_max?         @relation("OneSeasonToOnePointsMax") //a season must have 1 points_max, and a points_max must always be linked to a season
-  status             h1_status?             @relation("OneSeasonToOneStatus")
+  campaigns          h1_campaign[]           @relation("OneSeasonToManyCampaigns")
   snapshots          h1_snapshot[]          @relation("OneSeasonToManySnapshots")
   defend_events      h1_defend_events[]     @relation("OneSeasonToManyDefendEvents")
   attack_events      h1_attack_events[]     @relation("OneSeasonToManyAttackEvents")
   statistics         h1_statistics[]        @relation("OneSeasonToManyStatistics")
+  //indexes
+  @@index([season])
+}
+
+model h1_campaign {
+  //get_campaign_status -> "campaign_status"
+  id   String @id @default(uuid(7))
+  season Int @unique
+  points Int
+  points_taken Int
+  points_max Int
+  status String
+  introduction_order Int
+  //relationship
+  linked_season h1_season @relation("OneSeasonToManyCampaigns", fields: [season], references: [season])
   //indexes
   @@index([season])
 }
@@ -288,17 +305,6 @@ model h1_statistics {
   @@index([season])
 }
 
-model h1_status {
-  id   String @id @default(uuid(7))
-  season Int @unique
-  points Int
-  points_taken Int
-  points_max Int
-  status String
-  introduction_order Int
-  //relationship
-  linked_season h1_season @relation("OneSeasonToOneStatus", fields: [season], references: [season])
-  //indexes
-  @@index([season])
-}
+
+
 // #endregion
