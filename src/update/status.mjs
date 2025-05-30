@@ -13,6 +13,8 @@ import { isValidStatus } from '@/validators/isValidStatus';
 import { queryUpsertRebroadcastStatus } from '@/db/queries/rebroadcast';
 import { queryUpsertSeason } from '@/db/queries/upsertSeason';
 import { queryUpsertCampaigns } from '@/db/queries/upsertCampaigns';
+import { queryUpsertDefendEvent } from '@/db/queries/upsertDefendEvent';
+import { queryUpsertAttackEvents } from '@/db/queries/upsertAttackEvents';
 
 export async function updateStatus() {
     //0. initialize
@@ -58,11 +60,15 @@ export async function updateStatus() {
         //4.2 upsertCampaign()
         const campaigns = await queryUpsertCampaigns(fetchedData.campaign_status);
         //4.3 upsertDefendEvent()
+        const defendEvent = await queryUpsertDefendEvent(fetchedData.defend_event);
         //4.4 upsertAttackEvent()
+        const attackEvents = await queryUpsertAttackEvents(fetchedData.attack_events);
         //4.5 upsertStatistics()
         const response = {
             season: season,
             campaigns: campaigns,
+            defendEvent: defendEvent,
+            attackEvents: attackEvents,
         };
         return response;
     } catch (error) {

@@ -181,9 +181,9 @@ model h1_season {
   points_max         h1_points_max?         @relation("OneSeasonToOnePointsMax") //a season must have 1 points_max, and a points_max must always be linked to a season
   campaigns          h1_campaign[]           @relation("OneSeasonToManyCampaigns")
   snapshots          h1_snapshot[]          @relation("OneSeasonToManySnapshots")
-  defend_events      h1_defend_events[]     @relation("OneSeasonToManyDefendEvents")
-  attack_events      h1_attack_events[]     @relation("OneSeasonToManyAttackEvents")
-  statistics         h1_statistics[]        @relation("OneSeasonToManyStatistics")
+  defend_events      h1_defend_event[]     @relation("OneSeasonToManyDefendEvents")
+  attack_events      h1_attack_event[]     @relation("OneSeasonToManyAttackEvents")
+  statistics         h1_statistic[]        @relation("OneSeasonToManyStatistics")
   //indexes
   @@index([season])
 }
@@ -238,7 +238,7 @@ model h1_snapshot {
     @@index([season])
 }
 
-model h1_defend_events {
+model h1_defend_event {
   id               String @id @default(uuid(7))
   season           Int // foreign key
   //data
@@ -257,7 +257,7 @@ model h1_defend_events {
   @@index([event_id])
 }
 
-model h1_attack_events {
+model h1_attack_event {
   id               String @id @default(uuid(7))
   season           Int //foreign key
   //data
@@ -275,9 +275,9 @@ model h1_attack_events {
   @@index([event_id])
 }
 
-model h1_statistics {
+model h1_statistic {
   id                       String @id @default(uuid(7))
-  hash                     String @unique //season+time 
+//   hash                     String @unique //season+enemy 
   time                     Int //foreign key
   season                   Int //foreign key
   season_duration          Int
@@ -301,9 +301,11 @@ model h1_statistics {
   // Define the relationship with Status and SEason
   linked_season h1_season? @relation("OneSeasonToManyStatistics", fields: [season], references: [season])
   //indexes
-  @@index([hash])
-  @@index([time])
-  @@index([season])
+//   @@index([hash])
+//   @@index([enemy])
+//   @@index([season])
+  @@unique([season, enemy]) //unique
+  @@index([season, enemy])
 }
 
 

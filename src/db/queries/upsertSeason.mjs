@@ -15,13 +15,6 @@ export async function queryUpsertSeason(season) {
     try {
         const now = new Date();
 
-        //check if you're updating an existing record or creating a new one
-        const existingRecord = await db.h1_season.findUnique({
-            where: {
-                season: season,
-            },
-        });
-
         //update active/inactive records
         const activeRecords = await db.h1_season.findMany({
             where: {
@@ -59,11 +52,8 @@ export async function queryUpsertSeason(season) {
             },
         });
 
-        const action = existingRecord ? 'UPDATE' : 'CREATE';
-
         const response = {
             ms: performanceTime(start),
-            action: action,
             query: upsertRecord,
         };
 

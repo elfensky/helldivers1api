@@ -1,7 +1,6 @@
 import db from '@/db/db';
 import { performance } from 'perf_hooks';
 import { performanceTime } from '@/utils/time';
-import { zodIsNumber } from '@/validators/isNumber';
 
 export async function queryUpsertCampaigns(campaigns) {
     'use server';
