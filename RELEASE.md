@@ -1,11 +1,22 @@
 ## 0.5.1 (2025-05-28)
 
 - rework update functions
+    - add `/api/h1/update` route to test update functionality
     - separate `update` directory
     - code split into:
         - fetch.mjs -> functions to fetch data from the API
         - status.mjs -> standalone function to update current status
         - season.mjs -> standalone function to update specified season
+    - separate upsert queries for each data type
+        - upsertAttackEvents.mjs
+        - upsertCampaigns.mjs
+        - upsertDefendEvent.mjs
+        - upsertDefendEvents.mjs
+        - upsertIntroductionOrder.mjs
+        - upsertPointsMax.mjs
+        - upsertSeason.mjs
+        - upsertSnapshots.mjs
+        - upsertStatistics.mjs
 
 ## 0.5.0 (2025-05-28)
 
