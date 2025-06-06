@@ -19,16 +19,40 @@ export async function queryUpsertSeason(season, complete = false) {
 
     //2.
     try {
-        if (!complete) {
+        const count = await db.h1_season.count();
+        if (count !== season) {
+            //why is this needed?
+            // depending on how the war has gone, sometimes a status or snapshot of the current Season shows events of the past seasons. If those seasons do not exist (even without related data) the update will error.
+            // it's easier, simpler and cleanaer generate empty seasons and update them later than to write edge-case code that will check if the season exists, if not fetch THAT season's data, etc.
+            // And what if that season also has other season's data, that will spiral. This avoids loops etc.
+            //3. generate empty seasons.
+
+            // const origin = new Date(0);
+            for (let index = 1; index < season; index++) {
+                const createEmptySeason = await db.h1_season.upsert({
+                    where: {
+                        season: index,
+                    },
+                    update: {},
+                    create: {
+                        // last_updated: null,
+                        season: index,
+                    },
+                });
+            }
+        }
+
+        if (complete) 
+            //update actual data
             const upsertRecord = await db.h1_season.upsert({
                 where: {
                     season: season,
                 },
                 update: {
-                    // last_updated: null, //do not (yet) update last_updated date
+                    // last_updated: null,
                 },
                 create: {
-                    // last_updated: null, //do not (yet) create last_updated date
+                    last_updated: now,
                     season: season,
                 },
             });
@@ -39,18 +63,15 @@ export async function queryUpsertSeason(season, complete = false) {
             };
 
             return response;
-        }
-
-        if (complete) {
+        } else {
+            //update actual data
             const upsertRecord = await db.h1_season.upsert({
                 where: {
                     season: season,
                 },
-                update: {
-                    last_updated: now, //update date
-                },
+                update: {},
                 create: {
-                    last_updated: now, //update date
+                    last_updated: now,
                     season: season,
                 },
             });
