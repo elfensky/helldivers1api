@@ -1,8 +1,15 @@
+## TODO IN 0.5.4
+
+- update route.js & rebroadcast.mjs for new logic ✅
+    - working POST /api/h1/rebroadcast ✅
+- update route.js & getCampaigns().mjs for new logic
+    - working GET /api/h1/campaign
+    - working GET /api/h1/campaign?season=[season]
+
 ## 0.5.4 (2025-06-07)
 
 - rewrite update logic to avoid having to generate complete season list.
 - update worker to use .env variables for key and interval
-- the api mvp is now complete.
 
 ## 0.5.3 (2025-05-31)
 

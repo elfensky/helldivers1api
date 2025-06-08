@@ -34,6 +34,9 @@ export async function updateSeason(season) {
     //2. use zod to validate the response.
     const check = isValidSeason(fetchedData);
     if (!check.success) {
+        for (const issue of check?.error?.issues) {
+            console.error('update/season.mjs | isValidSeason() | ', issue.message);
+        }
         throw check.error;
     }
 
