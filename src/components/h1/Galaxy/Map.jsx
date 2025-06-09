@@ -1,51 +1,6 @@
-'use client';
-import { useRef, useState, useEffect } from 'react';
+import './Map.css';
 
-import './Galaxy.css';
-import Script from 'next/script';
-// import { tryCatch } from '@/utils/tryCatch.mjs';
-// import { queryGetRebroadcastStatus } from '@/db/queries/rebroadcast';
-// import { getCampaign } from '@/db/queries/getCampaign';
-//enums
-import enemies from '@/enums/enemies';
-import map from '@/enums/map';
-
-export default function Galaxy({ data }) {
-    const svgRef = useRef(null);
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-    const [hover, setHover] = useState(null); //{ faction: "0", id: "1" }
-
-    useEffect(() => {
-        const handleMouseMove = (event) => {
-            setMousePos({ x: event.clientX, y: event.clientY });
-
-            // Get the element under the mouse
-            const el = document.elementFromPoint(event.clientX, event.clientY);
-
-            // Check if it's a sector/path/circle in your SVG
-            if (el && svgRef.current && svgRef.current.contains(el)) {
-                const data = el.id.split('-');
-                if (data.length !== 2) {
-                    setHover(null);
-                } else {
-                    const hoverData = {
-                        faction: data[0],
-                        id: data[1],
-                    };
-                    setHover(hoverData);
-                }
-            } else {
-                setHover(null);
-            }
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, []);
-
-    // const data = await tryCatch(queryGetRebroadcastStatus());
-    const json = data?.data?.data?.json;
-
+export default function Map({ svgRef, json }) {
     const bugs = generateScore(
         json.campaign_status[0].points,
         json.campaign_status[0].points_max,
@@ -63,31 +18,8 @@ export default function Galaxy({ data }) {
 
     const superearth = ['active'];
 
-    // const data2 = await tryCatch(getCampaign());
-
     return (
         <>
-            <div
-                id="map__hover"
-                className={
-                    hover ?
-                        'absolute z-50 flex items-center justify-center gap-2 bg-purple-500'
-                    :   'absolute hidden'
-                }
-                style={{ left: mousePos.x + 1, top: mousePos.y - 25 }}
-            >
-                {hover ?
-                    <>
-                        <img
-                            src={`/icons/factions/${hover.faction}.webp`}
-                            alt="Logo of Helldivers Bot, which is a cartoon depiction of a spy sattelite"
-                            width={20}
-                            height={20}
-                        />
-                        {map[hover.faction][hover.id]}{' '}
-                    </>
-                :   null}
-            </div>
             <section
                 id="map"
                 className="sm:max-w-2/3 z-40 aspect-square max-h-[80vh] w-full"
@@ -123,24 +55,6 @@ export default function Galaxy({ data }) {
                             </feMerge>
                         </filter>
                     </defs>
-                    <g id="superearth">
-                        <circle
-                            id="3-0"
-                            data-name="0"
-                            className={'sector ' + superearth[0]}
-                            cx="402.72"
-                            cy="392.12"
-                            r="27"
-                        />
-                        <image
-                            className="pointer-events-none"
-                            href="/icons/factions/3.webp"
-                            x="350"
-                            y="340"
-                            width="100"
-                            height="100"
-                        />
-                    </g>
                     <g id="bugs">
                         <path
                             id="0-1"
@@ -372,9 +286,25 @@ export default function Galaxy({ data }) {
                             height="100"
                         />
                     </g>
+                    <g id="superearth">
+                        <circle
+                            id="3-0"
+                            data-name="0"
+                            className={'sector ' + superearth[0]}
+                            cx="402.72"
+                            cy="392.12"
+                            r="27"
+                        />
+                        <image
+                            className="pointer-events-none"
+                            href="/icons/factions/3.webp"
+                            x="352"
+                            y="334"
+                            width="100"
+                            height="100"
+                        />
+                    </g>
                 </svg>
-
-                <Script src="/scripts/animateMap.js" strategy="lazyOnload" />
             </section>
         </>
     );

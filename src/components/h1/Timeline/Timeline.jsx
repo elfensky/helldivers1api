@@ -1,17 +1,14 @@
 import './Timeline.css';
-import { tryCatch } from '@/utils/tryCatch.mjs';
-import { getCampaign } from '@/db/queries/getCampaign';
 
-export default async function Timeline() {
-    const query = await tryCatch(getCampaign());
-    console.log(query);
-    const data = query?.data;
-
+export default async function Timeline({ data }) {
     const events = [...data.defend_events, ...data.attack_events];
     events.sort((a, b) => b.start_time - a.start_time);
 
     return (
-        <>
+        <section id="timeline" className="flex flex-col gap-4 overflow-y-auto">
+            <h2 className="uppercase" style={{ fontFamily: 'Insignia, sans-serif' }}>
+                Timeline | Season {data.season}
+            </h2>
             {events ?
                 <div
                     id="timeline"
@@ -20,7 +17,7 @@ export default async function Timeline() {
                     {events.map((event) => generateEvent(event))}
                 </div>
             :   null}
-        </>
+        </section>
     );
 }
 

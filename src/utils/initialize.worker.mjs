@@ -27,7 +27,7 @@ export async function initializeWorker() {
         try {
             const __filename = fileURLToPath(import.meta.url);
             const __dirname = path.dirname(__filename);
-            console.log(__dirname);
+            // console.log(__dirname);
 
             let workerPath = '';
             if (process.env.NODE_ENV === 'development') {
@@ -38,19 +38,19 @@ export async function initializeWorker() {
             }
 
             // const workerPath = path.resolve(__dirname, '../../public/workers/cron.js');
-            console.log(workerPath);
+            // console.log(workerPath);
 
-            exec('ls -all', (error, stdout, stderr) => {
-                if (error) {
-                    console.error(`Error: ${error.message}`);
-                    return;
-                }
-                if (stderr) {
-                    console.error(`Stderr: ${stderr}`);
-                    return;
-                }
-                console.log(`Output:\n${stdout}`);
-            });
+            // exec('ls -all', (error, stdout, stderr) => {
+            //     if (error) {
+            //         console.error(`Error: ${error.message}`);
+            //         return;
+            //     }
+            //     if (stderr) {
+            //         console.error(`Stderr: ${stderr}`);
+            //         return;
+            //     }
+            //     console.log(`Output:\n${stdout}`);
+            // });
 
             const worker = new Worker(workerPath);
             worker.postMessage({ key: key, interval: interval });

@@ -10,10 +10,8 @@ todo https://daily.dev/blog/github-markdown-badges-explained
     - support "attack events"
     - support "region captures"
 
-- add hover tooltip to map
-    - use enums or translation.json for content
-    - check wiki for region names
     -
+
 - fix map: contested region (only color in gold when 100% completed, if not 100% completed, the region needs to be red)
 - add continious updating to map using SetInterval/SetTimeout
 
@@ -94,9 +92,9 @@ todo https://daily.dev/blog/github-markdown-badges-explained
       return (
       <main className="flex">
       <a
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          href="https://www.flaticon.com/free-icons/satellite"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          title="satellite icons"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  href="https://www.flaticon.com/free-icons/satellite"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  title="satellite icons"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              >
       Satellite icons created by Freepik - Flaticon
       </a>
       </main>
@@ -132,7 +130,14 @@ todo https://daily.dev/blog/github-markdown-badges-explained
 - working GET /api/h1/campaign?season=[season]&season=[campaign]...
 
 - TESTING
+
     - add tests
     - add e2e tests
     - fully run app during testing and setup DB, then test api calls and validate responses & errors with zod
     - ...
+
+- MOTION
+    - don't load animation script on mobile
+    - check if gyroscope is avaiable and use it on phone/tablet.
+        - button with "3D" icon that will (re)enable motion sensors + (re)set initial position.
+        -
