@@ -1,14 +1,10 @@
 import './Tooltip.css';
 import { useRef, useState, useEffect } from 'react';
-import enemies from '@/enums/enemies';
-import score from '@/enums/score';
-import map from '@/enums/map';
+import factions from '@/enums/factions';
 
-export default function Tooltip({ svgRef, json }) {
+export default function Tooltip({ svgRef, map }) {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [hover, setHover] = useState(null); //{ faction: "0", id: "1" }
-    // const [map, setMap] = useState(map2);
-
     useEffect(() => {
         //#region Mouse Move
         const handleMouseMove = (event) => {
@@ -38,16 +34,11 @@ export default function Tooltip({ svgRef, json }) {
         //#endregion
     }, []);
 
-    // useEffect(() => {
-    //     //calculate data
-    //     console.log(map, json);
-    // }, [json]);
-
     if (!hover) return null;
 
     return (
         <div
-            id="map__hover"
+            id="tooltip"
             role="tooltip"
             className={
                 'pointer-events-none absolute z-50 flex flex-col items-start justify-center gap-1 bg-purple-500 p-2'
@@ -61,43 +52,26 @@ export default function Tooltip({ svgRef, json }) {
                     width={20}
                     height={20}
                 />
-                <span> {map[hover?.faction][hover?.id]}</span>
+                <span>{map[hover?.faction][hover?.id].region}</span>
             </div>
-            <progress value="70" max="100"></progress>
+            <div className="relative">
+                <progress
+                    value={map[hover?.faction][hover?.id].percent}
+                    max="100"
+                ></progress>
+                <span className="absolute right-0">
+                    {map[hover?.faction][hover?.id].percent.toFixed(2)}%
+                </span>
+            </div>
+
+            <span>
+                {map[hover?.faction][hover?.id].points}/
+                {map[hover?.faction][hover?.id].points_max} points
+            </span>
+            <span>
+                {map[hover?.faction][hover?.id].points_sector}/
+                {map[hover?.faction][hover?.id].points_sector_max} points
+            </span>
         </div>
     );
-}
-
-function generateScore(points, points_max) {
-    const sector = [];
-    const sections = 10;
-    const sectionSize = points_max / sections;
-
-    sector.push('spacer'); //the 0 position, which is the theoretically superearth.
-
-    let lastActiveIndex = -1;
-
-    for (let i = 1; i <= sections; i++) {
-        if (points >= i * sectionSize) {
-            sector.push('active');
-            lastActiveIndex = i;
-        } else {
-            sector.push('lost');
-        }
-    }
-
-    // Change the last 'active' to 'in_progress' if there was at least one active
-    // if (lastActiveIndex !== -1) {
-    //     sector[lastActiveIndex] = 'in_progress';
-    // }
-
-    if (points === points_max) {
-        sector.push('active');
-    } else {
-        sector.push('lost');
-        if (lastActiveIndex !== -1) {
-            sector[lastActiveIndex] = 'in_progress';
-        }
-    }
-    return sector;
 }

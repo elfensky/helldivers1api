@@ -5,15 +5,15 @@ export default async function Timeline({ data }) {
     events.sort((a, b) => b.start_time - a.start_time);
 
     return (
-        <section id="timeline" className="flex flex-col gap-4 overflow-y-auto">
-            <h2 className="uppercase" style={{ fontFamily: 'Insignia, sans-serif' }}>
-                Timeline | Season {data.season}
+        <section id="timeline" className="flex flex-col gap-4">
+            <h2
+                className="text-3xl uppercase"
+                style={{ fontFamily: 'Insignia, sans-serif' }}
+            >
+                Timeline
             </h2>
             {events ?
-                <div
-                    id="timeline"
-                    className="flex max-h-[80vh] flex-col gap-4 overflow-y-auto"
-                >
+                <div id="timeline" className="flex flex-col gap-4 overflow-y-auto">
                     {events.map((event) => generateEvent(event))}
                 </div>
             :   null}
@@ -33,6 +33,7 @@ function generateEvent(event) {
 
     return (
         <article
+            id="event"
             key={event.event_id}
             className={`flex flex-col gap-2 rounded-sm p-2 ${type} ${event.status}`}
         >
