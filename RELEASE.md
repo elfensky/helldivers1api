@@ -1,3 +1,7 @@
+## 0.6.1 (2025-06-09)
+
+- Fixes to get Docker working (again).
+
 ## 0.6.0 (2025-06-09)
 
 - Update Galaxy.jsx functionality

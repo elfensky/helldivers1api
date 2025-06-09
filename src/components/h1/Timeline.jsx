@@ -4,15 +4,23 @@ import { getCampaign } from '@/db/queries/getCampaign';
 
 export default async function Timeline() {
     const query = await tryCatch(getCampaign());
+    console.log(query);
     const data = query?.data;
 
     const events = [...data.defend_events, ...data.attack_events];
     events.sort((a, b) => b.start_time - a.start_time);
 
     return (
-        <div className="flex max-h-[80vh] flex-col gap-4 overflow-y-auto">
-            {events.map((event) => generateEvent(event))}
-        </div>
+        <>
+            {events ?
+                <div
+                    id="timeline"
+                    className="flex max-h-[80vh] flex-col gap-4 overflow-y-auto"
+                >
+                    {events.map((event) => generateEvent(event))}
+                </div>
+            :   null}
+        </>
     );
 }
 
