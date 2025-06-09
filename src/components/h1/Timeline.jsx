@@ -35,7 +35,10 @@ function generateEvent(event) {
     const end = new Date(event.end_time * 1000).toLocaleString();
 
     return (
-        <article className={`flex flex-col gap-2 rounded-sm p-2 ${type} ${event.status}`}>
+        <article
+            key={event.event_id}
+            className={`flex flex-col gap-2 rounded-sm p-2 ${type} ${event.status}`}
+        >
             <h3>{type} Event</h3>
             Started at {start}
             <br />

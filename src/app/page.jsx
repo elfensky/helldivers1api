@@ -13,7 +13,7 @@ export default async function HomePage() {
     const rebroacast_status = await tryCatch(queryGetRebroadcastStatus());
 
     return (
-        <div className="flex min-h-full w-full flex-row justify-center">
+        <div className="flex min-h-full w-full flex-col-reverse justify-center sm:flex-row">
             <Timeline />
             <Galaxy data={rebroacast_status} />
         </div>
