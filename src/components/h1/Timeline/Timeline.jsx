@@ -1,6 +1,7 @@
+// 'use client';
 import './Timeline.css';
 
-export default async function Timeline({ data }) {
+export default function Timeline({ data }) {
     const events = [...data.defend_events, ...data.attack_events];
     events.sort((a, b) => b.start_time - a.start_time);
 
@@ -28,8 +29,8 @@ function generateEvent(event) {
     } else {
         type = 'Attack';
     }
-    const start = new Date(event.start_time * 1000).toLocaleString();
-    const end = new Date(event.end_time * 1000).toLocaleString();
+    const start = new Date(event.start_time * 1000).toLocaleString('en-GB');
+    const end = new Date(event.end_time * 1000).toLocaleString('en-GB');
 
     return (
         <article

@@ -4,6 +4,9 @@
 - fix bug showing 0% Sol System
 - rename layout2 to layout
 - remove footer (temporarily)
+- add season time
+- track api calls as events instead of page visits.
+- initialize.env.mjs - check if all .env variables are set.
 
 ## 0.6.1 (2025-06-09)
 
