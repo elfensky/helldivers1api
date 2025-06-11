@@ -23,12 +23,12 @@ export default function Galaxy({ data, rebroadcast }) {
             <section
                 id="galaxy"
                 // flex w-full max-w-[800px] flex-grow flex-col justify-center
-                className="flex flex-grow flex-col gap-4"
+                className="flex flex-grow-[4] flex-col gap-4"
             >
                 <div className="flex flex-row gap-2 text-3xl uppercase">
                     <h1>Season {data.season}</h1>
                     <span>|</span>
-                    <span>{elapsedTime.days} days</span>
+                    <span>Day {elapsedTime.days}</span>
                 </div>
                 <Map svgRef={svgRef} map={map} />
                 <Tooltip svgRef={svgRef} data={data} map={map} />
