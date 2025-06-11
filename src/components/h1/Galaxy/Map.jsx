@@ -7,12 +7,12 @@ export default function Map({ svgRef, map }) {
 
     const superearth = ['active'];
 
+    // console.log(map);
+
     return (
         <>
-            <div
-                id="map"
-                className="fixed right-0 z-40 mt-8 aspect-square max-h-[80vh] w-full"
-            >
+            <div id="map" className="max-h-full w-full">
+                {/* right-0 z-40 mt-8 aspect-square max-h-[80vh] w-full */}
                 <svg
                     ref={svgRef}
                     id="Layer_2"

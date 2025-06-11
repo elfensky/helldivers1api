@@ -8,3 +8,43 @@
 #event.Defend {
     border: 2px solid red;
 }
+
+#event.active {
+    animation: pulse-red 6s infinite alternate;
+}
+
+@keyframes pulse-red {
+    0% {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+    10% {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    20% {
+        background-color: rgb(255, 0, 0, 0.99);
+    }
+    25% {
+        background-color: rgba(255, 0, 0, 0.66);
+    }
+    30% {
+        background-color: rgb(255, 0, 0, 0.99);
+    }
+
+    /* 30% {
+        background-color: rgba(0, 0, 0, 0.75);
+    } */
+    40% {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    /* 50% {
+        background-color: rgb(255, 0, 0, 0.99);
+    }
+    55% {
+        background-color: rgba(255, 0, 0, 0.66);
+    }
+    60% {
+        background-color: rgba(0, 0, 0, 0.75);
+    } */
+}
