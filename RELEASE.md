@@ -7,6 +7,7 @@
 - add season time
 - track api calls as events instead of page visits.
 - initialize.env.mjs - check if all .env variables are set.
+- add proper favicons
 
 ## 0.6.1 (2025-06-09)
 
