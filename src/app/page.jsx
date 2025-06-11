@@ -34,11 +34,11 @@ export default async function HomePage() {
                 <span className="text-4xl">|</span>
                 <span className="text-4xl">{elapsedTime.days} days</span>
             </div>
-            <div className="flex min-h-full w-full flex-col-reverse justify-center sm:flex-row">
-                <div className="flex flex-col gap-8 p-4 sm:max-h-[86vh] sm:overflow-y-auto sm:p-0">
-                    <War data={data} />
-                    <Timeline data={data} />
-                </div>
+            {/* <div className="flex min-h-full w-full flex-col-reverse justify-between sm:mx-24 sm:flex-row"> */}
+            <div className="flex w-full flex-row">
+                {/* <div className="flex flex-col gap-8 p-4 sm:max-h-[86vh] sm:overflow-y-auto sm:p-0"></div> */}
+                <Timeline data={data} />
+                <War data={data} />
                 <Galaxy data={data} />
             </div>
         </>

@@ -16,9 +16,12 @@ export default function Galaxy({ data, rebroadcast }) {
 
     return (
         <>
-            <Map svgRef={svgRef} map={map} />
+            <section id="galaxy" className="relative flex flex-grow">
+                <Map svgRef={svgRef} map={map} />
+
+                {/* <Script src="/scripts/animateMap.js" strategy="lazyOnload" /> */}
+            </section>
             <Tooltip svgRef={svgRef} data={data} map={map} />
-            <Script src="/scripts/animateMap.js" strategy="lazyOnload" />
         </>
     );
 }

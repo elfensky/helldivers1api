@@ -55,7 +55,7 @@ export default function RootLayout({ children }) {
                 <main className="flex min-h-screen min-w-full flex-grow flex-col items-center justify-center gap-4 pt-[80px]">
                     {children}
                 </main>
-                {/* <Footer /> */}
+                <Footer />
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}

@@ -9,9 +9,9 @@ export default function Map({ svgRef, map }) {
 
     return (
         <>
-            <section
+            <div
                 id="map"
-                className="sm:max-w-2/3 z-40 aspect-square max-h-[80vh] w-full"
+                className="fixed right-0 z-40 mt-8 aspect-square max-h-[80vh] w-full"
             >
                 <svg
                     ref={svgRef}
@@ -292,7 +292,7 @@ export default function Map({ svgRef, map }) {
                         />
                     </g>
                 </svg>
-            </section>
+            </div>
         </>
     );
 }
