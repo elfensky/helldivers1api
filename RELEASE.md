@@ -1,4 +1,4 @@
-## 0.6.2 (2025-06-10)
+## 0.6.2 (2025-06-11)
 
 - remove console.logs
 - fix bug showing 0% Sol System
