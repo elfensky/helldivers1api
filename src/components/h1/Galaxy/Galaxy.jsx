@@ -11,12 +11,12 @@ import { elapsedSeasonTime } from '@/utils/time';
 
 export default function Galaxy({ data, rebroadcast }) {
     const svgRef = useRef(null);
-    const json = rebroadcast?.data?.data?.json;
 
     processCampaigns(data);
-    const elapsedTime = elapsedSeasonTime(data?.statistics[0]?.season_duration);
+    processDefendEvents(data);
+    processAttackEvents(data);
 
-    // console.log(map);
+    const elapsedTime = elapsedSeasonTime(data?.statistics[0]?.season_duration);
 
     return (
         <>
@@ -26,9 +26,11 @@ export default function Galaxy({ data, rebroadcast }) {
                 className="flex flex-grow-[4] flex-col gap-4"
             >
                 <div className="flex flex-row gap-2 text-3xl uppercase">
-                    <h1>Season {data.season}</h1>
-                    <span>|</span>
-                    <span>Day {elapsedTime.days}</span>
+                    <h1>
+                        Season {data.season} | Day {elapsedTime.days}
+                    </h1>
+                    {/* <span>|</span>
+                    <span>Day {elapsedTime.days}</span> */}
                 </div>
                 <Map svgRef={svgRef} map={map} />
                 <Tooltip svgRef={svgRef} data={data} map={map} />
@@ -65,7 +67,7 @@ function processCampaigns(data) {
                 const remaining_points =
                     points - (total_points_for_sector - points_per_sector);
 
-                map[faction][region].status = 'active';
+                map[faction][region].status = 'in_progress';
                 map[faction][region].points = points;
                 map[faction][region].points_max = total_points_for_sector;
                 map[faction][region].points_sector = remaining_points;
@@ -95,6 +97,23 @@ function processCampaigns(data) {
                 //percentage
                 map[faction][region].percent = 0;
             }
+        }
+    });
+}
+
+function processDefendEvents(data) {
+    data?.defend_events?.forEach((event) => {
+        if (event?.status === 'active') {
+            map[event?.enemy][event?.region].event = event;
+        }
+    });
+}
+
+function processAttackEvents(data) {
+    data?.attack_events?.forEach((event) => {
+        if (event?.status === 'active') {
+            map[event?.enemy][11].status = 'in_progress';
+            map[event?.enemy][11].event = event;
         }
     });
 }
