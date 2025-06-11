@@ -3,7 +3,7 @@
     border: 2px solid black;
 }
 
-#event.Defend {
+#event.defend {
     progress::-webkit-progress-bar {
         background-color: gold;
         border-radius: 0;
@@ -14,7 +14,7 @@
         border-radius: 0;
     }
 }
-#event.Attack {
+#event.attack {
     progress::-webkit-progress-bar {
         background-color: #f70000;
         border-radius: 0;

@@ -32,9 +32,9 @@ export default function Timeline({ data }) {
 function generateEvent(event) {
     let type = null;
     if (event?.region) {
-        type = 'Defend';
+        type = 'defend';
     } else {
-        type = 'Attack';
+        type = 'attack';
     }
 
     const start = timeAgo(event.start_time * 1000);
