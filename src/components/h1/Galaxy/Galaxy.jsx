@@ -112,6 +112,7 @@ function processDefendEvents(data) {
 function processAttackEvents(data) {
     data?.attack_events?.forEach((event) => {
         if (event?.status === 'active') {
+            map[event?.enemy][11].percent = (event?.points / event?.points_max) * 100;
             map[event?.enemy][11].points = event?.points;
             map[event?.enemy][11].points_max = event?.points_max;
             // map[event?.enemy][11].points_sector = event?.points;
@@ -119,6 +120,13 @@ function processAttackEvents(data) {
             map[event?.enemy][11].status = 'in_progress';
             map[event?.enemy][11].event = event;
             // console.log(event);
+        }
+        if (event?.status === 'success') {
+            map[event?.enemy][11].percent = (event?.points / event?.points_max) * 100;
+            map[event?.enemy][11].points = event?.points;
+            map[event?.enemy][11].points_max = event?.points_max;
+            map[event?.enemy][11].status = 'captured';
+            map[event?.enemy][11].event = event;
         }
     });
 }

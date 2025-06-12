@@ -89,10 +89,10 @@ export default function Tooltip({ svgRef, map }) {
                 {map[hover?.faction][hover?.id].points}/
                 {map[hover?.faction][hover?.id].points_max} points
             </span>
-            <span>
+            {/* <span>
                 {map[hover?.faction][hover?.id].points_sector}/
                 {map[hover?.faction][hover?.id].points_sector_max} points
-            </span>
+            </span> */}
         </div>
     );
 }
