@@ -1,6 +1,7 @@
 // 'use client';
 import './Timeline.css';
 import { timeAgo, timeUntil } from '@/utils/time';
+import Image from 'next/image';
 
 export default function Timeline({ data }) {
     const events = [...data.defend_events, ...data.attack_events];
@@ -53,11 +54,12 @@ function generateEvent(event) {
             className={`event relative flex flex-col gap-2 overflow-hidden rounded-sm p-2 ${type} ${event?.status} ${event?.status === 'active' ? 'active' : ''}`}
         >
             <div className="flex gap-2">
-                <img
+                <Image
                     src={`/icons/faction${event?.enemy}.webp`}
                     alt="Logo of Helldivers Bot, which is a cartoon depiction of a spy sattelite"
-                    width={20}
-                    height={20}
+                    width={128}
+                    height={128}
+                    className="max-h-6 max-w-6"
                 />
                 <h3>{type} Event</h3>
             </div>
@@ -82,10 +84,12 @@ function generateEvent(event) {
                 </div>
             </div>
 
-            <img
+            <Image
                 src={`/icons/${type}.webp`}
                 alt={`${type} Event Icon`}
-                className="absolute -bottom-5 right-0 z-0 h-[80%] opacity-65"
+                className="absolute -bottom-5 right-0 z-0 h-[80%] w-auto opacity-65"
+                width={256}
+                height={256}
             />
         </article>
     );
