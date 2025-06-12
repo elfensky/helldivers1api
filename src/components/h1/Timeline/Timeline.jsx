@@ -20,7 +20,7 @@ export default function Timeline({ data }) {
             </h2>
             <div className="flex flex-col gap-4 sm:overflow-y-auto">
                 {events ?
-                    <div id="timeline" className="flex flex-col gap-4 overflow-y-auto">
+                    <div className="flex flex-col gap-4 overflow-y-auto">
                         {events.map((event) => generateEvent(event))}
                     </div>
                 :   null}
@@ -48,9 +48,9 @@ function generateEvent(event) {
 
     return (
         <article
-            id="event"
+            id={`event-${event.event_id}`}
             key={event.event_id}
-            className={`relative flex flex-col gap-2 overflow-hidden rounded-sm p-2 ${type} ${event?.status} ${event?.status === 'active' ? 'active' : ''}`}
+            className={`event relative flex flex-col gap-2 overflow-hidden rounded-sm p-2 ${type} ${event?.status} ${event?.status === 'active' ? 'active' : ''}`}
         >
             <div className="flex gap-2">
                 <img

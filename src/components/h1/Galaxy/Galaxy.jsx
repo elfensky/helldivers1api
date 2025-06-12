@@ -25,7 +25,7 @@ export default function Galaxy({ data, rebroadcast }) {
                 // flex w-full max-w-[800px] flex-grow flex-col justify-center
                 className="flex flex-grow-[4] flex-col gap-4"
             >
-                <div className="flex flex-row gap-2 text-3xl uppercase">
+                <div className="flex flex-row items-start justify-start gap-2 text-3xl uppercase">
                     <h1>
                         Season {data.season} | Day {elapsedTime.days}
                     </h1>
@@ -112,8 +112,13 @@ function processDefendEvents(data) {
 function processAttackEvents(data) {
     data?.attack_events?.forEach((event) => {
         if (event?.status === 'active') {
+            map[event?.enemy][11].points = event?.points;
+            map[event?.enemy][11].points_max = event?.points_max;
+            // map[event?.enemy][11].points_sector = event?.points;
+            // map[event?.enemy][11].points_sector_max = event?.points_max;
             map[event?.enemy][11].status = 'in_progress';
             map[event?.enemy][11].event = event;
+            // console.log(event);
         }
     });
 }

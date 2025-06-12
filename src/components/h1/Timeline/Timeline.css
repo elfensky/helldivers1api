@@ -1,9 +1,9 @@
-#event {
+.event {
     background-color: rgba(0, 0, 0, 0.75);
     border: 2px solid black;
 }
 
-#event.defend {
+.event.defend {
     progress::-webkit-progress-bar {
         background-color: gold;
         border-radius: 0;
@@ -14,7 +14,7 @@
         border-radius: 0;
     }
 }
-#event.attack {
+.event.attack {
     progress::-webkit-progress-bar {
         background-color: #f70000;
         border-radius: 0;
@@ -26,16 +26,16 @@
     }
 }
 
-#event.success {
+.event.success {
     /* border-left: 10px solid green; */
     background-color: rgba(40, 0, 0, 0.8);
 }
-#event.fail {
+.event.fail {
     /* border-left: 10px solid red; */
     background-color: rgba(0, 20, 0, 0.8);
 }
 
-#event.active {
+.event.active {
     /* border-left: 10px solid gold; */
     border: 2px solid gold;
     animation: timeline-pulse-red 6s infinite alternate;
@@ -58,21 +58,7 @@
     30% {
         background-color: rgb(200, 0, 0, 0.99);
     }
-
-    /* 30% {
-        background-color: rgba(0, 0, 0, 0.75);
-    } */
     40% {
         background-color: rgba(0, 0, 0, 0.75);
     }
-
-    /* 50% {
-        background-color: rgb(255, 0, 0, 0.99);
-    }
-    55% {
-        background-color: rgba(255, 0, 0, 0.66);
-    }
-    60% {
-        background-color: rgba(0, 0, 0, 0.75);
-    } */
 }
