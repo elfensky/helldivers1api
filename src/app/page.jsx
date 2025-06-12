@@ -7,6 +7,8 @@ import { getCampaign } from '@/db/queries/getCampaign';
 import Galaxy from '@/components/h1/Galaxy/Galaxy';
 import War from '@/components/h1/War/War';
 import Timeline from '@/components/h1/Timeline/Timeline';
+//
+import Script from 'next/script';
 
 //
 
@@ -30,6 +32,7 @@ export default async function HomePage() {
             <War data={data} />
             <Timeline data={data} />
             <Galaxy data={data} />
+            <Script src="/scripts/reload.js" />
         </div>
     );
 }
