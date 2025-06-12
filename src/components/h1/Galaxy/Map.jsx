@@ -285,7 +285,7 @@ export default function Map({ svgRef, map }) {
                         <path
                             id="1-11"
                             data-name="11"
-                            className={'sector ' + map[cyborgs][11]}
+                            className={'sector ' + map[cyborgs][11].status}
                             d="M118,85.23L0,256.18s54.29-88.73,3.01-124.12c0,0,54.53,40.75,114.98-46.83Z"
                         />
                         <image

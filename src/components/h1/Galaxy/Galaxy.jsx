@@ -55,13 +55,17 @@ function processCampaigns(data) {
             const total_points_for_sector = region * points_per_sector;
 
             if (region === '11') {
-                if (campaign.status === 'defeated') {
-                    map[faction][region].status = 'captured';
-                    map[faction][region].percent = 100;
-                } else {
-                    //calculate based on current attack event if any.
-                }
+                //this will later be overwritten by processAttackEvents
+                map[faction][region].status = 'lost';
+                map[faction][region].percent = 0;
+                // if (campaign.status === 'defeated') {
+                //     map[faction][region].status = 'captured';
+                //     map[faction][region].percent = 100;
+                // } else {
+                //     map[faction][region].status = 'lost';
+                //     map[faction][region].percent = 0;
                 //
+                // }
             } else if (region === sectors_in_progress.toString()) {
                 //if in progress, calculate module difference
                 const remaining_points =
@@ -119,7 +123,6 @@ function processAttackEvents(data) {
             // map[event?.enemy][11].points_sector_max = event?.points_max;
             map[event?.enemy][11].status = 'in_progress';
             map[event?.enemy][11].event = event;
-            // console.log(event);
         }
         if (event?.status === 'success') {
             map[event?.enemy][11].percent = (event?.points / event?.points_max) * 100;

@@ -8,6 +8,30 @@ const nextConfig = {
             },
         ];
     },
+    async headers() {
+        // 1 day  : 86400 seconds
+        // 7 days : 604800 seconds
+        return [
+            {
+                source: '/images/:slug',
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'public, max-age=604800, immutable',
+                    },
+                ],
+            },
+            {
+                source: '/icons/:slug',
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'public, max-age=604800, immutable',
+                    },
+                ],
+            },
+        ];
+    },
     output: 'standalone', // #1
     images: {
         remotePatterns: [
