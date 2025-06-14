@@ -45,13 +45,12 @@ function generateEvent(event) {
 
     const percent = (event.points / event.points_max) * 100;
     const progress = util_evaluate_progress(event);
-    // console.log(event, progress);
 
     return (
         <article
             id={`event-${event.event_id}`}
             key={event.event_id}
-            className={`event relative flex flex-col gap-2 overflow-hidden rounded-sm p-2 ${type} ${event?.status} ${event?.status === 'active' ? 'active' : ''}`}
+            className={`event relative flex flex-col gap-2 overflow-hidden rounded-sm p-2 ${type} ${event.status}`}
         >
             <div className="flex gap-2">
                 <Image
@@ -61,7 +60,12 @@ function generateEvent(event) {
                     height={128}
                     className="max-h-6 max-w-6"
                 />
-                <h3>{type} Event</h3>
+                <h3>
+                    {event.status === 'success' ? 'Won ' : null}
+                    {event.status === 'fail' ? 'Failed ' : null}
+                    {event.status === 'active' ? 'Active ' : null}
+                    {type} Event
+                </h3>
             </div>
             <div className="z-20 flex flex-col gap-2 text-sm">
                 <div className="flex justify-between gap-2">

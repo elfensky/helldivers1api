@@ -28,11 +28,12 @@
 
 .event.success {
     /* border-left: 10px solid green; */
-    background-color: rgba(40, 0, 0, 0.8);
+    background-color: rgba(0, 20, 0, 0.8);
 }
 .event.fail {
     /* border-left: 10px solid red; */
-    background-color: rgba(0, 20, 0, 0.8);
+
+    background-color: rgba(40, 0, 0, 0.8);
 }
 
 .event.active {
