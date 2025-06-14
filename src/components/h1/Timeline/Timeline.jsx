@@ -68,12 +68,12 @@ function generateEvent(event) {
                 </h3>
             </div>
             <div className="z-20 flex flex-col gap-2 text-sm">
-                <div className="flex justify-between gap-2">
+                <p className="flex justify-between gap-2">
                     <span>Started {start}</span>
                     {end.includes('ago') ?
                         <span>Finished {end}</span>
                     :   <span>Finishes in {end}</span>}
-                </div>
+                </p>
 
                 <div>{progress}</div>
 

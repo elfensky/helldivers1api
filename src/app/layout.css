@@ -42,11 +42,18 @@ h6 {
     text-transform: uppercase;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figcaption {
+    @apply text-white;
+}
+
 main {
     background: url('/images/background.webp') no-repeat center center fixed;
     background-size: cover;
-}
-
-* {
-    @apply text-shadow-white;
 }
