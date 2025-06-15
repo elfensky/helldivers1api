@@ -76,9 +76,10 @@ function generateEvent(event) {
                         : <span>Finishes in {end}</span>}
                 </p>
 
-                <div>{progress}</div>
+                <p>{progress}</p>
 
                 <div className="relative">
+                    {/* <meter value={percent} max="100" className="w-full" title="event progress percentage"></meter> */}
                     <progress value={percent} max="100" className="h-5 w-full"></progress>
                     <span className="absolute left-1 text-black">
                         {event.points} / {event.points_max}

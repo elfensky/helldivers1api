@@ -434,7 +434,7 @@ export default function Map({ svgRef, map }) {
                         />
                         <image
                             className="pointer-events-none"
-                            href="/icons/faction3.webp"
+                            href="/icons/superearth.webp"
                             x="352"
                             y="334"
                             width="100"
