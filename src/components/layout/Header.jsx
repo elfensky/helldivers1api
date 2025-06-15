@@ -76,7 +76,7 @@ function Logo() {
         >
             <figure className="m-0 flex flex-row items-center gap-2">
                 <Image
-                    src="/images/logo.png"
+                    src="/images/logo.webp"
                     alt="Logo of Helldivers Bot, which is a cartoon depiction of a spy satellite"
                     className="max-w-[2rem]"
                     width={315}
