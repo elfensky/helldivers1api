@@ -108,7 +108,9 @@ function processCampaigns(data) {
 function processDefendEvents(data) {
     data?.defend_events?.forEach((event) => {
         if (event?.status === 'active') {
-            map[event?.enemy][event?.region].event = event;
+            map[event?.enemy][event?.region].event = 'active';
+        } else {
+            map[event?.enemy][event?.region].event = 'idle';
         }
     });
 }

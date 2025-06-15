@@ -9,10 +9,11 @@ const nextConfig = {
         ];
     },
     async headers() {
-        // 1 day   : 86400 seconds
-        // 7 days  : 604800 seconds
-        // 14 days : 1209600 seconds
-        // 30 days : 2592000 seconds
+        // 1 day   : 86400    seconds
+        // 7 days  : 604800   seconds
+        // 14 days : 1209600  seconds
+        // 30 days : 2592000  seconds
+        // 365 days: 31536000 seconds
         return [
             {
                 source: '/favicons/:slug',
@@ -28,7 +29,7 @@ const nextConfig = {
                 headers: [
                     {
                         key: 'Cache-Control',
-                        value: 'public, max-age=1209600, immutable', //14days
+                        value: 'public, max-age=31536000, immutable', //14days
                     },
                 ],
             },

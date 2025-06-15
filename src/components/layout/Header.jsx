@@ -60,7 +60,7 @@ async function User() {
                 alt="Logo of Helldivers Bot, which is a cartoon depiction of a spy sattelite"
                 width={40}
                 height={40}
-                priority
+                priority={true}
             />
             <SignOut />
         </div>
@@ -81,7 +81,7 @@ function Logo() {
                     className="max-w-[2rem]"
                     width={315}
                     height={403}
-                    priority
+                    priority={true}
                 />
                 <figcaption
                     className="whitespace-nowrap"

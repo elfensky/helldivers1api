@@ -11,7 +11,7 @@ export default function Timeline({ data }) {
         <section
             id="timeline"
             className="flex flex-col gap-4"
-            // className="flex flex-col gap-8 sm:max-h-[86vh] sm:overflow-y-auto sm:p-0"
+        // className="flex flex-col gap-8 sm:max-h-[86vh] sm:overflow-y-auto sm:p-0"
         >
             <h2
                 className="text-3xl uppercase"
@@ -24,7 +24,7 @@ export default function Timeline({ data }) {
                     <div className="flex flex-col gap-4 overflow-y-auto">
                         {events.map((event) => generateEvent(event))}
                     </div>
-                :   null}
+                    : null}
             </div>
         </section>
     );
@@ -59,6 +59,7 @@ function generateEvent(event) {
                     width={128}
                     height={128}
                     className="max-h-6 max-w-6"
+                    priority={true}
                 />
                 <h3>
                     {event.status === 'success' ? 'Won ' : null}
@@ -72,7 +73,7 @@ function generateEvent(event) {
                     <span>Started {start}</span>
                     {end.includes('ago') ?
                         <span>Finished {end}</span>
-                    :   <span>Finishes in {end}</span>}
+                        : <span>Finishes in {end}</span>}
                 </p>
 
                 <div>{progress}</div>
@@ -94,6 +95,7 @@ function generateEvent(event) {
                 className="absolute -bottom-5 right-0 z-0 h-[80%] w-auto opacity-65"
                 width={256}
                 height={256}
+                priority={true}
             />
         </article>
     );

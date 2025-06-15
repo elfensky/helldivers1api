@@ -19,6 +19,7 @@ export function roundedPerformanceTime(start) {
 }
 //endregion
 
+
 //region userTime
 export function timeSince(date) {
     const now = new Date();
