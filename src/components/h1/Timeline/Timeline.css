@@ -1,25 +1,6 @@
 .event {
     background-color: rgba(0, 0, 0, 0.75);
     border: 2px solid black;
-
-    /* BACKGROUND OF PROGRESS */
-    progress {
-        background: #ff0000;
-    }
-
-    progress::-webkit-progress-bar {
-        background: #ff0000;
-    }
-
-    /* THE ACTUAL PROGRESS */
-    progress::-moz-progress-bar {
-        background: #ffd700;
-    }
-
-    progress::-webkit-progress-value {
-        background: #ffd700;
-    }
-
 }
 
 /* .event.defend {

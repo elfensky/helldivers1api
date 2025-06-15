@@ -1,7 +1,8 @@
 // 'use client';
 import './Timeline.css';
-import { timeAgo, timeUntil } from '@/utils/time';
+// import { timeAgo, timeUntil } from '@/utils/time';
 import Image from 'next/image';
+import humanizeDuration from 'humanize-duration';
 
 export default function Timeline({ data }) {
     const events = [...data.defend_events, ...data.attack_events];
@@ -38,10 +39,19 @@ function generateEvent(event) {
         type = 'attack';
     }
 
-    const start = timeAgo(event.start_time * 1000);
-    const end = timeAgo(event.end_time * 1000);
-    // const start = new Date(event.start_time * 1000).toLocaleString('en-GB');
-    // const end = new Date(event.end_time * 1000).toLocaleString('en-GB');
+    const remaining = (new Date(event.end_time * 1000) - new Date());
+    const abs_remaining = Math.abs(remaining);
+    let human_remaining = null;
+
+    if (abs_remaining < 3600000) {
+        human_remaining = humanizeDuration(abs_remaining, { units: ["m", "s"], maxDecimalPoints: 0 });
+    }
+    else if (abs_remaining < 86400000) {
+        human_remaining = humanizeDuration(abs_remaining, { units: ["h", "m"], maxDecimalPoints: 0 });
+    } else {
+        human_remaining = humanizeDuration(abs_remaining, { units: ["d", "h"], maxDecimalPoints: 0 });
+    }
+
 
     const percent = (event.points / event.points_max) * 100;
     const progress = util_evaluate_progress(event);
@@ -69,11 +79,11 @@ function generateEvent(event) {
                 </h3>
             </div>
             <div className="z-20 flex flex-col gap-2 text-sm">
-                <p className="flex justify-between gap-2">
-                    <span>Started {start}</span>
-                    {end.includes('ago') ?
-                        <span>Finished {end}</span>
-                        : <span>Finishes in {end}</span>}
+                <p className="flex flex-col justify-between gap-2">
+
+                    {remaining > 0
+                        ? <span>Due in {human_remaining}</span>
+                        : <span>Finished {human_remaining} ago</span>}
                 </p>
 
                 <p>{progress}</p>
@@ -145,14 +155,6 @@ function util_evaluate_progress(event) {
         status = 'On track';
     }
 
-    // Determine if the current rate is sufficient
-    // let rateStatus;
-    // if (currentRate >= requiredRate) {
-    //     rateStatus = 'on track to meet your goal';
-    // } else {
-    //     rateStatus = 'need to increase your rate to meet your goal';
-    // }
-
     let pointDifference = Math.abs(expectedPoints - event.points);
 
     const progress = {
@@ -169,11 +171,18 @@ function util_evaluate_progress(event) {
         return `${status} by ${pointDifference.toFixed(0)} points`;
     }
     // if (event.status === 'success') {
-    //     const remaining_minutes = 120 - Math.floor(elapsedTime / 60);
+    //     return `tbd`;
+    // }
+    // if (event.status === 'fail') {
+    //     return `Lost ${pointDifference.toFixed(0)} points`;
+    // }
+
+    // if (event.status === 'success') {
+    //     const remaining_minutes = Math.abs(120 - Math.floor(elapsedTime / 60));
     //     const win_text =
     //         remaining_minutes > 1 ?
     //             `${remaining_minutes} minutes`
-    //         :   `${remaining_minutes} minute`;
+    //             : `${remaining_minutes} minute`;
 
     //     return `Won with ${win_text} to spare.`;
     // }

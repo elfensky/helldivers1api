@@ -89,9 +89,9 @@ function Avatar({ user }) {
     const submitData = async (e) => {
         'use server';
         // e.preventDefault();
-        console.log('updateUser', e);
-        console.log(user);
-        console.log(getGravatarUrl(user.email));
+        // console.log('updateUser', e);
+        // console.log(user);
+        // console.log(getGravatarUrl(user.email));
         // const user = await updateUserData(e);
     };
 

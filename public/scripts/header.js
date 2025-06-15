@@ -36,7 +36,7 @@ window.addEventListener('scroll', function () {
             header.style.backgroundColor = `rgba(0, 0, 0, 0.00)`;
         } else {
             header.classList.add('transition-top');
-            header.style.backgroundColor = `rgba(0, 0, 0, 0.80)`;
+            header.style.backgroundColor = `rgba(0, 0, 0, 1)`;
             header.style.top = `-160px`;
         }
     }

@@ -10,35 +10,8 @@
         height: 20px;
         border: none;
         background-color: #eee;
-        border-radius: 0; /* Squared corners */
+        border-radius: 0;
+        /* Squared corners */
         overflow: hidden;
     }
-
-    /* progress::-webkit-progress-value,
-    progress::-moz-progress-value {
-        background-color: gold;
-        border-radius: 0;
-    }
-
-    progress::-webkit-progress-bar,
-    progress::-moz-progress-bar {
-        background-color: #f70000;
-        border-radius: 0;
-    } */
-
-    progress::-webkit-progress-bar,
-    progress::-moz-progress-bar {
-        background-color: gold;
-        border-radius: 0;
-    }
-
-    progress::-webkit-progress-value,
-    progress::-moz-progress-value {
-        background-color: #f70000;
-        border-radius: 0;
-    }
-}
-
-progress {
-    box-shadow: none;
 }

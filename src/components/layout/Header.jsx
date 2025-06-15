@@ -10,13 +10,13 @@ import Navigation from '@/components/layout/Navigation';
 //utils
 import { getGravatarUrl } from '@/utils/gravatar';
 import Script from 'next/script';
-//rename component to UpperCAse
+//rename component to UpperCase
 
 export default async function Header() {
     return (
         <header
             id="header"
-            className="fixed top-0 z-20 flex h-[80px] w-full"
+            className="fixed top-0 z-50 flex h-[80px] w-full text-white"
             style={{ top: '0px', backgroundColor: 'rgba(0, 0, 0, 0)' }} //will be adjusted on scroll by header.js
         >
             {/* sticky xl:relative */}
