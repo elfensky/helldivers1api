@@ -1,20 +1,8 @@
-## 0.7.0 (2025-06-12)
+## 0.7.1 (2025-06-XX)
 
-- Add reload.js to reload the page in client every 30 seconds.
-- Update Map
-    - show attack events (flashing)
-    - show defend events (flashing)
-    - Homeworld Tooptips
-- Update Header to hide and show on scroll
-- Update Timeline to show human readable time
-- Update umami to use environment variables
-- Fix Timeline
-    - fix text color in Firefox & Chrome light modes
-- Fix Map
-    - progress styling in Firefox & Chrome
-    - active event keeps showing up after finishing
-- Fix Lighthouse bugs
-    - Image sizing
-    - WebP Fixes 
-    - Caching
-
+Add
+Update Tooltip to always show inside body
+    - I can use the body width/height to constrain the tooltip
+    - get tooltip rect (width/height)
+    - position of tooltip max=(bodyWidth-tooltipWidth) etc..
+Fix
