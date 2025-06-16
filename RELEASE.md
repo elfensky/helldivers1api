@@ -1,8 +1,4 @@
-## 0.7.1 (2025-06-XX)
+## 0.7.1 (2025-06-16)
 
-Add
+Update Umami tracking code(s)
 Update Tooltip to always show inside body
-    - I can use the body width/height to constrain the tooltip
-    - get tooltip rect (width/height)
-    - position of tooltip max=(bodyWidth-tooltipWidth) etc..
-Fix
