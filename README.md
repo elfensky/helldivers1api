@@ -15,24 +15,11 @@ This is an application that consumes the official Helldivers 1 API, caches and r
 It also stores historic data that the official API discards, and offers account management and api keys for 3rd parties to access the API to build their own apps.
 The frontend also shows various data visualizations and notifies visitors of in-game events.
 
-It uses:
-
-- [Next.js](https://nextjs.org), bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-    - App Router for the frontend
-    - API Routes for the backend
-- [ESLint](https://eslint.org) for linting.
-  <!-- - [Vitest](https://vitest.dev) for testing -->
-- [Prisma](https://prisma.io) for database access.
-- [Sentry](https://sentry.io) for analytics
-  <!-- -   [Docker](https://www.docker.com) for deployment -->
-
 ## Running locally
 
-1. provide a `.env` file with the following content:
-
-```
-DATABASE_URL="postgresql://user:password@host:port/helldiversbot?schema=public"
-```
+1. provide a `.env` file based on .example.env
+2. install dependencies with `npm install`
+3. run `npm run dev` to start the server locally
 
 ## Docker
 
