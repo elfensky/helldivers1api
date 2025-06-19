@@ -6,6 +6,7 @@ add badges from CodeQL & Dependabot to README.md
 - Update Timeline to display nothing when no events are present.
 - Fix Cyborg map order
 - Update and reorganise README.md
+- Add CodeQL and Dependabot badges to README.md
 
 ### Docker
 
