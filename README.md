@@ -4,6 +4,8 @@
 
 [![Build](https://github.com/elfensky/helldivers1api/actions/workflows/staging.docker.yml/badge.svg?branch=main)](https://github.com/elfensky/helldivers1api/actions/workflows/staging.docker.yml)
 [![Release](https://github.com/elfensky/helldivers1api/actions/workflows/release.docker.yml/badge.svg)](https://github.com/elfensky/helldivers1api/actions/workflows/release.docker.yml)
+[![CodeQL](https://github.com/elfensky/helldivers1api/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/elfensky/helldivers1api/actions/workflows/github-code-scanning/codeql)
+[![Dependabot Updates](https://github.com/elfensky/helldivers1api/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/elfensky/helldivers1api/actions/workflows/dependabot/dependabot-updates)
 [![Time](https://wakapi.lavrenov.io/api/badge/elfensky/interval:any/project:helldivers1api)](https://wakapi.lavrenov.io/leaderboard)
 
 ## Status
