@@ -1,7 +1,7 @@
 ## 0.7.3 (2025-06-XX)
 
-- Add
-- Update
+- Add Github Action to generate PageSpeed Insights Metrics
+- Update favicon.ico so there's less whitespace (more icon)
 - Fix
 
 ### Docker
