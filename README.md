@@ -16,6 +16,8 @@
 
 [![Time](https://wakapi.lavrenov.io/api/badge/elfensky/interval:any/project:helldivers1api)](https://wakapi.lavrenov.io/leaderboard)
 
+[![Metrics](/metrics.plugin.pagespeed.svg)](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fhelldivers.bot%2F)
+
 This is an application that consumes the official Helldivers 1 API, caches and rebroadcasts it as to avoid high load on official servers.
 It also stores historic data that the official API discards, and offers account management and api keys for 3rd parties to access the API to build their own apps.
 The frontend also shows various data visualizations and notifies visitors of in-game events.
