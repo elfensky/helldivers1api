@@ -1,8 +1,8 @@
 ## 0.7.3 (2025-06-XX)
 
 - Add Github Action to generate PageSpeed Insights Metrics
+- Add loaderio verification file
 - Update favicon.ico so there's less whitespace (more icon)
-- Fix
 
 ### Docker
 
