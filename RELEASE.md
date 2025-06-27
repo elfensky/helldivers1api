@@ -1,6 +1,7 @@
 ## 0.7.4 (2025-07-XX)
 
-- Add
+- Add robots.txt
+- Add sitemap.js to generate sitemap.xml
 - Update
 - Fix
 

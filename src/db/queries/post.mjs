@@ -125,3 +125,28 @@ export async function createPost(formData) {
         throw error;
     }
 }
+
+export async function getLatestsPostDate() {
+    const start = performance.now();
+
+    try {
+        const result = await db.post.findFirst({
+            orderBy: {
+                updatedAt: 'desc',
+            },
+            select: {
+                updatedAt: true,
+            },
+        });
+
+        const query = {
+            data: result,
+            time: performance.now() - start,
+        };
+        return query;
+    } catch (error) {
+        console.error('getLatestsPostDate()');
+        console.error(error);
+        throw error;
+    }
+}

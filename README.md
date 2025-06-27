@@ -119,8 +119,8 @@ When using the docker container, the database you are connecting to needs to alr
 
 #### Build locally
 
-- Use `docker build -t ghcr.io/elfensky/helldivers1api:staging --build-arg NODE_ENV=staging .` to build the image locally for local hardware
-- Use `docker buildx build --platform linux/amd64 -t ghcr.io/elfensky/helldivers1api:staging --build-arg NODE_ENV=staging .` to build the image for standard x32_64 hardware
+- Use `docker build -t ghcr.io/elfensky/helldivers1api:staging .` to build the image locally for local hardware
+- Use `docker buildx build --platform linux/amd64 -t ghcr.io/elfensky/helldivers1api:staging .` to build the image for standard x86_64 hardware
 - Use `docker compose up` to run the container locally.
 
 #### Deploy to ghcr.io

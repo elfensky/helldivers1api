@@ -14,10 +14,19 @@ import Script from 'next/script';
 
 export default async function HomePage() {
     const rebroacast_status = await tryCatch(queryGetRebroadcastStatus());
-    const query = await tryCatch(getCampaign());
-    const data = query?.data;
+    // const query = await tryCatch(getCampaign());
+    const { data: query, error: queryError } = await tryCatch(getCampaign());
 
-    if (!data) {
+    if (queryError !== null) {
+        return (
+            <div className="flex min-h-full w-full flex-col-reverse justify-center sm:flex-row">
+                Error: {queryError.message}
+            </div>
+        );
+    }
+
+    const data = query;
+    if (!query) {
         return (
             <div className="flex min-h-full w-full flex-col-reverse justify-center sm:flex-row">
                 Loading...
@@ -29,6 +38,7 @@ export default async function HomePage() {
         <div className="mx-2 flex flex-col-reverse gap-4 sm:mx-24 lg:flex-row">
             {/* mx-2 flex min-h-full w-full flex-col-reverse items-center justify-center gap-2 sm:mx-24 sm:items-start sm:gap-4 lg:flex-row */}
 
+            {/* USE SUSPENSE HERE */}
             <War data={data} />
             <Timeline data={data} />
             <Galaxy data={data} />
