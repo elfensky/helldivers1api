@@ -10,7 +10,13 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 
 - To be copied from RELEASE.md
 
-## 0.7.3 (2025-06-20)
+## 0.7.3 (2025-06-24)
+
+- Add Github Action to generate PageSpeed Insights Metrics
+- Update favicon.ico so there's less whitespace (more icon)
+- Add loaderio verification file
+
+## 0.7.2 (2025-06-20)
 
 - Update Timeline to display nothing when no events are present.
 - Fix Cyborg map order

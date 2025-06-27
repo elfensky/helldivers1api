@@ -1,11 +1,11 @@
-## 0.7.3 (2025-06-XX)
+## 0.7.4 (2025-07-XX)
 
-- Add Github Action to generate PageSpeed Insights Metrics
-- Add loaderio verification file
-- Update favicon.ico so there's less whitespace (more icon)
+- Add
+- Update
+- Fix
 
 ### Docker
 
-- `docker pull ghcr.io/elfensky/helldivers1api:0.7.3`
+- `docker pull ghcr.io/elfensky/helldivers1api:0.7.4`
 - `docker pull ghcr.io/elfensky/helldivers1api:production`
 - `docker pull ghcr.io/elfensky/helldivers1api:latest`
