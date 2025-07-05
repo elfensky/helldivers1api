@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import Script from 'next/script';
 import Map from '@/components/h1/Galaxy/Map';
 import Tooltip from '@/components/h1/Galaxy/Tooltip';
+import Wings from '@/components/layout/Wings/Wings';
 //enums
 import factions from '@/enums/factions';
 import map from '@/enums/map';
@@ -22,19 +23,17 @@ export default function Galaxy({ data, rebroadcast }) {
         <>
             <section
                 id="galaxy"
-                // flex w-full max-w-[800px] flex-grow flex-col justify-center
-                className="flex flex-grow-[4] flex-col gap-4"
+                className="mx-4 mb-4 flex flex-grow-[4] flex-col items-center gap-4 sm:mx-0"
             >
-                <div className="flex flex-row items-start justify-start gap-2 text-3xl uppercase">
-                    <h1>
-                        Season {data.season} | Day {elapsedTime.days}
-                    </h1>
-                    {/* <span>|</span>
-                    <span>Day {elapsedTime.days}</span> */}
-                </div>
+                <h2>
+                    <Wings>{`Season ${data.season}`}</Wings>
+                </h2>
+
+                {/* <p className="gap-2">
+                    <span>Day {elapsedTime.days}</span> <span>Players 999</span>
+                </p> */}
                 <Map svgRef={svgRef} map={map} />
                 <Tooltip svgRef={svgRef} data={data} map={map} />
-                {/* <Script src="/scripts/animateMap.js" strategy="lazyOnload" /> */}
             </section>
         </>
     );
@@ -42,7 +41,6 @@ export default function Galaxy({ data, rebroadcast }) {
 
 function processCampaigns(data) {
     data?.campaigns?.forEach((campaign, faction) => {
-        // console.log(campaign);
         const sector_count = 10; //10 sectors, 11th (homeworld) is determined by the attack event, not campaign progress.
         const points_max = campaign?.points_max;
         const points = campaign?.points;

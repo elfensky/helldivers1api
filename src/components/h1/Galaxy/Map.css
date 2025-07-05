@@ -11,8 +11,10 @@
 }
 
 .captured {
-    fill: rgba(255, 213, 0, 0.33);
-    stroke: rgba(255, 225, 0, 0.99);
+    /* fill: rgba(255, 213, 0, 0.33); */
+    fill: var(--region);
+    /* stroke: rgba(255, 225, 0, 0.99); */
+    stroke: var(--border);
     z-index: 20;
 }
 

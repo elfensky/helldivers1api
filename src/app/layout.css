@@ -10,12 +10,38 @@
     --color-foreground: var(--foreground);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     :root {
         --background: #0a0a0a;
         --foreground: #ededed;
+        --dark: hsla(0, 0%, 10%, 1);
     }
 } */
+
+:root {
+    /* COLORS */
+    --orange: hsl(42, 81%, 50%); /* checlboxe and variables in text */
+    --blue: #0095a8; /* accent stuff */
+    --black: rgba(0, 9, 19, 1);
+
+    /* MAP */
+    --border: rgba(255, 225, 0, 0.99); /* map region border(s) */
+    --region: rgba(255, 213, 0, 0.33); /* map region fill */
+    --cyborgs: rgba(213, 15, 15, 0.35);
+    --bugs: rgba(25, 218, 12, 0.35);
+    --illuminate: rgba(12, 122, 218, 0.35);
+
+    /* TEXT */
+    --text: hsl(20, 100%, 99%); /* active text */
+    --inactive: hsl(0, 0%, 46%); /* inactive text */
+
+    /* GRADIENTS */
+    --gradient-horizontal: linear-gradient(to right, #262427, #49494b, #262427);
+    --gradient-vertical: linear-gradient(to right, #262427, #49494b, #262427);
+
+    /* BACKGROUND */
+    --background: hsla(60, 8%, 10%, 0.7);
+}
 
 @font-face {
     font-family: 'Insignia';
@@ -25,37 +51,70 @@
     font-display: swap;
 }
 
+html,
 body {
-    /* background: var(--background);
-    color: var(--foreground); */
+    font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--black);
+    color: var(--text);
 }
 
-h1,
-h1,
-h3,
-h4,
-h5,
-h6 {
-    /* font-family: var(--font-insignia); */
-    font-family: 'Insignia', 'Impact', sans-serif;
-    text-transform: uppercase;
-}
+/* #features,
+#about,
+#roadmap {
+    background-color: var(--background);
+} */
 
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-p,
-figcaption {
-    @apply text-white;
+h6 {
+    @apply flex flex-col sm:block;
+    font-family: 'Insignia', 'Impact', sans-serif;
+    text-transform: uppercase;
+    /* text-align: center; */
 }
 
-main {
-    background: url('/images/background.webp') no-repeat center center fixed;
-    background-size: cover;
+h1,
+h2 {
+    /* flex flex-col  */
+    @apply text-[1.25rem] sm:text-2xl lg:text-3xl;
+    /* line-height: 0.8rem; */
+}
+
+/* h2::before, */
+h2::before {
+    @apply w-[3.5rem] sm:w-[4rem] lg:w-[5.5rem];
+}
+h2::after {
+    @apply w-[3.5rem] sm:w-[4rem] lg:w-[5.5rem];
+}
+h2 {
+    &::before,
+    &::after {
+        @apply bg-contain bg-top bg-no-repeat;
+        margin-top: 0.4rem;
+        content: '';
+    }
+
+    &::before {
+        background-image: url('/icons/wings.webp');
+        margin-right: 0.333rem;
+    }
+    &&::after {
+        background-image: url('/icons/wings.webp');
+        transform: scaleX(-1); /* flip the image horizontally */
+        margin-left: 0.333rem;
+    }
+}
+
+h3,
+h4,
+h5,
+h6 {
+    @apply text-2xl;
 }
 
 /* BACKGROUND OF PROGRESS */
@@ -74,4 +133,29 @@ progress::-moz-progress-bar {
 
 progress::-webkit-progress-value {
     background: #ffd700;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 1rem;
+}
+
+footer {
+    background-color: var(--black);
+}
+
+.content {
+    @apply rounded-sm p-4 sm:p-8;
+    background-color: var(--background);
+    padding: 2rem;
+    border: 2px solid black;
+}
+
+.link {
+    @apply transition-transform;
+    transform: scale(1);
+}
+.link:hover {
+    color: var(--orange);
+    transform: scale(1.05);
 }

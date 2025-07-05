@@ -1,7 +1,7 @@
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 //components
-import Header from '@/components/layout/Header';
+import Header from '@/components/layout/Header/Header';
 import Footer from '@/components/layout/Footer';
 import ApiDashboard from '@/components/dashboard/ApiDashboard';
 import UserDashboard from '@/components/dashboard/UserDashboard';

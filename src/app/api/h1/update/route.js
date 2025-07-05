@@ -67,12 +67,12 @@ import { umamiTrackEvent } from '@/utils/umami';
  */
 export async function GET(request) {
     after(async () => {
-        const data = {
-            status: statusTime,
-            season: seasonTime,
-            ms: roundedPerformanceTime(start),
-        };
-        await umamiTrackEvent('API | Update', '/api/h1/update', 'update', data);
+        // const data = {
+        //     status: statusTime,
+        //     season: seasonTime,
+        //     ms: roundedPerformanceTime(start),
+        // };
+        // await umamiTrackEvent('API | Update', '/api/h1/update', 'update', data);
     });
 
     //INITIALIZE

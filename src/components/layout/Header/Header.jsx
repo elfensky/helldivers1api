@@ -19,8 +19,7 @@ export default async function Header() {
             className="fixed top-0 z-50 flex h-[80px] w-full text-white"
             style={{ top: '0px', backgroundColor: 'rgba(0, 0, 0, 0)' }} //will be adjusted on scroll by header.js
         >
-            {/* sticky xl:relative */}
-            <div className="mx-2 flex w-full items-center justify-between sm:mx-24">
+            <div className="mx-4 flex w-full items-center justify-between sm:mx-24">
                 <Logo />
                 <div className="hidden gap-4 sm:flex">
                     <Navigation />
@@ -71,6 +70,7 @@ function Logo() {
     return (
         <Link
             href="/"
+            data-umami-event={'header-home'}
             aria-label="Go to homepage"
             className="flex flex-row items-center justify-center gap-2 text-2xl font-bold"
         >
@@ -83,12 +83,7 @@ function Logo() {
                     height={403}
                     priority={true}
                 />
-                <figcaption
-                    className="whitespace-nowrap"
-                    style={{ fontFamily: 'Insignia, sans-serif' }}
-                >
-                    Helldivers Bot
-                </figcaption>
+                <figcaption className="whitespace-nowrap">Helldivers Bot</figcaption>
             </figure>
         </Link>
     );

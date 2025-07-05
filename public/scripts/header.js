@@ -1,13 +1,12 @@
 let lastScrollTop = 0;
 const header = document.getElementById('header');
+let direction = 'down';
 
 window.addEventListener('scroll', function () {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     // console.log(scrollTop);
 
     if (scrollTop < lastScrollTop) {
-        // Scrolling up
-
         if (header.classList.contains('transition-top')) {
             header.style.top = `0px`;
 

@@ -6,12 +6,7 @@ export default function War({ data }) {
 
     return (
         <section className="flex flex-col gap-4">
-            <h2
-                className="text-3xl uppercase"
-                style={{ fontFamily: 'Insignia, sans-serif' }}
-            >
-                War Stats
-            </h2>
+            <h2>War Stats</h2>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-1">
                 {generateGlobalWarStats(data?.statistics)}
                 {data?.statistics?.map((statistic) => generateWarStats(statistic))}
