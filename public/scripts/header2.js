@@ -1,13 +1,13 @@
-let lastScrollTop = 0;
+//scrollbehavior
 const header = document.getElementById('header');
 let direction = 'down';
+let lastScrollTop = 0;
 
 window.addEventListener('scroll', function () {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    // console.log(scrollTop);
 
     if (scrollTop < lastScrollTop) {
-        if (header.classList.contains('transition-top')) {
+        if (header.classList.contains('header-transition')) {
             header.style.top = `0px`;
 
             if (scrollTop < 100) {
@@ -30,11 +30,11 @@ window.addEventListener('scroll', function () {
     } else {
         // Scrolling down
         if (scrollTop < 160) {
-            header.classList.remove('transition-top');
+            header.classList.remove('header-transition');
             header.style.top = `-${scrollTop}px`;
             header.style.backgroundColor = `rgba(0, 0, 0, 0.00)`;
         } else {
-            header.classList.add('transition-top');
+            header.classList.add('header-transition');
             header.style.backgroundColor = `rgba(0, 0, 0, 1)`;
             header.style.top = `-160px`;
         }

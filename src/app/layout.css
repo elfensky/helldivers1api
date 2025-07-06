@@ -51,6 +51,10 @@
     font-display: swap;
 }
 
+.gutters {
+    @apply mx-4 sm:mx-12 md:mx-24;
+}
+
 html,
 body {
     font-size: 16px;

@@ -3,7 +3,7 @@ import './layout.css';
 import Script from 'next/script';
 //components
 import Header from '@/components/layout/Header/Header';
-import Footer from '@/components/layout/Footer';
+import Footer from '@/components/layout/Footer/Footer';
 
 // function getMetaURL() {
 //     switch (process.env.NODE_ENV) {
@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
                 />
 
                 <Header />
-                <main className="flex min-h-screen w-screen flex-col pt-[80px]">
+                <main className="flex min-h-screen w-screen flex-col pt-[50px] sm:pt-[80px]">
                     {children}
                 </main>
                 <Footer />

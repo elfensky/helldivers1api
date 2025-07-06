@@ -11,8 +11,8 @@
     - Update Footer to have a proper sitemap, legal and donate links.
     - Move the detailed map a new /campaign page
     - Move stats to the /stats page
-    -
 
+- Add Mobile Navigation
 - Add JSON LD to Event component
 - Add robots.txt
 - Add sitemap.js to generate sitemap.xml

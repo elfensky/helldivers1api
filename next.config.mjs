@@ -51,15 +51,15 @@ const nextConfig = {
                     },
                 ],
             },
-            {
-                source: '/scripts/:slug',
-                headers: [
-                    {
-                        key: 'Cache-Control',
-                        value: 'public, max-age=86400 seconds, immutable', //1day
-                    },
-                ],
-            },
+            // {
+            //     source: '/scripts/:slug',
+            //     headers: [
+            //         {
+            //             key: 'Cache-Control',
+            //             value: 'public, max-age=86400 seconds, immutable', //1day
+            //         },
+            //     ],
+            // },
             {
                 source: '/svgs/:slug',
                 headers: [
