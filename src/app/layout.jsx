@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
     const isProduction = process.env.NODE_ENV === 'production';
 
     return (
-        <html lang="en" className="">
+        <html lang="en">
             <body
                 id="body"
                 className="min-w-screen flex min-h-screen flex-col antialiased"
