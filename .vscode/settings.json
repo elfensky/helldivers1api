@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "elfensky",
+        "projectKey": "elfensky_helldivers1api"
+    }
+}
