@@ -23,7 +23,7 @@
         "react-hook-form": "^7.60.0",
         "react-icons": "^5.5.0",
         "swagger-jsdoc": "^6.2.8",
-        "swagger-ui-dist": "^5.26.0",
+        "swagger-ui-dist": "^5.26.2",
         "zod": "^3.25.74"
     },
     "devDependencies": {
