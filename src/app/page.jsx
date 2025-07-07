@@ -44,23 +44,26 @@ export default async function HomePage() {
             >
                 <section
                     id="alerts"
-                    className="gutters col-span-10 row-span-1 row-start-1 bg-amber-400"
+                    className="col-span-10 row-span-1 row-start-1 flex overflow-hidden overflow-x-scroll bg-amber-400"
                 >
-                    <ul className="flex flex-row">
-                        <li>alert1</li>
-                        <li>alert2</li>
-                        <li>alert3</li>
-                        <li>alert3</li>
-                        <li>alert3</li>
-                        <li>alert3</li>
+                    <ul className="gutters--left flex flex-row gap-10">
+                        <li className="bg-red-500 px-10">alert1</li>
+                        <li className="bg-red-500 px-10">alert2</li>
+                        <li className="bg-red-500 px-10">alert3</li>
+                        <li className="bg-red-500 px-10">alert4</li>
+                        <li className="bg-red-500 px-10">alert5</li>
+                        <li className="bg-red-500 px-10">alert6</li>
+                        <li className="bg-red-500 px-10">alert7</li>
+                        <li className="bg-red-500 px-10">alert8</li>
+                        <li className="bg-red-500 px-10">alert9 </li>
                     </ul>
+                    <div className="gutters--right w-4"></div>
                 </section>
 
                 <section
                     id="info"
                     className="gutters col-span-10 row-span-4 row-start-2 bg-green-400"
                 >
-                    hero info
                     {/* <h1>
                         <Wings>Online campaign</Wings> tracker for the original Helldivers
                     </h1>
@@ -86,14 +89,14 @@ export default async function HomePage() {
 
                 <section
                     id="map"
-                    className="col-span-10 row-span-4 row-start-7 overflow-hidden bg-pink-400"
+                    className="col-span-10 row-span-5 row-start-6 overflow-hidden bg-pink-400"
                 >
                     <Galaxy data={data} />
                 </section>
 
-                {/* <section id="stats" className="gutters w-full bg-pink-400">
+                <section id="stats" className="gutters w-full bg-pink-400">
                     stats
-                </section> */}
+                </section>
             </div>
 
             <section id="features" className="gutters relative bg-red-400 px-2 sm:px-24">

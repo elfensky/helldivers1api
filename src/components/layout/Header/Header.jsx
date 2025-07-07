@@ -18,7 +18,7 @@ export default async function Header() {
             id="header"
             className="fixed top-0 z-50 flex h-[50px] w-full text-white sm:h-[80px]"
         >
-            <div className="mx-4 flex w-full items-center justify-between sm:mx-12 md:mx-24">
+            <div className="gutters flex w-full items-center justify-between">
                 <Logo />
                 <Navigation />
             </div>
