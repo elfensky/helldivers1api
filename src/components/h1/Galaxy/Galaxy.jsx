@@ -25,9 +25,9 @@ export default function Galaxy({ data, rebroadcast }) {
                 id="galaxy"
                 className="mx-4 mb-4 flex flex-grow-[4] flex-col items-center gap-4 sm:mx-0"
             >
-                <h2>
+                {/* <h2>
                     <Wings>{`Season ${data.season}`}</Wings>
-                </h2>
+                </h2> */}
 
                 {/* <p className="gap-2">
                     <span>Day {elapsedTime.days}</span> <span>Players 999</span>

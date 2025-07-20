@@ -50,9 +50,12 @@
     font-style: normal;
     font-display: swap;
 }
-
+section {
+    max-width: 1536px;
+}
 .gutters {
     @apply mx-4 sm:mx-12 lg:mx-24;
+    /* ml-4 mr-4 sm:ml-12 sm:mr-12 lg:ml-24 lg:mr-24 */
 }
 .gutters--left {
     @apply ml-4 sm:ml-12 lg:ml-24;
@@ -84,47 +87,6 @@ h6 {
     @apply flex flex-col sm:block;
     font-family: 'Insignia', 'Impact', sans-serif;
     text-transform: uppercase;
-    /* text-align: center; */
-}
-
-h1,
-h2 {
-    /* flex flex-col  */
-    @apply text-[1.25rem] sm:text-2xl lg:text-3xl;
-    /* line-height: 0.8rem; */
-}
-
-/* h2::before, */
-h2::before {
-    @apply w-[3.5rem] sm:w-[4rem] lg:w-[5.5rem];
-}
-h2::after {
-    @apply w-[3.5rem] sm:w-[4rem] lg:w-[5.5rem];
-}
-h2 {
-    &::before,
-    &::after {
-        @apply bg-contain bg-top bg-no-repeat;
-        margin-top: 0.4rem;
-        content: '';
-    }
-
-    &::before {
-        background-image: url('/icons/wings.webp');
-        margin-right: 0.333rem;
-    }
-    &&::after {
-        background-image: url('/icons/wings.webp');
-        transform: scaleX(-1); /* flip the image horizontally */
-        margin-left: 0.333rem;
-    }
-}
-
-h3,
-h4,
-h5,
-h6 {
-    @apply text-2xl;
 }
 
 /* BACKGROUND OF PROGRESS */
@@ -145,16 +107,16 @@ progress::-webkit-progress-value {
     background: #ffd700;
 }
 
-p {
+/* p {
     font-size: 16px;
     margin-bottom: 1rem;
-}
+} */
 
 footer {
     background-color: var(--black);
 }
 
-.content {
+/* .content {
     @apply rounded-sm p-4 sm:p-8;
     background-color: var(--background);
     padding: 2rem;
@@ -168,4 +130,4 @@ footer {
 .link:hover {
     color: var(--orange);
     transform: scale(1.05);
-}
+} */

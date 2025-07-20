@@ -30,6 +30,12 @@ export default function RootLayout({ children }) {
 
     return (
         <html lang="en">
+            <head>
+                <script
+                    crossOrigin="anonymous"
+                    src="//unpkg.com/react-scan/dist/auto.global.js"
+                />
+            </head>
             <body
                 id="body"
                 className="min-w-screen flex min-h-screen flex-col antialiased"
@@ -40,7 +46,7 @@ export default function RootLayout({ children }) {
                 />
 
                 <Header />
-                <main className="flex min-h-screen w-screen flex-col pt-[50px] sm:pt-[80px]">
+                <main className="flex min-h-screen w-screen flex-col pt-[50px] sm:pt-[80px] 2xl:flex-row 2xl:flex-wrap">
                     {children}
                 </main>
                 <Footer />
