@@ -28,15 +28,15 @@ export default function Timeline({ data }) {
     return (
         <section id="timeline" className="flex flex-col gap-4">
             <h2>Timeline</h2>
-            <div className="flex flex-col gap-4 sm:overflow-y-auto">
-                {events ?
-                    <div className="flex flex-col gap-4 overflow-y-auto">
-                        {events.map((event) => (
-                            <Event key={event.event_id} event={event} />
-                        ))}
-                    </div>
-                :   null}
-            </div>
+            {/* <div className="flex flex-col gap-4 sm:overflow-y-scroll"> */}
+            {events ?
+                <div className="flex h-[calc(100vh-80px-24px-12px)] flex-col gap-4 sm:overflow-y-scroll">
+                    {events.map((event) => (
+                        <Event key={event.event_id} event={event} />
+                    ))}
+                </div>
+            :   null}
+            {/* </div> */}
         </section>
     );
 }

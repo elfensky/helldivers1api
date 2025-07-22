@@ -182,7 +182,7 @@ model h1_season {
   snapshots          h1_snapshot[]          @relation("OneSeasonToManySnapshots")
   defend_events      h1_defend_event[]      @relation("OneSeasonToManyDefendEvents")
   attack_events      h1_attack_event[]      @relation("OneSeasonToManyAttackEvents")
-  events             h1_events[]            @relation("OneSeasonToManyEvents")
+  events             h1_event[]             @relation("OneSeasonToManyEvents")
   statistics         h1_statistic[]         @relation("OneSeasonToManyStatistics")
   //indexes
   @@index([season])

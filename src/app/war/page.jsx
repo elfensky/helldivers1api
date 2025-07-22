@@ -41,7 +41,7 @@ export default async function Campaign() {
     }
 
     return (
-        <div className="gutters fixed top-[80px] z-10 flex max-h-[calc(100vh-80px-16px)] w-screen flex-col justify-between gap-4 overflow-hidden 2xl:flex-row 2xl:flex-wrap">
+        <div className="gutters z-10 flex w-screen flex-col-reverse justify-between gap-4 overflow-hidden xl:fixed xl:top-[80px] xl:max-h-[calc(100vh-80px-16px)] 2xl:flex-row 2xl:flex-wrap">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}

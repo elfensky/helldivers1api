@@ -33,7 +33,7 @@ export default function Event({ event }) {
         <article
             id={`event-${event.event_id}`}
             key={event.event_id}
-            className={`event relative flex flex-col gap-2 overflow-hidden rounded-sm p-2 ${event.type} ${event.status}`}
+            className={`event relative flex min-h-fit flex-col gap-2 overflow-hidden rounded-sm p-2 ${event.type} ${event.status}`}
         >
             <div className="flex gap-2">
                 <Image
