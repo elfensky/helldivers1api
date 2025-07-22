@@ -34,12 +34,12 @@ async function initializeHelldivers1Api() {
         console.info('instrumentation.js | database: ', database);
 
         // WORKER - continiously update current campaign from the official Helldivers API
-        // const worker = await initializeWorker();
-        // if (!worker) {
-        //     console.error('instrumentation.js | worker: ', worker);
-        //     process.exit(1);
-        // }
-        // console.info('instrumentation.js | worker: ', worker);
+        const worker = await initializeWorker();
+        if (!worker) {
+            console.error('instrumentation.js | worker: ', worker);
+            process.exit(1);
+        }
+        console.info('instrumentation.js | worker: ', worker);
     }
 }
 

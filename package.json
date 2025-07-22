@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "@auth/prisma-adapter": "^2.10.0",
-        "@prisma/client": "^6.11.1",
+        "@prisma/client": "^6.12.0",
         "@vercel/og": "^0.6.8",
         "axios": "^1.10.0",
         "humanize-duration": "^3.33.0",
@@ -31,7 +31,7 @@
         "chokidar-cli": "^3.0.0",
         "prettier": "^3.6.2",
         "prettier-plugin-tailwindcss": "^0.6.13",
-        "prisma": "^6.11.1",
+        "prisma": "^6.12.0",
         "tailwindcss": "^4.1.11"
     },
     "volta": {
