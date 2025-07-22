@@ -115,10 +115,17 @@ function processCampaigns(data) {
 function processDefendEvents(data) {
     if (data?.defend_events?.length > 0) {
         data?.defend_events?.forEach((event) => {
-            if (event?.status === 'active') {
-                map[event?.enemy][event?.region].event = 'active';
+            if (event?.region === 0) {
+                map[3][0].event = 'active';
+                map[3][0].status = 'active';
+            } else if (event?.region) {
+                if (event?.status === 'active') {
+                    map[event?.enemy][event?.region].event = 'active';
+                } else {
+                    map[event?.enemy][event?.region].event = 'idle';
+                }
             } else {
-                map[event?.enemy][event?.region].event = 'idle';
+                log.error('something went wrong');
             }
         });
     }

@@ -5,7 +5,7 @@ export default function Footer() {
     const year = now.getFullYear();
 
     return (
-        <footer className="flex w-full flex-col justify-between gap-4 px-2 py-12 sm:flex-row sm:px-24">
+        <footer className="slide z-20 flex w-full flex-col justify-between gap-4 px-2 py-12 sm:flex-row sm:px-24">
             <section className="flex flex-col gap-2">
                 <div className="flex flex-col">
                     <h4>Helldivers Bot</h4>

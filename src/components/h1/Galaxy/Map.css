@@ -40,7 +40,8 @@
 #illuminate .in_progress, */
 #bugs .active,
 #cyborgs .active,
-#illuminate .active {
+#illuminate .active,
+#superearth .active {
     /* fill: rgba(255, 213, 0, 0.33); */
     /* stroke: rgba(255, 0, 0, 0.99); */
 

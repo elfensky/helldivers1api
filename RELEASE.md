@@ -1,7 +1,6 @@
 ## 0.7.4 (2025-07-XX)
 
 - Completely rework the website layout and structure
-
     - Add Active component
     - Update Navigation with Github links and umami event tracking
     - Update HomePage to say more about the project (actual landing page)

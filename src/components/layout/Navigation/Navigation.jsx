@@ -30,13 +30,13 @@ export default async function Navigation() {
     }
 
     return (
-        <nav className="z-50 flex w-fit items-center gap-4">
+        <nav className="z-50">
             <ul
                 id="navigation"
                 // opacity-0
                 // top-full
                 // -top-full
-                className="pointer-events-none absolute -top-[400%] right-0 z-0 flex w-full flex-col items-end gap-1 bg-black py-4 pr-4 text-right sm:right-12 md:pointer-events-auto md:relative md:right-0 md:w-fit md:flex-row md:items-center md:gap-4"
+                className="pointer-events-none absolute -top-[400%] right-0 z-0 flex w-full flex-col items-end justify-end gap-1 py-4 pr-4 text-right sm:right-12 md:pointer-events-auto md:relative md:right-0 md:w-fit md:flex-row md:items-center md:gap-4 md:p-0"
             >
                 <li>
                     <Link

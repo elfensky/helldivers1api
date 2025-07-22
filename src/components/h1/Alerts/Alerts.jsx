@@ -1,10 +1,38 @@
+import './Alerts.css';
+
 import Image from 'next/image';
 import humanizeDuration from 'humanize-duration';
 // https://developers.google.com/search/docs/appearance/structured-data/event
 import map from '@/enums/map';
 import factions from '@/enums/factions';
 
-export default function Event({ event }) {
+export default function Alerts({ data }) {
+    const attackEvents = (data?.attack_events || []).map((event) => ({
+        ...event,
+        type: 'attack',
+    }));
+
+    const defendEvents = (data?.defend_events || []).map((event) => ({
+        ...event,
+        type: 'defend',
+    }));
+
+    const active = [...attackEvents, ...defendEvents]
+        .filter((event) => event.status === 'active')
+        .sort((a, b) => b.end_time - a.end_time);
+
+    console.log(active);
+
+    return (
+        <ul className="flex flex-row gap-10">
+            {active.map((event) => (
+                <Alert key={event.event_id} event={event} />
+            ))}
+        </ul>
+    );
+}
+
+function Alert({ event }) {
     const remaining = new Date(event.end_time * 1000) - new Date();
     const abs_remaining = Math.abs(remaining);
     let human_remaining = null;
@@ -30,63 +58,52 @@ export default function Event({ event }) {
     const progress = util_evaluate_progress(event);
 
     return (
-        <article
-            id={`event-${event.event_id}`}
-            key={event.event_id}
-            className={`event relative flex flex-col gap-2 overflow-hidden rounded-sm p-2 ${event.type} ${event.status}`}
-        >
-            <div className="flex gap-2">
-                <Image
-                    src={`/icons/faction${event?.enemy}.webp`}
-                    alt="Logo of Helldivers Bot, which is a cartoon depiction of a spy sattelite"
-                    width={128}
-                    height={128}
-                    className="max-h-6 max-w-6"
-                    priority={true}
-                />
-                <h3>
-                    {event.status === 'success' ? 'Won ' : null}
-                    {event.status === 'fail' ? 'Failed ' : null}
-                    {event.status === 'active' ? 'Active ' : null}
-                    {event.type} Event
-                </h3>
-            </div>
-            <div className="z-20 flex flex-col gap-2 text-sm">
-                <p className="flex flex-col justify-between gap-2">
-                    {remaining > 0 ?
-                        <span>Due in {human_remaining}</span>
-                    :   <span>Finished {human_remaining} ago</span>}
-                </p>
+        <li className="flex w-[33vw] min-w-[300px] rounded-lg first:ml-4 last:mr-4 first:sm:ml-12 last:sm:mr-12 first:lg:ml-24 last:lg:mr-24">
+            <article className="flex w-full flex-row gap-4 px-4 py-1">
+                <div className="flex flex-col justify-around">
+                    <Image
+                        src={`/icons/faction${event?.enemy}.webp`}
+                        alt="Logo of Helldivers Bot, which is a cartoon depiction of a spy sattelite"
+                        className="max-h-6 max-w-6"
+                        width={128}
+                        height={128}
+                        priority={true}
+                    />
 
-                <p>{progress}</p>
-
-                <div className="relative">
-                    {/* <meter value={percent} max="100" className="w-full" title="event progress percentage"></meter> */}
-                    <progress value={percent} max="100" className="h-5 w-full"></progress>
-                    <span className="absolute left-1 text-black">
-                        {event.points} / {event.points_max}
-                    </span>
-                    <span className="absolute right-1 text-black">
-                        {percent.toFixed(2)}%
-                    </span>
+                    <Image
+                        src={`/icons/${event.type}.webp`}
+                        alt={`${event.type} Event Icon`}
+                        className="max-h-6 max-w-6"
+                        width={256}
+                        height={256}
+                        priority={true}
+                    />
                 </div>
-            </div>
 
-            <Image
-                src={`/icons/${event.type}.webp`}
-                alt={`${event.type} Event Icon`}
-                className="absolute -bottom-5 right-0 z-0 h-[80%] w-auto opacity-65"
-                width={256}
-                height={256}
-                priority={true}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(schema(event, event.type)),
-                }}
-            />
-        </article>
+                <div className="flex flex-col justify-around">
+                    <h3>{event.type} Event</h3>
+                    <p>{progress}</p>
+                </div>
+
+                <div className="flex flex-col justify-around">
+                    <span>Due in {human_remaining}</span>
+                    <div className="relative">
+                        {/* <meter value={percent} max="100" className="w-full" title="event progress percentage"></meter> */}
+                        <progress
+                            value={percent}
+                            max="100"
+                            className="h-5 w-full"
+                        ></progress>
+                        <span className="absolute left-1 text-black">
+                            {event.points} / {event.points_max}
+                        </span>
+                        <span className="absolute right-1 text-black">
+                            {percent.toFixed(2)}%
+                        </span>
+                    </div>
+                </div>
+            </article>
+        </li>
     );
 }
 
@@ -181,10 +198,6 @@ function schema(event, type) {
     }
     if (type === 'defend') {
         // console.log(map[event.region][]);
-        if (event.region === 0) {
-            event.enemy = 3;
-        }
-
         const capital = map[event.enemy][event.region].capital;
         const region = map[event.enemy][event.region].region;
         const faction = factions[event.enemy].name;

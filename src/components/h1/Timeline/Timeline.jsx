@@ -7,20 +7,26 @@ import humanizeDuration from 'humanize-duration';
 import Event from '@/components/h1/Event/Event';
 
 export default function Timeline({ data }) {
-    const events = [...data.defend_events, ...data.attack_events].sort(
-        (a, b) => b.start_time - a.start_time,
-    );
+    const attackEvents = (data?.attack_events || []).map((event) => ({
+        ...event,
+        type: 'attack',
+    }));
+
+    const defendEvents = (data?.defend_events || []).map((event) => ({
+        ...event,
+        type: 'defend',
+    }));
+
+    const events = [...attackEvents, ...defendEvents]
+        // .filter((event) => event.status === 'active')
+        .sort((a, b) => b.start_time - a.start_time);
 
     if (events.length === 0) {
         return null;
     }
 
     return (
-        <section
-            id="timeline"
-            className="flex flex-col gap-4"
-            // className="flex flex-col gap-8 sm:max-h-[86vh] sm:overflow-y-auto sm:p-0"
-        >
+        <section id="timeline" className="flex flex-col gap-4">
             <h2>Timeline</h2>
             <div className="flex flex-col gap-4 sm:overflow-y-auto">
                 {events ?
@@ -41,15 +47,12 @@ function util_evaluate_progress(event) {
 
     // Calculate total time in milliseconds
     const totalTime = event.end_time - event.start_time;
-    // console.log('totalTime', totalTime);
 
     // Calculate elapsed time in milliseconds
     const elapsedTime = currentTime - event.start_time;
-    // console.log('elapsedTime', elapsedTime);
 
     // Calculate remaining time in milliseconds
     const remainingTime = event.end_time - currentTime;
-    // console.log('remainingTime', remainingTime);
 
     // Calculate the expected rate of progress (points per millisecond)
     const expectedRate = event.points_max / totalTime;

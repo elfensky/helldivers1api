@@ -385,19 +385,8 @@ const map = {
             points_max: 0,
             points_sector: 0,
             points_sector_max: 0,
-            status: '',
-            event: '',
-        },
-        1: {
-            region: 'Sol System',
-            capital: 'Super Earth',
-            percent: 0,
-            points: 0,
-            points_max: 0,
-            points_sector: 0,
-            points_sector_max: 0,
-            status: '',
-            event: '',
+            status: '', //active, captured, lost
+            event: '', //defend, attack
         },
     },
 };

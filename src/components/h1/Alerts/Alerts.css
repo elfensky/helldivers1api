@@ -1,0 +1,15 @@
+#alerts ul li {
+    background-color: rgba(119, 1, 1, 0.9);
+    border: 3px solid #ef4444; /* Tailwind red-500 */
+    animation: border-pulse 2s infinite;
+}
+
+@keyframes border-pulse {
+    0%,
+    100% {
+        border-color: rgba(119, 1, 1, 0.9); /* red-500 */
+    }
+    50% {
+        border-color: rgba(255, 0, 0, 0.8); /* red-400, lighter red */
+    }
+}

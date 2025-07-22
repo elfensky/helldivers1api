@@ -50,3 +50,12 @@
         background-color: rgba(0, 0, 0, 0.75);
     }
 }
+
+#body {
+    scroll-snap-type: y mandatory;
+    main,
+    footer,
+    div {
+        scroll-snap-align: start;
+    }
+}

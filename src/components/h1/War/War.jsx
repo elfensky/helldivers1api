@@ -15,16 +15,16 @@ export default function War({ data }) {
     );
 }
 function generateGlobalWarStats(statistics) {
-    let players = 0;
-    let deaths = 0;
-    let accidentals = 0;
-    let kills = 0;
+    let players = BigInt(0);
+    let deaths = BigInt(0);
+    let accidentals = BigInt(0);
+    let kills = BigInt(0);
 
     statistics.forEach((statistic) => {
-        players += statistic.players;
-        deaths += statistic.deaths;
-        accidentals += statistic.accidentals;
-        kills += statistic.kills;
+        players += BigInt(statistic.players);
+        deaths += BigInt(statistic.deaths);
+        accidentals += BigInt(statistic.accidentals);
+        kills += BigInt(statistic.kills);
     });
 
     return (

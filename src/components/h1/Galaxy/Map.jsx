@@ -4,10 +4,7 @@ export default function Map({ svgRef, map }) {
     const bugs = 0;
     const cyborgs = 1;
     const illuminate = 2;
-
-    const superearth = ['active'];
-
-    // console.log(map);
+    const superearth = 3;
 
     return (
         <>
@@ -400,7 +397,7 @@ export default function Map({ svgRef, map }) {
                         <circle
                             id="3-0"
                             data-name="0"
-                            className="sector captured"
+                            className={'sector captured ' + map[superearth][0].status}
                             cx="402.72"
                             cy="392.12"
                             r="27"

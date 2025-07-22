@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+@theme {
+    --breakpoint-3xl: 1920px;
+}
+
 /* :root {
     --background: #ffffff;
     --foreground: #171717;
@@ -50,9 +54,7 @@
     font-style: normal;
     font-display: swap;
 }
-section {
-    max-width: 1536px;
-}
+
 .gutters {
     @apply mx-4 sm:mx-12 lg:mx-24;
     /* ml-4 mr-4 sm:ml-12 sm:mr-12 lg:ml-24 lg:mr-24 */
@@ -64,6 +66,20 @@ section {
     @apply mr-4 sm:mr-12 lg:mr-24;
 }
 
+.p-gutters {
+    @apply px-4 sm:px-12 lg:px-24;
+}
+.p-gutters--left {
+    @apply pl-4 sm:pl-12 lg:pl-24;
+}
+.p-gutters--right {
+    @apply pr-4 sm:pr-12 lg:pr-24;
+}
+
+.spacer {
+    @apply w-4 sm:w-12 lg:w-24;
+}
+
 html,
 body {
     font-size: 16px;
@@ -71,12 +87,6 @@ body {
     background-color: var(--black);
     color: var(--text);
 }
-
-/* #features,
-#about,
-#roadmap {
-    background-color: var(--background);
-} */
 
 h1,
 h2,
@@ -107,27 +117,6 @@ progress::-webkit-progress-value {
     background: #ffd700;
 }
 
-/* p {
-    font-size: 16px;
-    margin-bottom: 1rem;
-} */
-
 footer {
     background-color: var(--black);
 }
-
-/* .content {
-    @apply rounded-sm p-4 sm:p-8;
-    background-color: var(--background);
-    padding: 2rem;
-    border: 2px solid black;
-}
-
-.link {
-    @apply transition-transform;
-    transform: scale(1);
-}
-.link:hover {
-    color: var(--orange);
-    transform: scale(1.05);
-} */

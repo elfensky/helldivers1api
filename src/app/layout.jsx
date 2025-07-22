@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
                 />
             </head>
             <body
-                id="body"
+                id="body "
                 className="min-w-screen flex min-h-screen flex-col antialiased"
             >
                 <script
@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
                 />
 
                 <Header />
-                <main className="flex min-h-screen w-screen flex-col pt-[50px] sm:pt-[80px] 2xl:flex-row 2xl:flex-wrap">
+                <main className="flex min-h-screen w-screen flex-col pt-[50px] sm:pt-[80px]">
                     {children}
                 </main>
                 <Footer />

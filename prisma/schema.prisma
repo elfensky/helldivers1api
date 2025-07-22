@@ -182,6 +182,7 @@ model h1_season {
   snapshots          h1_snapshot[]          @relation("OneSeasonToManySnapshots")
   defend_events      h1_defend_event[]      @relation("OneSeasonToManyDefendEvents")
   attack_events      h1_attack_event[]      @relation("OneSeasonToManyAttackEvents")
+  events             h1_events[]            @relation("OneSeasonToManyEvents")
   statistics         h1_statistic[]         @relation("OneSeasonToManyStatistics")
   //indexes
   @@index([season])
@@ -280,6 +281,27 @@ model h1_attack_event {
   @@index([event_id])
 }
 
+model h1_event {
+  id               String @id @default(uuid(7))
+  season           Int // foreign key
+  type             String //attack or defend
+  //data
+  event_id         Int @unique
+  start_time       Int
+  end_time         Int
+  region           Int //fill out for defend, automatic "11" for attack
+  enemy            Int
+  points_max       Int
+  points           Int
+  status           String
+  players_at_start Int?
+  
+  //relationship
+  linked_season h1_season @relation("OneSeasonToManyEvents", fields: [season], references: [season])
+  //indexes
+  @@index([event_id])
+}
+
 model h1_statistic {
   id                       String @id @default(uuid(7))
   season                   Int //foreign key
@@ -295,11 +317,11 @@ model h1_statistic {
   successful_defend_events Int
   attack_events            Int
   successful_attack_events Int
-  deaths                   Int
-  kills                    Int
-  accidentals              Int
-  shots                    Int
-  hits                     Int
+  deaths                   BigInt
+  kills                    BigInt
+  accidentals              BigInt
+  shots                    BigInt
+  hits                     BigInt
 
   //relations
   linked_season h1_season? @relation("OneSeasonToManyStatistics", fields: [season], references: [season])
