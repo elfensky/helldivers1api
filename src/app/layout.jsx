@@ -57,6 +57,7 @@ export default function RootLayout({ children }) {
                         src="/stats.js"
                         data-website-id="9a916711-2868-43d2-9932-964fc9528824"
                         strategy="afterInteractive"
+                        data-host-url="https://umami.lavrenov.io"
                     />
                 :   null}
             </body>
