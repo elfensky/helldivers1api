@@ -55,7 +55,10 @@ async function runMigrations() {
 
         try {
             const { stdout, stderr } = await execAsync(`npx prisma migrate deploy`);
-            if (stderr) {
+
+            const harmlessStderr = ['Environment variables loaded from .env'];
+
+            if (stderr && !harmlessStderr.some((msg) => stderr.trim().startsWith(msg))) {
                 throw new Error(stderr);
             }
 

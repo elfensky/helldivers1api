@@ -5,6 +5,18 @@ services:
         restart: unless-stopped
         image: ghcr.io/elfensky/helldivers1api:staging
         ports:
-            - '58102:3000'
+            - '127.0.0.1:58102:3000' #security update, from '58102:3000'
         env_file:
             - .env.docker
+        #security
+        # cap_drop:
+        #     - ALL
+        # security_opt:
+        #     - no-new-privileges:true
+        #     - seccomp=default
+        # healthcheck:
+        #     test: ['CMD', 'curl', '-f', 'http://localhost:3000/api/healthcheck']
+        #     interval: 30s
+        #     timeout: 10s
+        #     retries: 3
+        #     start_period: 10s

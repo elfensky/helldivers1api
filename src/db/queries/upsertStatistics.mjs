@@ -8,7 +8,7 @@ export async function queryUpsertStatistics(season, statistics) {
 
     if (!season) throw new Error('season is missing');
     if (!statistics) throw new Error('statistics are missing');
-
+    // return 1;
     try {
         let skipped = false;
         const now = new Date();

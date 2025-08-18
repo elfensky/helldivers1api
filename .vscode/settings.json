@@ -2,5 +2,6 @@
     "sonarlint.connectedMode.project": {
         "connectionId": "elfensky",
         "projectKey": "elfensky_helldivers1api"
-    }
+    },
+    "kiroAgent.configureMCP": "Disabled"
 }
