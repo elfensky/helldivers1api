@@ -43,13 +43,9 @@ export default async function HomePage() {
         <>
             <Hero data={data} />
 
-            <div className="gutters relative flex px-2 sm:px-24">
-                <section id="about" className="bg-amber-200">
-                    about
-                </section>
-                <section id="features" className="bg-fuchsia-600">
-                    content here
-                </section>
+            <div className="gutters relative flex flex-wrap gap-8 bg-red-400">
+                <About />
+                <Features />
             </div>
             <div className="gutters relative flex px-2 sm:px-24">
                 <section id="discord" className="bg-pink-300">
@@ -90,9 +86,9 @@ function Hero({ data }) {
 
             <section
                 id="info"
-                className="z-20 col-start-1 col-end-11 row-start-2 row-end-7 bg-green-400 opacity-70 sm:z-30 md:col-end-7 lg:row-end-9 2xl:col-end-6"
+                className="z-20 col-start-1 col-end-11 row-start-2 row-end-7 sm:z-30 md:col-end-7 lg:row-end-9 2xl:col-end-6"
             >
-                <div className="ml-4 mr-4 flex h-full flex-col gap-4 bg-green-800 sm:ml-12 sm:mr-12 sm:gap-8 md:mr-0 lg:ml-24 lg:mr-0">
+                <div className="ml-4 mr-4 flex h-full flex-col gap-4 sm:ml-12 sm:mr-12 sm:gap-8 md:mr-0 lg:ml-24 lg:mr-0">
                     <h1 className="text-4xl font-black sm:text-5xl lg:text-7xl">
                         TRACK MANAGED DEMOCRACY ACROSS THE GALAXY
                     </h1>
@@ -108,16 +104,16 @@ function Hero({ data }) {
 
             <section
                 id="stats"
-                className="z-10 col-start-1 col-end-11 row-start-10 row-end-11 w-full bg-blue-400 md:col-end-7 md:row-start-7 lg:col-end-11 lg:row-start-9"
+                className="z-10 col-start-1 col-end-11 row-start-10 row-end-11 w-full md:col-end-7 md:row-start-7 lg:col-end-11 lg:row-start-9"
             >
-                <div className="ml-4 mr-4 flex h-full flex-wrap items-center justify-between bg-blue-800 sm:ml-12 sm:mr-12 md:mr-0 lg:ml-24 lg:mr-24">
+                <div className="ml-4 mr-4 flex h-full flex-wrap items-center justify-between sm:ml-12 sm:mr-12 md:mr-0 lg:ml-24 lg:mr-24">
                     <HeroStats data={data} />
                 </div>
             </section>
 
             <section
                 id="map"
-                className="z-30 col-start-1 col-end-11 row-start-6 row-end-10 overflow-hidden bg-pink-400 opacity-70 sm:z-10 md:col-start-6 md:row-start-2 md:row-end-11 lg:row-start-1"
+                className="z-30 col-start-1 col-end-11 row-start-6 row-end-10 overflow-hidden sm:z-10 md:col-start-6 md:row-start-2 md:row-end-11 lg:row-start-1"
             >
                 <Galaxy data={data} />
             </section>
@@ -136,24 +132,39 @@ function HeroStats({ data }) {
 
     return (
         <>
-            <div className="flex w-1/4 flex-col md:w-1/2 lg:w-1/4">
+            <div className="flex w-1/4 flex-col md:w-1/2 lg:w-fit">
                 <span className="text-3xl sm:text-4xl">{formatNumber(players)}</span>
                 <span>Players Online</span>
             </div>
-            <div className="flex w-1/4 flex-col md:w-1/2 lg:w-1/4">
+            <div className="flex w-1/4 flex-col md:w-1/2 lg:w-fit">
                 <span className="text-3xl sm:text-4xl">
                     {formatNumber(successful_missions)}
                 </span>
                 <span>Missions Completed</span>
             </div>
-            <div className="flex w-1/4 flex-col md:w-1/2 lg:w-1/4">
+            <div className="flex w-1/4 flex-col md:w-1/2 lg:w-fit">
                 <span className="text-3xl sm:text-4xl">{formatNumber(deaths)}</span>
                 <span>Fallen in Combat</span>
             </div>
-            <div className="flex w-1/4 flex-col md:w-1/2 lg:w-1/4">
+            <div className="flex w-1/4 flex-col md:w-1/2 lg:w-fit">
                 <span className="text-3xl sm:text-4xl">{formatNumber(kills)}</span>
                 <span>Enemies killed</span>
             </div>
         </>
+    );
+}
+
+function About() {
+    return (
+        <section id="about" className="w-min-[300px] w-1/3 bg-amber-900">
+            <p>This was made as a passion project to pad my portfolio.</p>
+        </section>
+    );
+}
+function Features() {
+    return (
+        <section id="features" className="flex flex-grow bg-fuchsia-600">
+            content here
+        </section>
     );
 }

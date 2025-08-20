@@ -30,7 +30,7 @@ export default function Button({
                 href={href}
                 data-umami-event={'button-' + umami}
                 className={
-                    'button flex w-fit items-center justify-center rounded-md bg-amber-300 px-4 py-2 text-white hover:bg-amber-500' +
+                    'button flex w-fit items-center justify-center rounded-md bg-amber-300 px-4 py-2 font-bold text-gray-600 hover:bg-amber-500' +
                     ' ' +
                     className
                 }

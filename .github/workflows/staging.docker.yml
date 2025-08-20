@@ -12,18 +12,30 @@ jobs:
     sonarqube:
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@v4
-          with:
-            # Disabling shallow clones is recommended for improving the relevancy of reporting
-            fetch-depth: 0
-        - name: SonarQube Scan
-          uses: SonarSource/sonarqube-scan-action@v5.2.0 # Ex: v4.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
-          env:
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            SONAR_HOST_URL: https://sonarcloud.io # ${{ vars.SONAR_HOST_URL }}
-    
+            - uses: actions/checkout@v4
+              with:
+                  # Disabling shallow clones is recommended for improving the relevancy of reporting
+                  fetch-depth: 0
+
+            # perform scan
+            - name: SonarQube Cloud Scan
+              uses: SonarSource/sonarqube-scan-action@v5.2.0 # Ex: v4.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
+              env:
+                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                  SONAR_HOST_URL: https://sonarcloud.io # ${{ vars.SONAR_HOST_URL }}
+
+            # check scan results
+            - name: SonarQube Quality Gate
+              id: sonarqube-quality-gate-check
+              uses: sonarsource/sonarqube-quality-gate-action@master
+              with:
+                  pollingTimeoutSec: 300 #default
+              env:
+                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                  SONAR_HOST_URL: https://sonarcloud.io
+
     build:
-        needs: sonarqube   # <--- This makes build wait for sonarqube to finish
+        needs: sonarqube # <--- This makes build wait for sonarqube to finish
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
