@@ -36,7 +36,7 @@
     --illuminate: rgba(12, 122, 218, 0.35);
 
     /* TEXT */
-    --text: hsl(20, 100%, 99%); /* active text */
+    --text: hsl(0, 0%, 80%); /* active text */
     --inactive: hsl(0, 0%, 46%); /* inactive text */
 
     /* GRADIENTS */
@@ -97,6 +97,22 @@ h6 {
     @apply flex flex-col sm:block;
     font-family: 'Insignia', 'Impact', sans-serif;
     text-transform: uppercase;
+    font-weight: 900;
+}
+
+h2 {
+    @apply mb-6;
+}
+
+section {
+    @apply rounded-md p-2 md:p-4;
+}
+.card {
+    @apply bg-slate-800 opacity-90;
+}
+
+p {
+    @apply mb-4;
 }
 
 /* BACKGROUND OF PROGRESS */

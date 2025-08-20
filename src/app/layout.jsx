@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
     const isProduction = process.env.NODE_ENV === 'production';
 
     return (
-        <html lang="en">
+        <html dir="ltr" lang="en">
             {/* <head>
                 <script
                     crossOrigin="anonymous"
