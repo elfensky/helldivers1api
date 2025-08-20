@@ -23,7 +23,7 @@ export default async function Header() {
                 <Navigation />
             </div>
 
-            <Script src="/scripts/header2.js" strategy="afterInteractive" />
+            <Script src="/scripts/header3.js" strategy="afterInteractive" />
             <Script src="/scripts/navigation.js" strategy="afterInteractive" />
         </header>
     );

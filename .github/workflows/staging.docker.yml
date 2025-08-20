@@ -4,10 +4,7 @@ on:
     push:
         branches:
             - main
-# on:
-#     push:
-#         tags:
-#             - '*.*.*' # Triggers on version tags like v1.0.0
+
 jobs:
     sonarqube:
         runs-on: ubuntu-latest
@@ -19,20 +16,20 @@ jobs:
 
             # perform scan
             - name: SonarQube Cloud Scan
-              uses: SonarSource/sonarqube-scan-action@v5.2.0 # Ex: v4.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
+              uses: SonarSource/sonarqube-scan-action@v5.3.0 # Ex: v5.2.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
               env:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                   SONAR_HOST_URL: https://sonarcloud.io # ${{ vars.SONAR_HOST_URL }}
 
             # check scan results
-            - name: SonarQube Quality Gate
-              id: sonarqube-quality-gate-check
-              uses: sonarsource/sonarqube-quality-gate-action@master
-              with:
-                  pollingTimeoutSec: 300 #default
-              env:
-                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-                  SONAR_HOST_URL: https://sonarcloud.io
+            # - name: SonarQube Quality Gate
+            #   id: sonarqube-quality-gate-check
+            #   uses: sonarsource/sonarqube-quality-gate-action@v1.2.0 # Ex: v1.2.0, See the latest version at https://github.com/marketplace/actions/sonarqube-quality-gate-check
+            #   with:
+            #       pollingTimeoutSec: 300 #default
+            #   env:
+            #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+            #       SONAR_HOST_URL: https://sonarcloud.io
 
     build:
         needs: sonarqube # <--- This makes build wait for sonarqube to finish

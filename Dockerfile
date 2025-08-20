@@ -9,7 +9,7 @@ FROM base AS deps
 WORKDIR /app
 
 # upgrade npm to latest version
-RUN npm install -g npm
+# RUN npm install -g npm
 # Install dependencies based on the preferred package manager
 COPY package.json package-lock.json ./
 RUN \
@@ -25,7 +25,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # upgrade npm to latest version
-RUN npm install -g npm
+# RUN npm install -g npm
 # Generate the Prisma client
 RUN npx prisma generate
 
@@ -74,8 +74,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY ./prisma ./prisma/
 
 # upgrade npm to latest version and install prisma so it's possible to run migrations from the docker container
-RUN npm install -g npm
-RUN npm i prisma 
+# RUN npm install -g npm
+RUN npm i prisma --ignore-scripts
 
 # copy public folder
 # RUN rm -rf ./public

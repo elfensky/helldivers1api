@@ -1,28 +1,22 @@
 //scrollbehavior
 const header = document.getElementById('header');
-let direction = 'down';
 let lastScrollTop = 0;
+
+function getColorValue(scrollTop) {
+    const percentage = (scrollTop * 10).toString().padStart(3, '0');
+    return `rgba(0, 0, 0, 0.${percentage})`;
+}
 
 window.addEventListener('scroll', function () {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     if (scrollTop < lastScrollTop) {
+        // Scrolling up
         if (header.classList.contains('header-transition')) {
             header.style.top = `0px`;
 
             if (scrollTop < 100) {
-                const percentage = (scrollTop * 10).toString();
-
-                if (percentage.length === 2) {
-                    const colorValue = '0' + percentage.toString();
-                    header.style.backgroundColor = `rgba(0, 0, 0, 0.${colorValue})`;
-                } else if (percentage.length === 1) {
-                    const colorValue = '00' + percentage.toString();
-                    header.style.backgroundColor = `rgba(0, 0, 0, 0.${colorValue})`;
-                } else {
-                    const colorValue = percentage.toString();
-                    header.style.backgroundColor = `rgba(0, 0, 0, 0.${colorValue})`;
-                }
+                header.style.backgroundColor = getColorValue(scrollTop);
             }
         } else {
             header.style.top = `-${scrollTop}px`;
@@ -40,5 +34,5 @@ window.addEventListener('scroll', function () {
         }
     }
 
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    lastScrollTop = Math.max(0, scrollTop); // For Mobile or negative scrolling
 });
