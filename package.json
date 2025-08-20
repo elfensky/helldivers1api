@@ -11,28 +11,28 @@
     },
     "dependencies": {
         "@auth/prisma-adapter": "^2.10.0",
-        "@prisma/client": "^6.13.0",
+        "@prisma/client": "^6.14.0",
         "@vercel/og": "^0.6.8",
         "axios": "^1.11.0",
         "humanize-duration": "^3.33.0",
-        "next": "^15.3.2",
+        "next": "^15.5.0",
         "next-auth": "^5.0.0-beta.28",
-        "nodemailer": "^7.0.5",
-        "react": "^19.1.0",
-        "react-dom": "^19.1.0",
-        "react-hook-form": "^7.60.0",
+        "nodemailer": "^6.10.1",
+        "react": "^19.1.1",
+        "react-dom": "^19.1.1",
+        "react-hook-form": "^7.62.0",
         "react-icons": "^5.5.0",
         "swagger-jsdoc": "^6.2.8",
         "swagger-ui-dist": "^5.27.1",
-        "zod": "^3.25.74"
+        "zod": "^3.25.76"
     },
     "devDependencies": {
-        "@tailwindcss/postcss": "^4",
+        "@tailwindcss/postcss": "^4.1.12",
         "babel-plugin-react-compiler": "^19.1.0-rc.2",
         "chokidar-cli": "^3.0.0",
         "prettier": "^3.6.2",
-        "prettier-plugin-tailwindcss": "^0.6.13",
-        "prisma": "^6.13.0",
+        "prettier-plugin-tailwindcss": "^0.6.14",
+        "prisma": "^6.14.0",
         "tailwindcss": "^4.1.11"
     },
     "volta": {
