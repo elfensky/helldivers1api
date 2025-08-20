@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 export default function Button({
+    className,
     type,
     href,
     label,
@@ -12,7 +13,11 @@ export default function Button({
             <Link
                 href={href}
                 data-umami-event={'button-' + umami}
-                className="link flex items-center justify-center gap-2 bg-blue-500 p-1 text-white"
+                className={
+                    'link flex items-center justify-center bg-blue-500 p-1 text-white' +
+                    ' ' +
+                    className
+                }
             >
                 {label}
             </Link>
@@ -24,7 +29,11 @@ export default function Button({
             <Link
                 href={href}
                 data-umami-event={'button-' + umami}
-                className="button flex items-center justify-center gap-2 bg-amber-300 p-1 text-white hover:bg-amber-500"
+                className={
+                    'button flex w-fit items-center justify-center rounded-md bg-amber-300 px-4 py-2 text-white hover:bg-amber-500' +
+                    ' ' +
+                    className
+                }
             >
                 {label}
             </Link>

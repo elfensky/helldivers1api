@@ -15,6 +15,7 @@ import Galaxy from '@/components/h1/Galaxy/Galaxy';
 // import Timeline from '@/components/h1/Timeline/Timeline';
 // import Active from '@/components/h1/Active/Active';
 import Alerts from '@/components/h1/Alerts/Alerts';
+import { formatNumber, addOrdinalSuffix } from '@/utils/utils';
 
 export default async function HomePage() {
     const rebroacast_status = await tryCatch(queryGetRebroadcastStatus());
@@ -28,7 +29,6 @@ export default async function HomePage() {
         );
     }
 
-    const data = query;
     if (!query) {
         return (
             <div className="flex min-h-full w-full flex-col-reverse justify-center sm:flex-row">
@@ -36,6 +36,8 @@ export default async function HomePage() {
             </div>
         );
     }
+
+    const data = query;
 
     return (
         <>
@@ -71,6 +73,8 @@ export default async function HomePage() {
 }
 
 function Hero({ data }) {
+    const ButtonText = `Check the ${addOrdinalSuffix(data.season)} War Report`;
+
     return (
         <div
             id="hero"
@@ -86,10 +90,10 @@ function Hero({ data }) {
 
             <section
                 id="info"
-                className="z-30 col-start-1 col-end-11 row-start-2 row-end-7 bg-green-400 opacity-70 md:col-end-7 lg:row-end-9 2xl:col-end-6"
+                className="z-20 col-start-1 col-end-11 row-start-2 row-end-7 bg-green-400 opacity-70 sm:z-30 md:col-end-7 lg:row-end-9 2xl:col-end-6"
             >
                 <div className="ml-4 mr-4 flex h-full flex-col gap-4 bg-green-800 sm:ml-12 sm:mr-12 sm:gap-8 md:mr-0 lg:ml-24 lg:mr-0">
-                    <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-7xl">
+                    <h1 className="text-4xl font-black sm:text-5xl lg:text-7xl">
                         TRACK MANAGED DEMOCRACY ACROSS THE GALAXY
                     </h1>
                     <p className="max-w-[550px] text-[18px]">
@@ -98,23 +102,22 @@ function Hero({ data }) {
                         See which planets are under siege, which are liberated, and where
                         your next mission awaits.
                     </p>
-                    <Button type="button" label="War Report" href="/war" umami="hero" />
+                    <Button umami="hero" type="button" href="/war" label={ButtonText} />
                 </div>
             </section>
 
             <section
                 id="stats"
-                className="z-20 col-start-1 col-end-11 row-start-10 row-end-11 w-full bg-blue-400 md:col-end-7 md:row-start-7 lg:col-end-11 lg:row-start-9"
+                className="z-10 col-start-1 col-end-11 row-start-10 row-end-11 w-full bg-blue-400 md:col-end-7 md:row-start-7 lg:col-end-11 lg:row-start-9"
             >
-                <div className="ml-4 mr-4 h-full bg-blue-800 sm:ml-12 sm:mr-12 md:mr-0 lg:ml-24 lg:mr-24">
-                    stats
-                    <br />
+                <div className="ml-4 mr-4 flex h-full flex-wrap items-center justify-between bg-blue-800 sm:ml-12 sm:mr-12 md:mr-0 lg:ml-24 lg:mr-24">
+                    <HeroStats data={data} />
                 </div>
             </section>
 
             <section
                 id="map"
-                className="z-10 col-start-1 col-end-11 row-start-6 row-end-10 overflow-hidden bg-pink-400 opacity-70 md:col-start-6 md:row-start-2 md:row-end-11 lg:row-start-1"
+                className="z-30 col-start-1 col-end-11 row-start-6 row-end-10 overflow-hidden bg-pink-400 opacity-70 sm:z-10 md:col-start-6 md:row-start-2 md:row-end-11 lg:row-start-1"
             >
                 <Galaxy data={data} />
             </section>
@@ -122,22 +125,35 @@ function Hero({ data }) {
     );
 }
 
-function Hero2({ data }) {
+function HeroStats({ data }) {
+    const players = data.statistics.reduce((total, enemy) => total + enemy.players, 0);
+    const successful_missions = data.statistics.reduce(
+        (total, enemy) => total + enemy.successful_missions,
+        0,
+    );
+    const deaths = data.statistics.reduce((total, enemy) => total + enemy.deaths, 0n);
+    const kills = data.statistics.reduce((total, enemy) => total + enemy.kills, 0n);
+
     return (
-        //the height is /9*10 === *1.111 -> so that the first 9 cells take up (100vh-50px) and another cell remains below the fold.
-        <div
-            id="hero"
-            // className="z-0 grid h-[calc((100vh-50px)*1.111)] grid-cols-10 grid-rows-10 gap-4 md:h-[calc(95vh-80px)] md:gap-8"
-            className="z-0 grid h-[calc((100vh-50px)*1.111)] w-full grid-cols-10 grid-rows-10 gap-0 md:h-[calc(95vh-80px)]"
-            //gap-4 md:gap-8
-        >
-            <section
-                id="alerts"
-                // className="z-40 w-screen bg-green-400"
-                className="z-40 col-start-1 col-end-11 row-start-1 row-end-3 flex overflow-hidden overflow-x-scroll bg-amber-400"
-            >
-                <Alerts data={data} />
-            </section>
-        </div>
+        <>
+            <div className="flex w-1/4 flex-col md:w-1/2 lg:w-1/4">
+                <span className="text-3xl sm:text-4xl">{formatNumber(players)}</span>
+                <span>Players Online</span>
+            </div>
+            <div className="flex w-1/4 flex-col md:w-1/2 lg:w-1/4">
+                <span className="text-3xl sm:text-4xl">
+                    {formatNumber(successful_missions)}
+                </span>
+                <span>Missions Completed</span>
+            </div>
+            <div className="flex w-1/4 flex-col md:w-1/2 lg:w-1/4">
+                <span className="text-3xl sm:text-4xl">{formatNumber(deaths)}</span>
+                <span>Fallen in Combat</span>
+            </div>
+            <div className="flex w-1/4 flex-col md:w-1/2 lg:w-1/4">
+                <span className="text-3xl sm:text-4xl">{formatNumber(kills)}</span>
+                <span>Enemies killed</span>
+            </div>
+        </>
     );
 }

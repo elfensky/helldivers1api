@@ -15,11 +15,9 @@ export default async function Navigation() {
     const links = [
         // { href: '/discord', label: 'Discord' },
         // { href: '/reviews', label: 'Reviews' },
-
-        { href: '/war', label: 'War' },
         // { href: '/history', label: 'History' },
         // { href: '/stats', label: 'Stats' },
-
+        { href: '/war', label: 'War' },
         { href: '/docs', label: 'Docs' },
         { href: '/api', label: 'API' },
     ];
