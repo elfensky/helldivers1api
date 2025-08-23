@@ -51,7 +51,7 @@ LABEL org.opencontainers.image.source="https://github.com/elfensky/helldivers1ap
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.title="Helldivers 1 Api"
 LABEL version="${VERSION}"
-LABEL description="nextjs application written in typescript that serves as an api rebroadcaster and formatter for Helldivers 1"
+LABEL description="nextjs application that serves as an api rebroadcaster and formatter for Helldivers 1"
 
 # defaults to production, but can be overriden at build time
 ARG NODE_ENV=production 
@@ -75,7 +75,7 @@ COPY ./prisma ./prisma/
 
 # upgrade npm to latest version and install prisma so it's possible to run migrations from the docker container
 # RUN npm install -g npm
-RUN npm i prisma --ignore-scripts
+RUN npm i prisma
 
 # copy public folder
 # RUN rm -rf ./public
@@ -96,3 +96,6 @@ ENTRYPOINT ["/sbin/tini", "--"]
 # https://nextjs.org/docs/pages/api-reference/config/next-config-js/output
 CMD ["node", "server.js"]
 # CMD ["npm", "run", "docker"]
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+    CMD curl -f http://0.0.0.0:3000/api/healthcheck || exit 1

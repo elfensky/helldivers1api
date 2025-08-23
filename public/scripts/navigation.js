@@ -2,7 +2,7 @@
 const menu = document.getElementById('menu');
 const navigation = document.getElementById('navigation');
 
-console.log(menu, navigation);
+// console.log(menu, navigation);
 
 menu.addEventListener('click', function () {
     // navigation.classList.toggle('opacity-0');
@@ -20,7 +20,7 @@ menu.addEventListener('click', function () {
 });
 
 window.addEventListener('resize', function () {
-    console.log(window.innerWidth);
+    // console.log(window.innerWidth);
 
     if (window.innerWidth <= 768) {
         navigation.classList.remove('opacity-100');

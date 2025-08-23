@@ -7,7 +7,7 @@ services:
         ports:
             - '127.0.0.1:58102:3000' #security update, from '58102:3000'
         env_file:
-            - .env.docker
+            - .env
         #security
         # cap_drop:
         #     - ALL

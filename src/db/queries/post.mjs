@@ -89,8 +89,8 @@ export async function createPost(formData) {
 
     try {
         const session = await auth();
-        console.log('session', session);
-        console.log(formData);
+        // console.log('session', session);
+        // console.log(formData);
 
         if (!session || !session?.user) {
             throw new Error('No session found');
