@@ -58,7 +58,7 @@ function Alert({ event }) {
     const progress = util_evaluate_progress(event);
 
     return (
-        <li className="flex w-[33vw] min-w-[300px] rounded-lg first:ml-4 last:mr-4 first:sm:ml-12 last:sm:mr-12 first:lg:ml-24 last:lg:mr-24">
+        <li className="flex w-[33vw] min-w-[300px] rounded-lg first:ml-4 last:mr-4 sm:min-w-[400px] first:sm:ml-12 last:sm:mr-12 first:lg:ml-24 last:lg:mr-24">
             <article className="flex w-full flex-row gap-4 px-4 py-1">
                 <div className="flex flex-col justify-around">
                     <Image
@@ -85,7 +85,7 @@ function Alert({ event }) {
                     <p>{progress}</p>
                 </div>
 
-                <div className="flex flex-col justify-around">
+                <div className="flex flex-grow flex-col justify-around">
                     <span>Due in {human_remaining}</span>
                     <div className="relative">
                         {/* <meter value={percent} max="100" className="w-full" title="event progress percentage"></meter> */}
