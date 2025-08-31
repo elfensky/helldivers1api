@@ -43,15 +43,15 @@ export default async function HomePage() {
         <>
             <Hero data={data} />
 
-            <div className="gutters relative flex flex-col flex-wrap gap-8">
+            <div className="gutters relative mb-8 flex flex-col flex-wrap gap-8">
                 <About />
                 <Features />
                 <Dicord />
                 <Api />
-                <Roadmap />
-                <Buy />
+                {/* <Roadmap /> */}
+                {/* <Buy /> */}
             </div>
-            <div className="gutters relative flex px-2 sm:px-24">
+            {/* <div className="gutters relative flex px-2 sm:px-24">
                 <section id="discord" className="bg-pink-300">
                     discord bot
                 </section>
@@ -67,7 +67,7 @@ export default async function HomePage() {
                 <section id="roadmap" className="bg-indigo-500">
                     roadmap
                 </section>
-            </div>
+            </div> */}
         </>
     );
 }

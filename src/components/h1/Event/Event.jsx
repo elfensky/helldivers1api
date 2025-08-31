@@ -33,7 +33,8 @@ export default function Event({ event }) {
         <article
             id={`event-${event.event_id}`}
             key={event.event_id}
-            className={`event relative flex min-h-fit flex-col gap-2 overflow-hidden rounded-sm p-2 ${event.type} ${event.status}`}
+            style={{ minHeight: '133px' }}
+            className={`event relative flex flex-col gap-2 overflow-hidden rounded-sm p-2 ${event.type} ${event.status}`}
         >
             <div className="flex gap-2">
                 <Image
@@ -51,7 +52,7 @@ export default function Event({ event }) {
                     {event.type} Event
                 </h3>
             </div>
-            <div className="z-20 flex flex-col gap-2 text-sm">
+            <div className="z-20 flex flex-col text-sm">
                 <p className="flex flex-col justify-between gap-2">
                     {remaining > 0 ?
                         <span>Due in {human_remaining}</span>
