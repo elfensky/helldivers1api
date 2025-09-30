@@ -1,22 +1,26 @@
 services:
     helldiversbot:
         container_name: helldivers1api
-        # init: true
+        init: true # replaces manually installing and using tini in the docker file.
         restart: unless-stopped
         image: ghcr.io/elfensky/helldivers1api:staging
         ports:
             - '127.0.0.1:58102:3000' #security update, from '58102:3000'
         env_file:
-            - .env
-        #security
-        # cap_drop:
-        #     - ALL
-        # security_opt:
-        #     - no-new-privileges:true
-        #     - seccomp=default
-        # healthcheck:
-        #     test: ['CMD', 'curl', '-f', 'http://localhost:3000/api/healthcheck']
-        #     interval: 30s
-        #     timeout: 10s
-        #     retries: 3
-        #     start_period: 10s
+            - .docker.env
+
+        # security
+        security_opt:
+            - no-new-privileges:true # Prevents privilege escalation
+            - apparmor:docker-default # Mandatory Access Control
+            - seccomp=default # System call filtering
+        cap_drop:
+            - ALL
+
+        # monitoring
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:3000/api/healthcheck']
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 10s

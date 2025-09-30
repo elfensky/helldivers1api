@@ -36,7 +36,6 @@ On startup, it runs instrumentation.js (once) which will:
 1. check if openapi spec exists (or generate it in dev mode)
 2. check if database connection exists and is valid
 3. initialize the database:
-
     1. run migrations.
     2. fetch remote currentStatus + currentSeason
     3. save raw json in the rebroadcast_tables.
@@ -63,7 +62,6 @@ Using next js api routes, this contains various endpoints that provide helldiver
         - season: integer
             - Required if action is get_snapshot.
 - GET /api/h1/campaign
-
     - Custom endpoint with optional `season` query parameter.
     - Returns combined status and snapshot information of a specific season in one query.
 
@@ -120,6 +118,7 @@ When using the docker container, the database you are connecting to needs to alr
 #### Build locally
 
 - Use `docker build -t ghcr.io/elfensky/helldivers1api:staging .` to build the image locally for local hardware
+  <!-- - Use `docker build --platform linux/amd64 -t ghcr.io/elfensky/helldivers1api:staging .`  -->
 - Use `docker buildx build --platform linux/amd64 -t ghcr.io/elfensky/helldivers1api:staging .` to build the image for standard x86_64 hardware
 - Use `docker compose up` to run the container locally.
 
