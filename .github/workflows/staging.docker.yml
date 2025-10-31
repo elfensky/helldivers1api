@@ -16,7 +16,7 @@ jobs:
 
             # perform scan
             - name: SonarQube Cloud Scan
-              uses: SonarSource/sonarqube-scan-action@v5.3.0 # Ex: v5.2.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
+              uses: SonarSource/sonarqube-scan-action@v6.0.0 # Ex: v5.2.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
               env:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                   SONAR_HOST_URL: https://sonarcloud.io # ${{ vars.SONAR_HOST_URL }}
