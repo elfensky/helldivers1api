@@ -4,6 +4,9 @@ on:
     push:
         branches:
             - main
+permissions:
+    contents: write
+    packages: write
 
 jobs:
     # sonarqube:
@@ -46,7 +49,7 @@ jobs:
               with:
                   registry: ghcr.io
                   username: ${{ github.actor }}
-                  password: ${{ secrets.ACCESS_TOKEN }} # use personal access token
+                  password: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Extract version from package.json
               id: extract_version
@@ -67,7 +70,7 @@ jobs:
               uses: snok/container-retention-policy@v3.0.0
               with:
                   account: user
-                  token: ${{ secrets.ACCESS_TOKEN }}
+                  token: ${{ secrets.GITHUB_TOKEN }}
                   image-names: "helldivers1api"
                   tag-selection: untagged # delete all untagged images
                   # image-tags: "test* dev*"  # target any image that has a tag starting with the word test or dev
