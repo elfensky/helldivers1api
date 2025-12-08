@@ -10,6 +10,10 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 
 - To be copied from RELEASE.md
 
+## 0.7.4 (2025-12-09)
+
+- fix react2shell
+
 ## 0.7.3 (2025-06-24)
 
 - Add Github Action to generate PageSpeed Insights Metrics
@@ -86,7 +90,6 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 ## 0.6.0 (2025-06-09)
 
 - Update Galaxy.jsx functionality
-
     - show captured regions (yellow border, yellow color)
     - show in_progress region (gold border, faction color)
     - show lost region (dark/transparent)

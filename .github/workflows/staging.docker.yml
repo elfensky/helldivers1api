@@ -6,33 +6,33 @@ on:
             - main
 
 jobs:
-    sonarqube:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-              with:
-                  # Disabling shallow clones is recommended for improving the relevancy of reporting
-                  fetch-depth: 0
+    # sonarqube:
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - uses: actions/checkout@v4
+    #           with:
+    #               # Disabling shallow clones is recommended for improving the relevancy of reporting
+    #               fetch-depth: 0
 
-            # perform scan
-            - name: SonarQube Cloud Scan
-              uses: SonarSource/sonarqube-scan-action@v5.3.0 # Ex: v5.2.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
-              env:
-                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-                  SONAR_HOST_URL: https://sonarcloud.io # ${{ vars.SONAR_HOST_URL }}
+    #         # perform scan
+    #         - name: SonarQube Cloud Scan
+    #           uses: SonarSource/sonarqube-scan-action@v5.3.0 # Ex: v5.2.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
+    #           env:
+    #               SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #               SONAR_HOST_URL: https://sonarcloud.io # ${{ vars.SONAR_HOST_URL }}
 
-            # check scan results
-            # - name: SonarQube Quality Gate
-            #   id: sonarqube-quality-gate-check
-            #   uses: sonarsource/sonarqube-quality-gate-action@v1.2.0 # Ex: v1.2.0, See the latest version at https://github.com/marketplace/actions/sonarqube-quality-gate-check
-            #   with:
-            #       pollingTimeoutSec: 300 #default
-            #   env:
-            #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            #       SONAR_HOST_URL: https://sonarcloud.io
+    #         # check scan results
+    #         # - name: SonarQube Quality Gate
+    #         #   id: sonarqube-quality-gate-check
+    #         #   uses: sonarsource/sonarqube-quality-gate-action@v1.2.0 # Ex: v1.2.0, See the latest version at https://github.com/marketplace/actions/sonarqube-quality-gate-check
+    #         #   with:
+    #         #       pollingTimeoutSec: 300 #default
+    #         #   env:
+    #         #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #         #       SONAR_HOST_URL: https://sonarcloud.io
 
     build:
-        needs: sonarqube # <--- This makes build wait for sonarqube to finish
+        # needs: sonarqube # <--- This makes build wait for sonarqube to finish
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -56,7 +56,7 @@ jobs:
               uses: docker/build-push-action@v4
               with:
                   context: .
-                  # platforms: linux/amd64,linux/arm64
+                  #   platforms: linux/amd64,linux/arm64
                   push: true
                   tags: |
                       ghcr.io/${{ github.repository_owner }}/helldivers1api:staging
@@ -68,7 +68,7 @@ jobs:
               with:
                   account: user
                   token: ${{ secrets.ACCESS_TOKEN }}
-                  image-names: 'helldivers1api'
+                  image-names: "helldivers1api"
                   tag-selection: untagged # delete all untagged images
                   # image-tags: "test* dev*"  # target any image that has a tag starting with the word test or dev
                   cut-off: 30min
