@@ -1,22 +1,6 @@
 ## 0.7.4 (2025-07-XX)
 
-- Completely rework the website layout and structure
-    - Add Active component
-    - Update Navigation with Github links and umami event tracking
-    - Update HomePage to say more about the project (actual landing page)
-        - Features
-        - About
-        - Roadmap
-    - Update Footer to have a proper sitemap, legal and donate links.
-    - Move the detailed map a new /campaign page
-    - Move stats to the /stats page
-
-- Add Mobile Navigation
-- Add JSON LD to Event component
-- Add robots.txt
-- Add sitemap.js to generate sitemap.xml
-- Update Umami tracking to only run in production.
-- Fix
+- fix react2shell
 
 ### Docker
 

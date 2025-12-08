@@ -25,7 +25,8 @@
 :root {
     /* COLORS */
     --orange: hsl(42, 81%, 50%); /* checlboxe and variables in text */
-    --blue: #0095a8; /* accent stuff */
+    --cyan: hsl(187, 100%, 33%); /* accent stuff */
+    --blue: hsl(191, 97%, 11%);
     --black: rgba(0, 9, 19, 1);
 
     /* MAP */
@@ -57,7 +58,6 @@
 
 .gutters {
     @apply mx-4 sm:mx-12 lg:mx-24;
-    /* ml-4 mr-4 sm:ml-12 sm:mr-12 lg:ml-24 lg:mr-24 */
 }
 .gutters--left {
     @apply ml-4 sm:ml-12 lg:ml-24;
@@ -84,7 +84,7 @@ html,
 body {
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--black);
+    background-color: var(--blue);
     color: var(--text);
 }
 
@@ -105,7 +105,7 @@ h2 {
 }
 
 section {
-    @apply rounded-md p-2 md:p-4;
+    @apply rounded-md;
 }
 .card {
     @apply bg-slate-800 opacity-90;
@@ -135,4 +135,10 @@ progress::-webkit-progress-value {
 
 footer {
     background-color: var(--black);
+}
+
+header {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.8px);
+    /* -webkit-backdrop-filter: blur(8.8px); */
 }

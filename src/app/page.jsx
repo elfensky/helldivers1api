@@ -41,7 +41,7 @@ export default async function HomePage() {
 
     return (
         <>
-            <Hero data={data} />
+            <HeroBackup data={data} />
 
             <div className="gutters relative mb-8 flex flex-col flex-wrap gap-8">
                 <About />
@@ -73,6 +73,20 @@ export default async function HomePage() {
 }
 
 function Hero({ data }) {
+    const ButtonText = `Check the ${addOrdinalSuffix(data.season)} War Report`;
+
+    return (
+        <div
+            id="hero"
+            className="z-0 grid h-[calc((100vh-50px)*1.111)] grid-cols-10 grid-rows-10 md:h-[calc(95vh-80px)]"
+            //the height is /9*10 === *1.111 -> so that the first 9 cells take up (100vh-50px) and another cell remains below the fold.
+        >
+            bla
+        </div>
+    );
+}
+
+function HeroBackup({ data }) {
     const ButtonText = `Check the ${addOrdinalSuffix(data.season)} War Report`;
 
     return (

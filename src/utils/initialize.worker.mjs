@@ -54,7 +54,7 @@ export async function initializeWorker() {
             //     console.log(`Output:\n${stdout}`);
             // });
 
-            const worker = new Worker(workerPath);
+            let worker = new Worker(workerPath);
             worker.postMessage({ key: key, interval: interval });
             // worker.onmessage = function (e) {
             //     if (e.data.error) {
