@@ -84,8 +84,9 @@ export async function initializeDatabase() {
     'use server';
     if (process.env.NEXT_RUNTIME === 'nodejs') {
         //1. get the provider type
-        const { data: provider, error: proErr } = await tryCatch(getPrismaProvider());
-        if (proErr) {
+        const { data: provider, error: providerError } =
+            await tryCatch(getPrismaProvider());
+        if (providerError) {
             console.error(providerError.message, {
                 cause: '/src/utils/initialize.prisma.mjs | await tryCatch(getPrismaProvider())',
             });
