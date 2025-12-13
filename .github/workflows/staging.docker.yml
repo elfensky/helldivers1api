@@ -67,7 +67,7 @@ jobs:
                       NODE_ENV=staging
 
             - name: Cleanup untagged packages (when you create a new :staging, the old one remains available)
-              uses: snok/container-retention-policy@v3.0.0
+              uses: snok/container-retention-policy@v3.0.1
               with:
                   account: user
                   token: ${{ secrets.GITHUB_TOKEN }}
