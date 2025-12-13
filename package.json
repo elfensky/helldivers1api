@@ -10,11 +10,11 @@
         "format": "chokidar 'src/**/*.{js,jsx,ts,tsx}' -c 'npx prettier --write .'"
     },
     "dependencies": {
-        "@auth/prisma-adapter": "^2.10.0",
+        "@auth/prisma-adapter": "^2.11.1",
         "@prisma/client": "^6.19.1",
         "@vercel/og": "^0.8.5",
         "axios": "^1.13.2",
-        "humanize-duration": "^3.33.0",
+        "humanize-duration": "^3.33.2",
         "next": "^15.5.9",
         "next-auth": "^5.0.0-beta.28",
         "react": "^19.2.3",
@@ -22,15 +22,15 @@
         "react-hook-form": "^7.68.0",
         "react-icons": "^5.5.0",
         "swagger-jsdoc": "^6.2.8",
-        "swagger-ui-dist": "^5.27.1",
+        "swagger-ui-dist": "^5.31.0",
         "zod": "^4.1.13"
     },
     "devDependencies": {
-        "@tailwindcss/postcss": "^4.1.12",
+        "@tailwindcss/postcss": "^4.1.18",
         "babel-plugin-react-compiler": "^19.1.0-rc.2",
         "chokidar-cli": "^3.0.0",
-        "prettier": "^3.6.2",
-        "prettier-plugin-tailwindcss": "^0.6.14",
+        "prettier": "^3.7.4",
+        "prettier-plugin-tailwindcss": "^0.7.2",
         "prisma": "^6.19.1",
         "tailwindcss": "^4.1.11"
     }
