@@ -27,7 +27,7 @@
     },
     "devDependencies": {
         "@tailwindcss/postcss": "^4.1.18",
-        "babel-plugin-react-compiler": "^19.1.0-rc.2",
+        "babel-plugin-react-compiler": "^1.0.0",
         "chokidar-cli": "^3.0.0",
         "prettier": "^3.7.4",
         "prettier-plugin-tailwindcss": "^0.7.2",
