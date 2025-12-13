@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "@auth/prisma-adapter": "^2.11.1",
-        "@prisma/client": "^6.19.1",
+        "@prisma/client": "^7.1.0",
         "@vercel/og": "^0.8.5",
         "axios": "^1.13.2",
         "humanize-duration": "^3.33.2",
